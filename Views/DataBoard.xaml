@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="FlightSimulator.Views.DataBoard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FlightSimulator.Views"
+             mc:Ignorable="d" 
+             Background="Honeydew"
+             d:DesignHeight="200" Width="430">
+    <Grid Margin="0,0,0,0">
+        <TextBlock x:Name="d1" HorizontalAlignment="Left" Height="20" Margin="0,20,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="160"/>
+        <TextBlock x:Name="d2" HorizontalAlignment="Left" Height="20" Margin="0,70,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="160"/>
+        <TextBlock x:Name="d3" HorizontalAlignment="Left" Height="20" Margin="0,120,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="160"/>
+        <TextBlock x:Name="d4" HorizontalAlignment="Left" Height="20" Margin="0,170,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="160"/>
+        <TextBlock x:Name="d5" HorizontalAlignment="Right" Height="20" Margin="0,20,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="160"/>
+        <TextBlock x:Name="d6" HorizontalAlignment="Right" Height="20" Margin="0,70,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="160"/>
+        <TextBlock x:Name="d7" HorizontalAlignment="Right" Height="20" Margin="0,120,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="160"/>
+        <TextBlock x:Name="d8" HorizontalAlignment="Right" Height="20" Margin="0,170,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="160"/>
+        <TextBox HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="indicated-heading-deg" VerticalAlignment="Top" Width="210" Margin="0,0,0,0"/>
+        <TextBox HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="gps_indicated-vertical-speed" VerticalAlignment="Top" Width="210" Margin="0,50,0,0"/>
+        <TextBox HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="gps_indicated-ground-speed-kt" VerticalAlignment="Top" Width="210" Margin="0,100,0,0"/>
+        <TextBox HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="airspeed-indicator_indicated-speed-kt" VerticalAlignment="Top" Width="210" Margin="0,150,0,0"/>
+        <TextBox HorizontalAlignment="Right" Height="20" TextWrapping="Wrap" Text="gps_indicated-altitude-ft" VerticalAlignment="Top" Width="210" Margin="0,0,0,0"/>
+        <TextBox HorizontalAlignment="Right" Height="20" TextWrapping="Wrap" Text="attitude-indicator_internal-roll-deg" VerticalAlignment="Top" Width="210" Margin="0,50,0,0"/>
+        <TextBox HorizontalAlignment="Right" Height="20" TextWrapping="Wrap" Text="attitude-indicator_internal-pitch-deg" VerticalAlignment="Top" Width="210" Margin="0,100,0,0"/>
+        <TextBox HorizontalAlignment="Right" Height="20" TextWrapping="Wrap" Text="altimeter_indicated-altitude-ft" VerticalAlignment="Top" Width="210" Margin="0,150,0,0"/>
+
+    </Grid>
+</UserControl>
