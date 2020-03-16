@@ -6,12 +6,14 @@
         xmlns:local="clr-namespace:FlightSimulator"
         xmlns:Views="clr-namespace:FlightSimulator.Views" x:Class="FlightSimulator.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="630" Width="1000">
+        Title="MainWindow" Height="480" Width="900">
     <Grid>
-        <Views:DataBoard HorizontalAlignment="Right" Height="190" VerticalAlignment="Top" Width="430"/>
-        <Views:Joystick HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="610,200,0,0"/>
-        <Slider HorizontalAlignment="Left" Height="25" Margin="775,560,0,0" VerticalAlignment="Top" Width="212"/>
-        <Slider HorizontalAlignment="Left" Height="25" Margin="554,560,0,0" VerticalAlignment="Top" Width="212"/>
+        <Views:DataBoard HorizontalAlignment="Right" Height="190" Margin="0,10,0,0" VerticalAlignment="Top" Width="430"/>
+        <Slider HorizontalAlignment="Left" Height="25" Margin="463,350,0,0" VerticalAlignment="Top" Width="212"/>
+        <Slider HorizontalAlignment="Left" Height="25" Margin="463,280,0,0" VerticalAlignment="Top" Width="212"/>
+        <Viewbox HorizontalAlignment="Left" Height="193" Margin="695,230,0,0" VerticalAlignment="Top" Width="205">
+            <Views:Joystick Height="349" Width="292"/>
+        </Viewbox>
 
     </Grid>
 </Window>
