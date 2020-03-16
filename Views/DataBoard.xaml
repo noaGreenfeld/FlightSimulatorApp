@@ -5,17 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FlightSimulator.Views"
              mc:Ignorable="d" 
-             Background="Honeydew"
+             Background="LightGray"
              d:DesignHeight="190" Width="430">
     <Grid Margin="0,0,0,0">
-        <TextBox x:Name="d1" HorizontalAlignment="Left" Height="20" Margin="0,20,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="210"/>
-        <TextBox x:Name="d2" HorizontalAlignment="Left" Height="20" Margin="0,70,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="210"/>
-        <TextBox x:Name="d3" HorizontalAlignment="Left" Height="20" Margin="0,120,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="210"/>
-        <TextBox x:Name="d4" HorizontalAlignment="Left" Height="20" Margin="0,170,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="210"/>
-        <TextBox x:Name="d5" HorizontalAlignment="Right" Height="20" Margin="0,20,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="210"/>
-        <TextBox x:Name="d6" HorizontalAlignment="Right" Height="20" Margin="0,70,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="210"/>
-        <TextBox x:Name="d7" HorizontalAlignment="Right" Height="20" Margin="0,120,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="210"/>
-        <TextBox x:Name="d8" HorizontalAlignment="Right" Height="20" Margin="0,170,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="210"/>
+        <TextBox x:Name="d1" HorizontalAlignment="Left" Height="20" Margin="0,20,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="210" Background="White"/>
+        <TextBox x:Name="d2" HorizontalAlignment="Left" Height="20" Margin="0,70,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="210" Background="White"/>
+        <TextBox x:Name="d3" HorizontalAlignment="Left" Height="20" Margin="0,120,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="210" Background="White"/>
+        <TextBox x:Name="d4" HorizontalAlignment="Left" Height="20" Margin="0,170,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="210" Background="White"/>
+        <TextBox x:Name="d5" HorizontalAlignment="Right" Height="20" Margin="0,20,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="210" Background="White"/>
+        <TextBox x:Name="d6" HorizontalAlignment="Right" Height="20" Margin="0,70,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="210" Background="White"/>
+        <TextBox x:Name="d7" HorizontalAlignment="Right" Height="20" Margin="0,120,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="210" Background="White"/>
+        <TextBox x:Name="d8" HorizontalAlignment="Right" Height="20" Margin="0,170,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="210" Background="White"/>
         <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="indicated-heading-deg" VerticalAlignment="Top" Width="210" Margin="0,0,0,0"/>
         <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="gps_indicated-vertical-speed" VerticalAlignment="Top" Width="210" Margin="0,50,0,0"/>
         <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="gps_indicated-ground-speed-kt" VerticalAlignment="Top" Width="210" Margin="0,100,0,0"/>
