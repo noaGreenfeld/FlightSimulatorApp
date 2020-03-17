@@ -14,7 +14,7 @@
         <Viewbox HorizontalAlignment="Right" Height="170" Margin="0,15,15,0" VerticalAlignment="Top" Width="170">
             <local:Joystick Height="330" Width="330"/>
         </Viewbox>
-        <Slider HorizontalAlignment="Left" Margin="60,218,0,0" VerticalAlignment="Top" Width="130" Height="21"/>
+        <Slider HorizontalAlignment="Left" Margin="60,218,0,0" VerticalAlignment="Top" Width="130" Height="21" ValueChanged="Slider_ValueChanged"/>
         <Slider HorizontalAlignment="Left" Margin="205,218,0,0" VerticalAlignment="Top" Height="21" Width="130"/>
     </Grid>
 </UserControl>
