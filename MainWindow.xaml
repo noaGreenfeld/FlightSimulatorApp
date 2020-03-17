@@ -6,12 +6,19 @@
         xmlns:local="clr-namespace:FlightSimulator"
         xmlns:Views="clr-namespace:FlightSimulator.Views" x:Class="FlightSimulator.MainWindow"
         mc:Ignorable="d"
+    xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         Title="MainWindow" Height="630" Width="1000">
     <Grid>
-        <Views:DataBoard HorizontalAlignment="Right" Height="190" VerticalAlignment="Top" Width="430"/>
-        <Views:Joystick HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="610,200,0,0"/>
-        <Slider HorizontalAlignment="Left" Height="25" Margin="775,560,0,0" VerticalAlignment="Top" Width="212"/>
-        <Slider HorizontalAlignment="Left" Height="25" Margin="554,560,0,0" VerticalAlignment="Top" Width="212"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="449*"/>
+            <ColumnDefinition Width="544*"/>
+        </Grid.ColumnDefinitions>
+        <Views:DataBoard HorizontalAlignment="Right" Height="190" VerticalAlignment="Top" Width="430" Grid.Column="1" Margin="0,0,0.333,0"/>
+        <Views:Joystick HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="160.667,200,0,0" Grid.Column="1"/>
+        <Slider HorizontalAlignment="Left" Height="25" Margin="325.667,560,0,0" VerticalAlignment="Top" Width="212" Grid.Column="1"/>
+        <Slider HorizontalAlignment="Left" Height="25" Margin="104.667,560,0,0" VerticalAlignment="Top" Width="212" Grid.Column="1"/>
+        <m:Map CredentialsProvider="AuueWP7v-L_V1cGHHF5OnszGscwh2flWSX6tDiOVCCyHz6C4U4n9E_4m9ZD2nl92"   HorizontalAlignment="Left"  Width="550" Mode="AerialWithLabels" Center="37.806029,-122.407007" ZoomLevel="10" Grid.ColumnSpan="2" Margin="0,0,0,-0.333"/>
 
     </Grid>
+
 </Window>
