@@ -14,8 +14,8 @@
         <TextBox x:Name="d4" HorizontalAlignment="Left" Height="20" Margin="0,170,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="210" Background="White"/>
         <TextBox x:Name="d5" HorizontalAlignment="Right" Height="20" Margin="0,20,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="210" Background="White"/>
         <TextBox x:Name="d6" HorizontalAlignment="Right" Height="20" Margin="0,70,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="210" Background="White"/>
-        <TextBox x:Name="d7" HorizontalAlignment="Right" Height="20" Margin="0,120,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="210" Background="White"/>
-        <TextBox x:Name="d8" HorizontalAlignment="Right" Height="20" Margin="0,170,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="210" Background="White"/>
+        <TextBox x:Name="d7" HorizontalAlignment="Right" Height="20" Margin="0,120,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="210" Background="White" TextChanged="d7_TextChanged"/>
+        <TextBox x:Name="d8" HorizontalAlignment="Right" Height="20" Margin="0,170,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="210" Background="White" TextChanged="d8_TextChanged"/>
         <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="indicated-heading-deg" VerticalAlignment="Top" Width="210" Margin="0,0,0,0"/>
         <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="gps_indicated-vertical-speed" VerticalAlignment="Top" Width="210" Margin="0,50,0,0"/>
         <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="gps_indicated-ground-speed-kt" VerticalAlignment="Top" Width="210" Margin="0,100,0,0"/>

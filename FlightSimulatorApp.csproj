@@ -58,9 +58,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Views\DataBoard.xaml.cs" />
+    <Compile Include="Views\DataBoard.xaml.cs">
+      <DependentUpon>DataBoard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Joystick.xaml.cs" />
-    <Compile Include="Views\Navigates.xaml.cs" />
+    <Compile Include="Views\Navigates.xaml.cs">
+      <DependentUpon>Navigates.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
