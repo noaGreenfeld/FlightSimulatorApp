@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FlightSimulator.Views;
+using FlightSimulator.Model;
+using FlightSimulator.ViewModel;
 
 namespace FlightSimulator
 {
@@ -20,9 +23,12 @@ namespace FlightSimulator
     /// </summary>
     public partial class MainWindow : Window
     {
+        VariabaleViewModel vm;
         public MainWindow()
         {
             InitializeComponent();
+            vm = new VariabaleViewModel(new MyModelVariable());
+            DataContext = vm;
         }
     }
 }
