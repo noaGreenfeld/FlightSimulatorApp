@@ -202,8 +202,7 @@ namespace FlightSimulator.Model
                     Thread.Sleep(250);
                 }
 
-            }
-            );
+            }).Start();
         }
 
         public void NotifyPropertyChanged(string propName)
