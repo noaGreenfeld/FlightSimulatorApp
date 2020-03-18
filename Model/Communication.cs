@@ -51,12 +51,10 @@ namespace FlightSimulator.Model
                     strm.Write(msgB, 0, msgB.Length);
                     byte[] dataB = new byte[100];
                     strm.Read(dataB, 0, 100);
+                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                    dataList.Add(ans);
 
-                    Int32 bytes = stream.Read(data, 0, data.Length);
-                    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
 
-
-                    dataList.Add(Double.Parse(dataB));
 
 
                 }
