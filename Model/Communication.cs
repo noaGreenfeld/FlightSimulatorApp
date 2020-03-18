@@ -30,7 +30,6 @@ namespace FlightSimulator.Model
 
         void IModelVariable.start()
         {
-            Console.WriteLine("start");
             new Thread(delegate ()
             {
                 String msg;
@@ -57,7 +56,7 @@ namespace FlightSimulator.Model
                     dataB = new byte[100];
                     strm.Read(dataB, 0, 100);
                     ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
-                    gps_indicated_vertical_speed = Double.Parse(ans);
+                    gps_indicated_vertical_speed = double.Parse(ans);
                     //3
                     msg = "get/ gps_indicated-ground-speed-kt\n";
                     msgB = asen.GetBytes(msg);

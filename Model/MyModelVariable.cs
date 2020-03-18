@@ -141,7 +141,11 @@ namespace FlightSimulator.Model
                     dataB = new byte[100];
                     strm.Read(dataB, 0, 100);
                     ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
-                    indicated_heading_deg = Double.Parse(ans);
+                    Console.WriteLine(ans);
+                    if (!ans.Contains("ERR"))
+                    {
+                        indicated_heading_deg = Double.Parse(ans);
+                    }
                     //2
                     msg = "get/ gps_indicated-vertical-speed\n";
                     msgB = asen.GetBytes(msg);
