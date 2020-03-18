@@ -16,7 +16,7 @@ namespace FlightSimulator.Model
         {
             server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             Console.WriteLine("Establishing Connection to {0}", ip);
-            s.Connect(ip, port);
+            server.Connect(ip, port);
             Console.WriteLine("Connection established");
             stop = false;
             start();
