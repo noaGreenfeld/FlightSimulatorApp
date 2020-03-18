@@ -34,6 +34,8 @@ namespace FlightSimulator.Model
             {
                 while(!stop)
                 {
+                    byte[] msg = Encoding.UTF8.GetBytes("This is a test");
+                    this.server.Send(msg);
                     //int i = server.Send(new String("get/ indicated-heading-deg"));
 
                 }
