@@ -28,8 +28,8 @@ namespace FlightSimulator.Model
                 NotifyPropertyChanged("indicated_heading_deg");
             }
         }
-        private double gps_indicated_vertical_speed;
 
+        private double gps_indicated_vertical_speed;
          double IModelVariable.gps_indicated_vertical_speed
         {
             get { return gps_indicated_vertical_speed; }
@@ -39,6 +39,7 @@ namespace FlightSimulator.Model
                 NotifyPropertyChanged("gps_indicated_vertical_speed");
             }
         }
+
         private double gps_indicated_ground_speed_kt;
        double IModelVariable.gps_indicated_ground_speed_kt
         {
@@ -49,6 +50,7 @@ namespace FlightSimulator.Model
                 NotifyPropertyChanged("gps_indicated_ground_speed_kt");
             }
         }
+
         private double airspeed_indicator_indicated_speed_kt;
       double IModelVariable.airspeed_indicator_indicated_speed_kt
         {
@@ -59,6 +61,7 @@ namespace FlightSimulator.Model
                 NotifyPropertyChanged("airspeed_indicator_indicated_speed_kt");
             }
         }
+
         private double gps_indicated_altitude_ft;
            double IModelVariable.gps_indicated_altitude_ft
         {
@@ -69,6 +72,7 @@ namespace FlightSimulator.Model
                 NotifyPropertyChanged("gps_indicated_altitude_ft");
             }
         }
+
         private double attitude_indicator_internal_roll_deg;
          double IModelVariable.attitude_indicator_internal_roll_deg
         {
@@ -79,6 +83,7 @@ namespace FlightSimulator.Model
                 NotifyPropertyChanged("attitude_indicator_internal_roll_deg");
             }
         }
+
         private double attitude_indicator_internal_pitch_deg;
          double IModelVariable.attitude_indicator_internal_pitch_deg
         {
@@ -89,6 +94,7 @@ namespace FlightSimulator.Model
                 NotifyPropertyChanged("attitude_indicator_internal_pitch_deg");
             }
         }
+
         private double altimeter_indicated_altitude_ft;
          double IModelVariable.altimeter_indicated_altitude_ft
         {
