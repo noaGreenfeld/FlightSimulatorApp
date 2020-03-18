@@ -34,7 +34,7 @@ namespace FlightSimulator.Model
         }
 
         private double indicated_heading_deg;
-        public double Indicated_heading_deg
+         double IModelVariable.indicated_heading_deg
         {
             get { return indicated_heading_deg; }
             set
@@ -45,7 +45,7 @@ namespace FlightSimulator.Model
         }
         private double gps_indicated_vertical_speed;
 
-        public double Gps_indicated_vertical_speed
+         double IModelVariable.gps_indicated_vertical_speed
         {
             get { return gps_indicated_vertical_speed; }
             set
@@ -55,7 +55,7 @@ namespace FlightSimulator.Model
             }
         }
         private double gps_indicated_ground_speed_kt;
-       public double Gps_indicated_ground_speed_kt
+       double IModelVariable.gps_indicated_ground_speed_kt
         {
             get { return gps_indicated_ground_speed_kt; }
             set
@@ -65,7 +65,7 @@ namespace FlightSimulator.Model
             }
         }
         private double airspeed_indicator_indicated_speed_kt;
-      public  double Airspeed_indicator_indicated_speed_kt
+      double IModelVariable.airspeed_indicator_indicated_speed_kt
         {
             get { return airspeed_indicator_indicated_speed_kt; }
             set
@@ -75,7 +75,7 @@ namespace FlightSimulator.Model
             }
         }
         private double gps_indicated_altitude_ft;
-        public    double Gps_indicated_altitude_ft
+           double IModelVariable.gps_indicated_altitude_ft
         {
             get { return gps_indicated_altitude_ft; }
             set
@@ -85,7 +85,7 @@ namespace FlightSimulator.Model
             }
         }
         private double attitude_indicator_internal_roll_deg;
-        public double Attitude_indicator_internal_roll_deg
+         double IModelVariable.attitude_indicator_internal_roll_deg
         {
             get { return attitude_indicator_internal_roll_deg; }
             set
@@ -95,7 +95,7 @@ namespace FlightSimulator.Model
             }
         }
         private double attitude_indicator_internal_pitch_deg;
-        public double Attitude_indicator_internal_pitch_deg
+         double IModelVariable.attitude_indicator_internal_pitch_deg
         {
             get { return attitude_indicator_internal_pitch_deg; }
             set
@@ -105,7 +105,7 @@ namespace FlightSimulator.Model
             }
         }
         private double altimeter_indicated_altitude_ft;
-        public double Altimeter_indicated_altitude_ft
+         double IModelVariable.altimeter_indicated_altitude_ft
         {
             get { return altimeter_indicated_altitude_ft; }
             set
@@ -115,13 +115,6 @@ namespace FlightSimulator.Model
             }
         }
 
-        double IModelVariable.indicated_heading_deg { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        double IModelVariable.gps_indicated_vertical_speed { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        double IModelVariable.gps_indicated_ground_speed_kt { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        double IModelVariable.airspeed_indicator_indicated_speed_kt { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        double IModelVariable.gps_indicated_altitude_ft { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        double IModelVariable.attitude_indicator_internal_roll_deg { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        double IModelVariable.attitude_indicator_internal_pitch_deg { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        double IModelVariable.altimeter_indicated_altitude_ft { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
     }
 }
