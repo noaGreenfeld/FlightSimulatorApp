@@ -8,6 +8,10 @@ namespace FlightSimulator.Model
 {
     partial class MyModelVariable : IModelVariable
     {
+        public MyModelVariable(string s, int i)
+        {
+            this.connect(s, i);
+        } 
         public event PropertyChangedEventHandler PropertyChanged;
         void connect(string ip, int port) {}
         void disconnect() { }

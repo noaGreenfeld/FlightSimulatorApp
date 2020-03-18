@@ -27,7 +27,8 @@ namespace FlightSimulator
         public MainWindow()
         {
             InitializeComponent();
-            vm = new VariabaleViewModel(new MyModelVariable());
+            string s = "10.0.2.2";
+            vm = new VariabaleViewModel(new MyModelVariable(s, 5402));
             DataContext = vm;
         }
     }
