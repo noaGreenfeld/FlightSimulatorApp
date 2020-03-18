@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FlightSimulator.Model
 {
-    class MyModelVariable : IModelVariable
+    partial class MyModelVariable : IModelVariable
     {
         public event PropertyChangedEventHandler PropertyChanged;
         void connect(string ip, int port) {}
@@ -16,21 +16,6 @@ namespace FlightSimulator.Model
         {
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
-        }
-
-        void IModelVariable.connect(string ip, int port)
-        {
-            ////
-        }
-
-        void IModelVariable.disconnect()
-        {
-            ////
-        }
-
-        void IModelVariable.start()
-        {
-            ////
         }
 
         private double indicated_heading_deg;

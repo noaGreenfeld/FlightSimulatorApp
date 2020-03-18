@@ -58,6 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Communication.cs" />
     <Compile Include="Model\IModelVariable.cs" />
     <Compile Include="Model\INotifyPropertyChanged.cs" />
     <Compile Include="Model\MyModelVariable.cs" />
