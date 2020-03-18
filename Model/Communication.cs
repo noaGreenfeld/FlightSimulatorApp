@@ -14,7 +14,6 @@ namespace FlightSimulator.Model
 
         void IModelVariable.connect(string ip, int port)
         {
-          
             client = new TcpClient();
             client.Connect(ip, port);
             strm = client.GetStream();
@@ -25,7 +24,7 @@ namespace FlightSimulator.Model
         void IModelVariable.disconnect()
         {
             stop = true;
-            ////
+            client.Close();
         }
 
         void IModelVariable.start()
@@ -111,46 +110,6 @@ namespace FlightSimulator.Model
             }).Start();
         }
 
-
-        
-        void ignore()
-        {
-            int i;
-            String msg;
-            for (i = 1; i <= 8; i++)
-            {
-                switch (i)
-                {
-                    case 1:
-                        msg = "get/ indicated-heading-deg\n";
-                        break;
-                    case 2:
-                        msg = "get/ gps_indicated-vertical-speed\n";
-                        break;
-                    case 3:
-                        msg = "get/ gps_indicated-ground-speed-kt\n";
-                        break;
-                    case 4:
-                        msg = "get/ airspeed-indicator_indicated-speed-kt\n";
-                        break;
-                    case 5:
-                        msg = "get/ gps_indicated-altitude-ft\n";
-                        break;
-                    case 6:
-                        msg = "get/ attitude-indicator_internal-roll-deg\n";
-                        break;
-                    case 7:
-                        msg = "get/ attitude-indicator_internal-pitch-deg\n";
-                        break;
-                    case 8:
-                        msg = "get/ altimeter_indicated-altitude-ft\n";
-                        break;
-                    default:
-                        msg = "";
-                        break;
-                }
-            }
-        }
     }
 }
 

@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using System.Net.Sockets;
-
 using System.Threading;
 using System.Windows;
 
@@ -18,12 +16,14 @@ namespace FlightSimulator.Model
             Console.WriteLine("constractor");
             connect(s, i);
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
         volatile Boolean stop;
-        //private Socket server;
         TcpClient client;
         NetworkStream strm;
-        void connect(string ip, int port) {
+
+        void connect(string ip, int port) 
+        {
             Console.WriteLine("connect");
             client = new TcpClient();
             client.Connect(ip, port);
@@ -32,7 +32,122 @@ namespace FlightSimulator.Model
             start();
         }
 
-        void disconnect() { }
+        void start()
+        {
+            Console.WriteLine("start");
+            new Thread(delegate ()
+            {
+                String msg;
+                String ans;
+                ASCIIEncoding asen = new ASCIIEncoding();
+                List<string> dataList = new List<string>();
+                byte[] msgB = new byte[256];
+                byte[] dataB = new byte[256];
+                while (!stop)
+                {
+                    // get eight values for data board:
+                    //1
+                    msg = "get/ indicated-heading-deg\n";
+                    msgB = asen.GetBytes(msg);
+                    strm.Write(msgB, 0, msgB.Length);
+                    dataB = new byte[100];
+                    strm.Read(dataB, 0, 100);
+                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                    //Console.WriteLine(ans);
+                    if (!ans.Contains("ERR"))
+                    {
+                        indicated_heading_deg = Double.Parse(ans);
+                    }
+                    //2
+                    msg = "get/ gps_indicated-vertical-speed\n";
+                    msgB = asen.GetBytes(msg);
+                    strm.Write(msgB, 0, msgB.Length);
+                    dataB = new byte[100];
+                    strm.Read(dataB, 0, 100);
+                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                    if (!ans.Contains("ERR"))
+                    {
+                        gps_indicated_vertical_speed = Double.Parse(ans);
+                    }
+                    //3
+                    msg = "get/ gps_indicated-ground-speed-kt\n";
+                    msgB = asen.GetBytes(msg);
+                    strm.Write(msgB, 0, msgB.Length);
+                    dataB = new byte[100];
+                    strm.Read(dataB, 0, 100);
+                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                    if (!ans.Contains("ERR"))
+                    {
+                        gps_indicated_ground_speed_kt = Double.Parse(ans);
+                    }
+                    //4
+                    msg = "get/ airspeed-indicator_indicated-speed-kt\n";
+                    msgB = asen.GetBytes(msg);
+                    strm.Write(msgB, 0, msgB.Length);
+                    dataB = new byte[100];
+                    strm.Read(dataB, 0, 100);
+                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                    if (!ans.Contains("ERR"))
+                    {
+                        airspeed_indicator_indicated_speed_kt = Double.Parse(ans);
+                    }
+                    //5
+                    msg = "get/ gps_indicated-altitude-ft\n";
+                    msgB = asen.GetBytes(msg);
+                    strm.Write(msgB, 0, msgB.Length);
+                    dataB = new byte[100];
+                    strm.Read(dataB, 0, 100);
+                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                    if (!ans.Contains("ERR"))
+                    {
+                        gps_indicated_altitude_ft = Double.Parse(ans);
+                    } 
+                    //6
+                    msg = "get/ attitude-indicator_internal-roll-deg\n";
+                    msgB = asen.GetBytes(msg);
+                    strm.Write(msgB, 0, msgB.Length);
+                    dataB = new byte[100];
+                    strm.Read(dataB, 0, 100);
+                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                    if (!ans.Contains("ERR"))
+                    {
+                        attitude_indicator_internal_roll_deg = Double.Parse(ans);
+                    }
+                    //7
+                    msg = "get/ attitude-indicator_internal-pitch-deg\n";
+                    msgB = asen.GetBytes(msg);
+                    strm.Write(msgB, 0, msgB.Length);
+                    dataB = new byte[100];
+                    strm.Read(dataB, 0, 100);
+                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                    if (!ans.Contains("ERR"))
+                    {
+                        attitude_indicator_internal_pitch_deg = Double.Parse(ans);
+                    }
+                    //8
+                    msg = "get/ altimeter_indicated-altitude-ft\n";
+                    msgB = asen.GetBytes(msg);
+                    strm.Write(msgB, 0, msgB.Length);
+                    dataB = new byte[100];
+                    strm.Read(dataB, 0, 100);
+                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                    if (!ans.Contains("ERR"))
+                    {
+                        altimeter_indicated_altitude_ft = Double.Parse(ans);
+                    }
+                    Console.WriteLine("sent 8 values\n");
+                    Thread.Sleep(250);
+                }
+
+            }).Start();
+        }
+
+        void disconnect() 
+        {
+            stop = true;
+            client.Close();
+        }
+
         private double indicated_heading_deg;
         double IModelVariable.indicated_heading_deg
         {
@@ -119,94 +234,6 @@ namespace FlightSimulator.Model
                 altimeter_indicated_altitude_ft = value;
                 NotifyPropertyChanged("altimeter_indicated_altitude_ft");
             }
-        }
-        void start()
-        {
-            Console.WriteLine("start");
-            new Thread(delegate ()
-            {
-                String msg;
-                String ans;
-                ASCIIEncoding asen = new ASCIIEncoding();
-                List<string> dataList = new List<string>();
-                byte[] msgB = new byte[256];
-                byte[] dataB = new byte[256];
-                while (!stop)
-                {
-                    // get eight values for data board:
-                    //1
-                    msg = "get/ indicated-heading-deg\n";
-                    msgB = asen.GetBytes(msg);
-                    strm.Write(msgB, 0, msgB.Length);
-                    dataB = new byte[100];
-                    strm.Read(dataB, 0, 100);
-                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
-                    Console.WriteLine(ans);
-                    if (!ans.Contains("ERR"))
-                    {
-                        indicated_heading_deg = Double.Parse(ans);
-                    }
-                    //2
-                    msg = "get/ gps_indicated-vertical-speed\n";
-                    msgB = asen.GetBytes(msg);
-                    strm.Write(msgB, 0, msgB.Length);
-                    dataB = new byte[100];
-                    strm.Read(dataB, 0, 100);
-                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
-                    gps_indicated_vertical_speed = Double.Parse(ans);
-                    //3
-                    msg = "get/ gps_indicated-ground-speed-kt\n";
-                    msgB = asen.GetBytes(msg);
-                    strm.Write(msgB, 0, msgB.Length);
-                    dataB = new byte[100];
-                    strm.Read(dataB, 0, 100);
-                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
-                    gps_indicated_ground_speed_kt = Double.Parse(ans);
-                    //4
-                    msg = "get/ airspeed-indicator_indicated-speed-kt\n";
-                    msgB = asen.GetBytes(msg);
-                    strm.Write(msgB, 0, msgB.Length);
-                    dataB = new byte[100];
-                    strm.Read(dataB, 0, 100);
-                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
-                    airspeed_indicator_indicated_speed_kt = Double.Parse(ans);
-                    //5
-                    msg = "get/ gps_indicated-altitude-ft\n";
-                    msgB = asen.GetBytes(msg);
-                    strm.Write(msgB, 0, msgB.Length);
-                    dataB = new byte[100];
-                    strm.Read(dataB, 0, 100);
-                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
-                    gps_indicated_altitude_ft = Double.Parse(ans);
-                    //6
-                    msg = "get/ attitude-indicator_internal-roll-deg\n";
-                    msgB = asen.GetBytes(msg);
-                    strm.Write(msgB, 0, msgB.Length);
-                    dataB = new byte[100];
-                    strm.Read(dataB, 0, 100);
-                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
-                    attitude_indicator_internal_roll_deg = Double.Parse(ans);
-                    //7
-                    msg = "get/ attitude-indicator_internal-pitch-deg\n";
-                    msgB = asen.GetBytes(msg);
-                    strm.Write(msgB, 0, msgB.Length);
-                    dataB = new byte[100];
-                    strm.Read(dataB, 0, 100);
-                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
-                    attitude_indicator_internal_pitch_deg = Double.Parse(ans);
-                    //8
-                    msg = "get/ altimeter_indicated-altitude-ft\n";
-                    msgB = asen.GetBytes(msg);
-                    strm.Write(msgB, 0, msgB.Length);
-                    dataB = new byte[100];
-                    strm.Read(dataB, 0, 100);
-                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
-                    altimeter_indicated_altitude_ft = Double.Parse(ans);
-
-                    Thread.Sleep(250);
-                }
-
-            }).Start();
         }
 
         public void NotifyPropertyChanged(string propName)
