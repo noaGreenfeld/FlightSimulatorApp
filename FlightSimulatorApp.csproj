@@ -63,6 +63,7 @@
     <Compile Include="Model\INotifyPropertyChanged.cs" />
     <Compile Include="Model\MyModelVariable.cs" />
     <Compile Include="Model\PropertyChangedEventArgs.cs" />
+    <Compile Include="ViewModel\VariabaleViewModel.cs" />
     <Compile Include="Views\DataBoard.xaml.cs">
       <DependentUpon>DataBoard.xaml</DependentUpon>
     </Compile>
@@ -121,5 +122,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
