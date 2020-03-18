@@ -5,19 +5,27 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Windows;
 
 namespace FlightSimulator.Model
 {
     partial class MyModelVariable : IModelVariable
     {
         volatile Boolean stop;
-        private Socket server;
+        //private Socket server;
+        TcpClient client;
+        NetworkStream strm;
         void IModelVariable.connect(string ip, int port)
         {
-            server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            Console.WriteLine("Establishing Connection to {0}", ip);
-            server.Connect(ip, port);
-            Console.WriteLine("Connection established");
+            client = new TcpClient();
+            client.Connect(ip, port);
+
+            //server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            //Console.WriteLine("Establishing Connection to {0}", ip);
+            //server.Connect(ip, port);
+            //Console.WriteLine("Connection established");
+
+            strm = client.GetStream();
             stop = false;
             start();
         }
@@ -32,9 +40,24 @@ namespace FlightSimulator.Model
         {
             new Thread(delegate ()
             {
-                while(!stop)
+                String msg;
+                String ans;
+                ASCIIEncoding asen = new ASCIIEncoding();
+                List<string> dataList = new List<string>();
+                while (!stop)
                 {
-                    //int i = server.Send(new String("get/ indicated-heading-deg"));
+                    msg = "get/ indicated-heading-deg";
+                    byte[] msgB = asen.GetBytes(msg);
+                    strm.Write(msgB, 0, msgB.Length);
+                    byte[] dataB = new byte[100];
+                    strm.Read(dataB, 0, 100);
+
+                    Int32 bytes = stream.Read(data, 0, data.Length);
+                    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+
+
+                    dataList.Add(Double.Parse(dataB));
+
 
                 }
             }).Start();
