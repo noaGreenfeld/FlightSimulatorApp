@@ -17,6 +17,22 @@ namespace FlightSimulator.Model
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
+
+        void IModelVariable.connect(string ip, int port)
+        {
+            ////
+        }
+
+        void IModelVariable.disconnect()
+        {
+            ////
+        }
+
+        void IModelVariable.start()
+        {
+            ////
+        }
+
         private double indicated_heading_deg;
         public double Indicated_heading_deg
         {
@@ -98,5 +114,14 @@ namespace FlightSimulator.Model
                 NotifyPropertyChanged("altimeter_indicated_altitude_ft");
             }
         }
+
+        double IModelVariable.indicated_heading_deg { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        double IModelVariable.gps_indicated_vertical_speed { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        double IModelVariable.gps_indicated_ground_speed_kt { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        double IModelVariable.airspeed_indicator_indicated_speed_kt { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        double IModelVariable.gps_indicated_altitude_ft { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        double IModelVariable.attitude_indicator_internal_roll_deg { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        double IModelVariable.attitude_indicator_internal_pitch_deg { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        double IModelVariable.altimeter_indicated_altitude_ft { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }
