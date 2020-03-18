@@ -46,6 +46,7 @@ namespace FlightSimulator.Model
                 List<string> dataList = new List<string>();
                 while (!stop)
                 {
+                    //int i = server.Send(new String("get/ indicated-heading-deg"));
                     msg = "get/ indicated-heading-deg";
                     byte[] msgB = asen.GetBytes(msg);
                     strm.Write(msgB, 0, msgB.Length);
@@ -53,10 +54,6 @@ namespace FlightSimulator.Model
                     strm.Read(dataB, 0, 100);
                     ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
                     dataList.Add(ans);
-
-
-
-
                 }
             }).Start();
         }
