@@ -58,6 +58,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\IModelVariable.cs" />
+    <Compile Include="Model\INotifyPropertyChanged.cs" />
+    <Compile Include="Model\MyModelVariable.cs" />
+    <Compile Include="Model\PropertyChangedEventArgs.cs" />
     <Compile Include="Views\DataBoard.xaml.cs">
       <DependentUpon>DataBoard.xaml</DependentUpon>
     </Compile>
