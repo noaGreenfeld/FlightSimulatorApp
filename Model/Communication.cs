@@ -11,12 +11,10 @@ namespace FlightSimulator.Model
 {
     partial class MyModelVariable : IModelVariable
     {
-        volatile Boolean stop;
-        //private Socket server;
-        TcpClient client;
-        NetworkStream strm;
+
         void IModelVariable.connect(string ip, int port)
         {
+          
             client = new TcpClient();
             client.Connect(ip, port);
             strm = client.GetStream();
@@ -32,6 +30,7 @@ namespace FlightSimulator.Model
 
         void IModelVariable.start()
         {
+            Console.WriteLine("start");
             new Thread(delegate ()
             {
                 String msg;

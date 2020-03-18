@@ -27,7 +27,8 @@ namespace FlightSimulator
         public MainWindow()
         {
             InitializeComponent();
-            string s = "10.0.2.2";
+            Console.WriteLine("noa green");
+            string s = "127.0.0.1";
             vm = new VariabaleViewModel(new MyModelVariable(s, 5402));
             DataContext = vm;
         }
