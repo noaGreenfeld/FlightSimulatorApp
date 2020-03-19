@@ -28,11 +28,13 @@ namespace FlightSimulator.ViewModel
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
-        double altimeter_indicated_altitude_ft { set; get; }
+
+
         public double VM_Indicated_heading_deg
         {
             get { return model.Indicated_heading_deg; }
         }
+
         public double VM_gps_indicated_ground_speed_kt
         {
             get { return model.gps_indicated_ground_speed_kt; }
