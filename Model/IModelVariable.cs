@@ -11,7 +11,8 @@ namespace FlightSimulator.Model
         void connect(string ip, int port);
         void disconnect();
         void start();
-         void setRudder(double rud);
+        
+        void setRudder(double rud);
         void setElevator(double ele);
 
         // variables properties

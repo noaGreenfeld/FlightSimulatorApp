@@ -25,6 +25,7 @@ namespace FlightSimulator.Model
         double rudder;
         bool changeElevator = false;
         double elevator;
+        
         public void setRudder(double rud)
         {
             changeRudder = true;

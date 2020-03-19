@@ -7,11 +7,11 @@
              mc:Ignorable="d" 
              Background="DarkGray"
              d:DesignHeight="270" d:DesignWidth="300">
-    <Grid>
+    <Grid x:Name="navigateControl">
         <Viewbox HorizontalAlignment="Center" Height="170" Margin="0,15,0,0" VerticalAlignment="Top" Width="170">
             <local:Joystick x:Name="joystickN" Height="330" Width="330"/>
         </Viewbox>
-        <Slider HorizontalAlignment="Left" Margin="15,218,0,0" VerticalAlignment="Top" Width="130" Height="21" ValueChanged="Slider_ValueChanged"/>
+        <Slider HorizontalAlignment="Left" Margin="15,218,0,0" VerticalAlignment="Top" Width="130" Height="21"/>
         <Slider HorizontalAlignment="Right" Margin="0,218,10,0" VerticalAlignment="Top" Height="21" Width="130"/>
     </Grid>
 </UserControl>

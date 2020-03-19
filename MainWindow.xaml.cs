@@ -47,17 +47,18 @@ namespace FlightSimulator
                 }
                 
             };
-
-
         }
 
-
-
-
-        private void Navigates_Loaded(object sender, RoutedEventArgs e)
+        private void Mouse_Up_Navigate(object sender, MouseButtonEventArgs e)
         {
+            navigates.joystickN.knobPosition.X = 0;
+            navigates.joystickN.knobPosition.Y = 0;
+        }
 
-           
+        private void Mouse_Leave_Navigate(object sender, MouseEventArgs e)
+        {
+            navigates.joystickN.knobPosition.X = 0;
+            navigates.joystickN.knobPosition.Y = 0;
         }
     }
 }

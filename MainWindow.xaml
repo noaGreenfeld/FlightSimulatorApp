@@ -13,11 +13,9 @@
             <ColumnDefinition Width="449*"/>
             <ColumnDefinition Width="544*"/>
         </Grid.ColumnDefinitions>
-        <Views:DataBoard HorizontalAlignment="Right" Height="190" VerticalAlignment="Top" Width="430" Grid.Column="1" Margin="0,0,0.333,0"/>
+        <Views:DataBoard HorizontalAlignment="Right" Height="201" VerticalAlignment="Top" Width="430" Grid.Column="1" Margin="0,0,0.333,0"/>
         <m:Map CredentialsProvider="AuueWP7v-L_V1cGHHF5OnszGscwh2flWSX6tDiOVCCyHz6C4U4n9E_4m9ZD2nl92"   HorizontalAlignment="Left"  Width="550" Mode="AerialWithLabels" Center="37.806029,-122.407007" ZoomLevel="12" Grid.ColumnSpan="2" Margin="0,0,0,0"/>
-        <Views:Navigates x:Name="navigates" Grid.Column="1" HorizontalAlignment="Left" Height="302" Margin="113.667,232,0,0" VerticalAlignment="Top" Width="420" Loaded="Navigates_Loaded"/>
-        <ProgressBar HorizontalAlignment="Right" Height="15" VerticalAlignment="Top" Width="500" Margin="0,558,10.333,0" Grid.Column="1"/>
-
+        <Views:Navigates x:Name="navigates" Grid.Column="1" HorizontalAlignment="Left" Height="302" Margin="113.667,232,0,0" VerticalAlignment="Top" Width="420" MouseLeftButtonUp="Mouse_Up_Navigate" MouseLeave="Mouse_Leave_Navigate"/>
     </Grid>
 
 </Window>

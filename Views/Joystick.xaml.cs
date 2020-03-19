@@ -28,6 +28,7 @@ namespace FlightSimulator.Views
                 NotifyPropertyChanged("Rudder");
             }
         }
+
         private double elevator;
         public double Elevator
         {
@@ -38,45 +39,42 @@ namespace FlightSimulator.Views
                 NotifyPropertyChanged("Elevator");
             }
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
       
-
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)
             this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
 
-
         private Point startPoint = new Point();
-        private Point endPoint = new Point();
 
         public Joystick()
         {
             InitializeComponent();
         }
 
-        private void centerKnob_Completed(object sender, EventArgs e)
-        {}
+        private void centerKnob_Completed(object sender, EventArgs e) {}
 
         private void Knob_MouseDown(object sender, MouseButtonEventArgs e)
         {
            if (e.LeftButton == MouseButtonState.Pressed)
             {
-                Rudder = 7;
+                //Rudder = 7;
                 startPoint = e.GetPosition(this);
             }
         }
 
         private void Knob_MouseMove(object sender, MouseEventArgs e)
         {
-            double x = 0;
-            double y = 0;
+            double x;
+            double y;
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 x = e.GetPosition(this).X - startPoint.X;
                 y = e.GetPosition(this).Y - startPoint.Y;
-                if (Math.Sqrt(x*x+ y*y) < (Base.Width - KnobBase.Width) / 2)
+                if (Math.Sqrt(x * x + y * y) < (Base.Width - KnobBase.Width) / 2)
                 {
                     knobPosition.X = x;
                     knobPosition.Y = y;
@@ -91,6 +89,7 @@ namespace FlightSimulator.Views
             knobPosition.X = 0;
             knobPosition.Y = 0;
         }
+
         public double getRudder()
         {
             return this.rudder;
