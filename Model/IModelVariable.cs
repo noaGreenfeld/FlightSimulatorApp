@@ -12,7 +12,7 @@ namespace FlightSimulator.Model
         void disconnect();
         void start();
         // variables properties
-        double indicated_heading_deg { set; get; }
+       double Indicated_heading_deg { set; get; }
         double gps_indicated_vertical_speed { set; get; }
         double gps_indicated_ground_speed_kt { set; get; }
         double airspeed_indicator_indicated_speed_kt  { set; get; }

@@ -25,5 +25,9 @@ namespace FlightSimulator.Views
             InitializeComponent();
         }
 
+        private void dataContextChanged_d1(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            Console.WriteLine("dataContextChanged_d1");
+        }
     }
 }

@@ -8,7 +8,9 @@
              Background="LightGray"
              d:DesignHeight="190" Width="430">
     <Grid Margin="0,0,0,0">
-        <TextBlock x:Name="d1" HorizontalAlignment="Left" Height="20" Margin="0,20,0,0" TextWrapping="Wrap" Text="{Binding VM_indicated-heading-deg}" VerticalAlignment="Top" Width="210" Background="White"/>
+        <TextBlock x:Name="d1" HorizontalAlignment="Left" Height="20" Margin="0,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Background="White" DataContextChanged="dataContextChanged_d1"><InlineUIContainer>
+                <ProgressBar Value="{Binding VM_Indicated-heading-deg}" Height="44" Width="200"/>
+            </InlineUIContainer></TextBlock>
         <TextBlock x:Name="d2" HorizontalAlignment="Left" Height="20" Margin="0,70,0,0" TextWrapping="Wrap" Text="{Binding VM_gps_indicated-vertical-speed}" VerticalAlignment="Top" Width="210" Background="White"/>
         <TextBlock x:Name="d3" HorizontalAlignment="Left" Height="20" Margin="0,120,0,0" TextWrapping="Wrap" Text="{Binding VM_gps_indicated-ground-speed-kt}" VerticalAlignment="Top" Width="210" Background="White"/>
         <TextBlock x:Name="d4" HorizontalAlignment="Left" Height="20" Margin="0,170,0,0" TextWrapping="Wrap" Text="{Binding VM_airspeed-indicator_indicated-speed-kt}" VerticalAlignment="Top" Width="210" Background="White"/>

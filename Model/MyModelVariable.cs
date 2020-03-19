@@ -58,6 +58,9 @@ namespace FlightSimulator.Model
                     {
                         indicated_heading_deg = Double.Parse(ans);
                     }
+                    Console.WriteLine("3");
+                    this.Indicated_heading_deg = 20;
+                    //indicated_heading_deg = Double.Parse("3");
                     //2
                     msg = "get/ gps_indicated-vertical-speed\n";
                     msgB = asen.GetBytes(msg);
@@ -149,13 +152,15 @@ namespace FlightSimulator.Model
         }
 
         private double indicated_heading_deg;
-        double IModelVariable.indicated_heading_deg
+       public double Indicated_heading_deg
         {
             get { return indicated_heading_deg; }
             set
             {
+                Console.WriteLine("set");
+                Console.WriteLine(value);
                 indicated_heading_deg = value;
-                NotifyPropertyChanged("indicated_heading_deg");
+                NotifyPropertyChanged("Indicated_heading_deg");
             }
         }
 
@@ -239,6 +244,7 @@ namespace FlightSimulator.Model
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)
+                Console.WriteLine(propName);
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
     }
