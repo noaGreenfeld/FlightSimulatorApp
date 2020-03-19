@@ -35,6 +35,9 @@ namespace FlightSimulator.ViewModel
                     Console.WriteLine("case vm");
                     model.setRudder(val);
                     break;
+                case "Elevator":
+                    model.setElevator(val);
+                    break;
             }
 
         }

@@ -23,11 +23,19 @@ namespace FlightSimulator.Model
         NetworkStream strm;
         bool changeRudder = false;
         double rudder;
+        bool changeElevator = false;
+        double elevator;
         public void setRudder(double rud)
         {
             changeRudder = true;
             rudder = rud;
         }
+        public void setElevator(double ele)
+        {
+            changeElevator = true;
+            elevator = ele;
+        }
+
 
         void connect(string ip, int port) 
         {
@@ -165,6 +173,15 @@ namespace FlightSimulator.Model
                         msgB = asen.GetBytes(msg);
                         strm.Write(msgB, 0, msgB.Length);
                         changeRudder = false;
+                    }
+                    if (changeElevator)
+                    {
+                        Console.WriteLine("elevator" + elevator);
+
+                        msg = "set /controls/flight/elevator\n";
+                        msgB = asen.GetBytes(msg);
+                        strm.Write(msgB, 0, msgB.Length);
+                        changeElevator = false;
                     }
 
                     Thread.Sleep(250);

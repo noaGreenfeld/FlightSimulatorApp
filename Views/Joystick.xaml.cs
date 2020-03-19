@@ -28,13 +28,22 @@ namespace FlightSimulator.Views
                 NotifyPropertyChanged("Rudder");
             }
         }
+        private double elevator;
+        public double Elevator
+        {
+            get { return elevator; }
+            set
+            {
+                elevator = value;
+                NotifyPropertyChanged("Elevator");
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
       
 
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)
-                Console.WriteLine(propName +"  notify joystick");
             this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
 
@@ -54,7 +63,6 @@ namespace FlightSimulator.Views
         {
            if (e.LeftButton == MouseButtonState.Pressed)
             {
-                Console.WriteLine("joystickPush");
                 Rudder = 7;
                 startPoint = e.GetPosition(this);
             }
@@ -73,11 +81,8 @@ namespace FlightSimulator.Views
                     knobPosition.X = x;
                     knobPosition.Y = y;
                 }
-                if (Math.Sqrt(x * x + y * y) >= (Base.Width - KnobBase.Width) / 2)
-                {
-                    knobPosition.X = 0;
-                    knobPosition.Y = 0;
-                }
+                Rudder = x / ((Base.Width - KnobBase.Width))*2;
+                Elevator = y / ((Base.Width - KnobBase.Width))*2;
             } 
         }
 
@@ -89,6 +94,10 @@ namespace FlightSimulator.Views
         public double getRudder()
         {
             return this.rudder;
+        }
+        public double getElevator()
+        {
+            return this.elevator;
         }
     }
 }

@@ -34,13 +34,15 @@ namespace FlightSimulator
             this.navigates.joystickN.PropertyChanged += 
                 delegate (Object sender, PropertyChangedEventArgs e)
             {
-                Console.WriteLine(e.getS() + "  delegate main window");
                 string who = e.getS();
                 switch (who)
                 {
                     case "Rudder":
                         Console.WriteLine("switch main");
                         vm.notifyViewChange(this.navigates.joystickN.getRudder(), who);
+                        break;
+                    case "Elevator":
+                        vm.notifyViewChange(this.navigates.joystickN.getElevator(), who);
                         break;
                 }
                 

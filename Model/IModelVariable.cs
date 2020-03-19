@@ -12,6 +12,8 @@ namespace FlightSimulator.Model
         void disconnect();
         void start();
          void setRudder(double rud);
+        void setElevator(double ele);
+
         // variables properties
         double Indicated_heading_deg { set; get; }
         double Gps_indicated_vertical_speed { set; get; }
