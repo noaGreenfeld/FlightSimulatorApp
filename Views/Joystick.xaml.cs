@@ -24,5 +24,20 @@ namespace FlightSimulator.Views
         {
 
         }
+
+        private void Knob_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            
+        }
+
+        private void Knob_MouseMove(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
