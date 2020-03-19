@@ -39,7 +39,9 @@ namespace FlightSimulator.Views
         }
 
 
-        private Point firstPoint = new Point();
+        private Point startPoint = new Point();
+        private Point endPoint = new Point();
+
         public Joystick()
         {
             InitializeComponent();
@@ -54,21 +56,35 @@ namespace FlightSimulator.Views
             {
                 Console.WriteLine("joystickPush");
                 Rudder = 7;
-                firstPoint = e.GetPosition(this);
+                startPoint = e.GetPosition(this);
             }
         }
 
         private void Knob_MouseMove(object sender, MouseEventArgs e)
         {
+            double x = 0;
+            double y = 0;
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-
-            }
+                x = e.GetPosition(this).X - startPoint.X;
+                y = e.GetPosition(this).Y - startPoint.Y;
+                if (Math.Sqrt(x*x+ y*y) < (Base.Width - KnobBase.Width) / 2)
+                {
+                    knobPosition.X = x;
+                    knobPosition.Y = y;
+                }
+                if (Math.Sqrt(x * x + y * y) >= (Base.Width - KnobBase.Width) / 2)
+                {
+                    knobPosition.X = 0;
+                    knobPosition.Y = 0;
+                }
+            } 
         }
 
         private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
         {
-
+            knobPosition.X = 0;
+            knobPosition.Y = 0;
         }
         public double getRudder()
         {
