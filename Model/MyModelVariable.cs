@@ -26,7 +26,17 @@ namespace FlightSimulator.Model
         {
             Console.WriteLine("connect");
             client = new TcpClient();
-            client.Connect(ip, port);
+            while (!client.Connected)
+            {
+                Console.WriteLine("Trying to connect to server...");
+                try
+                {
+                    client.Connect(ip, port);
+                } catch (Exception)
+                {
+                    Console.WriteLine("Can't connect. Trying again...");
+                }
+            }
             strm = client.GetStream();
             stop = false;
             start();
@@ -238,6 +248,8 @@ namespace FlightSimulator.Model
         }
 
         private double altimeter_indicated_altitude_ft;
+        private object requestCallback;
+
         public double Altimeter_indicated_altitude_ft
         {
             get { return altimeter_indicated_altitude_ft; }
