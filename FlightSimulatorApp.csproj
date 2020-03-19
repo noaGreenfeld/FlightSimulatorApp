@@ -60,9 +60,9 @@
     </ApplicationDefinition>
     <Compile Include="Model\Communication.cs" />
     <Compile Include="Model\IModelVariable.cs" />
-    <Compile Include="Model\INotifyPropertyChanged.cs" />
     <Compile Include="Model\MyModelVariable.cs" />
-    <Compile Include="Model\PropertyChangedEventArgs.cs" />
+    <Compile Include="other\INotifyPropertyChanged.cs" />
+    <Compile Include="other\PropertyChangedEventArgs.cs" />
     <Compile Include="ViewModel\VariabaleViewModel.cs" />
     <Compile Include="Views\DataBoard.xaml.cs">
       <DependentUpon>DataBoard.xaml</DependentUpon>

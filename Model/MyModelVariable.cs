@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Threading;
 using System.Windows;
+using FlightSimulator.other;
 
 namespace FlightSimulator.Model
 {
@@ -188,7 +189,7 @@ namespace FlightSimulator.Model
             set
             {
                 gps_indicated_vertical_speed = value;
-                NotifyPropertyChanged("gps_indicated_vertical_speed");
+                NotifyPropertyChanged("Gps_indicated_vertical_speed");
             }
         }
 
@@ -199,7 +200,7 @@ namespace FlightSimulator.Model
             set
             {
                 gps_indicated_ground_speed_kt = value;
-                NotifyPropertyChanged("gps_indicated_ground_speed_kt");
+                NotifyPropertyChanged("Gps_indicated_ground_speed_kt");
             }
         }
 
@@ -210,7 +211,7 @@ namespace FlightSimulator.Model
             set
             {
                 airspeed_indicator_indicated_speed_kt = value;
-                NotifyPropertyChanged("airspeed_indicator_indicated_speed_kt");
+                NotifyPropertyChanged("Airspeed_indicator_indicated_speed_kt");
             }
         }
 
@@ -221,7 +222,7 @@ namespace FlightSimulator.Model
             set
             {
                 gps_indicated_altitude_ft = value;
-                NotifyPropertyChanged("gps_indicated_altitude_ft");
+                NotifyPropertyChanged("Gps_indicated_altitude_ft");
             }
         }
 
@@ -232,7 +233,7 @@ namespace FlightSimulator.Model
             set
             {
                 attitude_indicator_internal_roll_deg = value;
-                NotifyPropertyChanged("attitude_indicator_internal_roll_deg");
+                NotifyPropertyChanged("Attitude_indicator_internal_roll_deg");
             }
         }
 
@@ -243,7 +244,7 @@ namespace FlightSimulator.Model
             set
             {
                 attitude_indicator_internal_pitch_deg = value;
-                NotifyPropertyChanged("attitude_indicator_internal_pitch_deg");
+                NotifyPropertyChanged("Attitude_indicator_internal_pitch_deg");
             }
         }
 
@@ -256,7 +257,7 @@ namespace FlightSimulator.Model
             set
             {
                 altimeter_indicated_altitude_ft = value;
-                NotifyPropertyChanged("altimeter_indicated_altitude_ft");
+                NotifyPropertyChanged("Altimeter_indicated_altitude_ft");
             }
         }
 

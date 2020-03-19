@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FlightSimulator.Model;
 using FlightSimulator.Views;
+using FlightSimulator.other;
 
 namespace FlightSimulator.ViewModel
 {
@@ -28,6 +29,16 @@ namespace FlightSimulator.ViewModel
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
+        public void notifyViewChange( double val, string who) {
+            switch (who)
+            {
+                case "Rudder":
+                    model.
+                    break;
+            }
+
+        };
+    }
 
 
         public double VM_Indicated_heading_deg
