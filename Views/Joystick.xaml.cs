@@ -23,6 +23,7 @@ namespace FlightSimulator.Views
             get { return rudder; }
             set
             {
+                Console.WriteLine(value+"  set");
                 rudder = value;
                 NotifyPropertyChanged("Rudder");
             }
@@ -33,7 +34,7 @@ namespace FlightSimulator.Views
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)
-                Console.WriteLine(propName);
+                Console.WriteLine(propName +"  notify joystick");
             this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
 
@@ -51,8 +52,8 @@ namespace FlightSimulator.Views
         {
            if (e.LeftButton == MouseButtonState.Pressed)
             {
-
-                rudder = 3;
+                Console.WriteLine("joystickPush");
+                Rudder = 7;
                 firstPoint = e.GetPosition(this);
             }
         }

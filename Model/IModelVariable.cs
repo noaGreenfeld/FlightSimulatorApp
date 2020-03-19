@@ -11,6 +11,7 @@ namespace FlightSimulator.Model
         void connect(string ip, int port);
         void disconnect();
         void start();
+         void setRudder(double rud);
         // variables properties
         double Indicated_heading_deg { set; get; }
         double Gps_indicated_vertical_speed { set; get; }

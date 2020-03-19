@@ -18,14 +18,13 @@ namespace FlightSimulator.ViewModel
             model.PropertyChanged +=
             delegate (Object sender, PropertyChangedEventArgs e)
             {
-                Console.WriteLine(e.getS()+"  delegate");
                 NotifyPropertyChanged("VM_"+e.getS());
             };
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
         {
-            Console.WriteLine("viewModel");
+
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
@@ -33,12 +32,13 @@ namespace FlightSimulator.ViewModel
             switch (who)
             {
                 case "Rudder":
-                    model.
+                    Console.WriteLine("case vm");
+                    model.setRudder(val);
                     break;
             }
 
-        };
-    }
+        }
+    
 
 
         public double VM_Indicated_heading_deg

@@ -28,7 +28,6 @@ namespace FlightSimulator
         public MainWindow()
         {
             InitializeComponent();
-            Console.WriteLine("noa green");
             string s = "127.0.0.1";
             vm = new VariabaleViewModel(new MyModelVariable(s, 5402));
             DataContext = vm;
@@ -40,6 +39,7 @@ namespace FlightSimulator
                 switch (who)
                 {
                     case "Rudder":
+                        Console.WriteLine("switch main");
                         vm.notifyViewChange(this.navigates.joystickN.getRudder(), who);
                         break;
                 }

@@ -14,7 +14,6 @@ namespace FlightSimulator.Model
     {
         public MyModelVariable(string s, int i)
         {
-            Console.WriteLine("constractor");
             connect(s, i);
         }
 
@@ -22,10 +21,16 @@ namespace FlightSimulator.Model
         volatile Boolean stop;
         TcpClient client;
         NetworkStream strm;
+        bool changeRudder = false;
+        double rudder;
+        public void setRudder(double rud)
+        {
+            changeRudder = true;
+            rudder = rud;
+        }
 
         void connect(string ip, int port) 
         {
-            Console.WriteLine("connect");
             client = new TcpClient();
             while (!client.Connected)
             {
@@ -45,7 +50,6 @@ namespace FlightSimulator.Model
 
         void start()
         {
-            Console.WriteLine("start");
             new Thread(delegate ()
             {
                 String msg;
@@ -64,14 +68,11 @@ namespace FlightSimulator.Model
                     dataB = new byte[100];
                     strm.Read(dataB, 0, 100);
                     ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
-                    //Console.WriteLine(ans);
                     if (!ans.Contains("ERR"))
                     {
                         Indicated_heading_deg = Double.Parse(ans);
                     }
-                    Console.WriteLine("3");
                     this.Indicated_heading_deg = 20;
-                    //indicated_heading_deg = Double.Parse("3");
 
                     //2
                     msg = "get/ gps_indicated-vertical-speed\n";
@@ -156,7 +157,16 @@ namespace FlightSimulator.Model
                     {
                         Altimeter_indicated_altitude_ft = Double.Parse(ans);
                     }
-                    Console.WriteLine("sent 8 values\n");
+
+                    if (changeRudder)
+                    {
+                        Console.WriteLine("rudder" + rudder);
+                        msg = "set /controls/flight/rudder\n";
+                        msgB = asen.GetBytes(msg);
+                        strm.Write(msgB, 0, msgB.Length);
+                        changeRudder = false;
+                    }
+
                     Thread.Sleep(250);
                 }
 
@@ -175,8 +185,6 @@ namespace FlightSimulator.Model
             get { return indicated_heading_deg; }
             set
             {
-                Console.WriteLine("set");
-                Console.WriteLine(value);
                 indicated_heading_deg = value;
                 NotifyPropertyChanged("Indicated_heading_deg");
             }
@@ -249,7 +257,6 @@ namespace FlightSimulator.Model
         }
 
         private double altimeter_indicated_altitude_ft;
-        private object requestCallback;
 
         public double Altimeter_indicated_altitude_ft
         {
@@ -264,7 +271,6 @@ namespace FlightSimulator.Model
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)
-                Console.WriteLine(propName);
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
     }
