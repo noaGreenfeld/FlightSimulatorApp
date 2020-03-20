@@ -33,7 +33,7 @@ namespace FlightSimulator
 
         private void ServerPort_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            int il;
         }
 
         private void ServerPort_MouseEnter(object sender, MouseEventArgs e)
