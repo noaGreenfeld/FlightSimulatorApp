@@ -1,0 +1,22 @@
+﻿<Page x:Class="FlightSimulator.SimulatorView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FlightSimulator"
+       xmlns:Views="clr-namespace:FlightSimulator.Views" 
+      mc:Ignorable="d" 
+        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+      d:DesignHeight="630" d:DesignWidth="1000"
+      Title="SimulatorView">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="449*"/>
+            <ColumnDefinition Width="544*"/>
+        </Grid.ColumnDefinitions>
+        <Views:DataBoard HorizontalAlignment="Right" Height="201" VerticalAlignment="Top" Width="430" Grid.Column="1" Margin="0,0,0.333,0"/>
+        <m:Map CredentialsProvider="AuueWP7v-L_V1cGHHF5OnszGscwh2flWSX6tDiOVCCyHz6C4U4n9E_4m9ZD2nl92"   HorizontalAlignment="Left"  Width="550" Mode="AerialWithLabels" Center="37.806029,-122.407007" ZoomLevel="12" Grid.ColumnSpan="2" Margin="0,0,0,0"/>
+        <Views:Navigates x:Name="navigates" Grid.Column="1" HorizontalAlignment="Left" Height="302" Margin="113.667,232,0,0" VerticalAlignment="Top" Width="420" MouseLeftButtonUp="Mouse_Up_Navigate" MouseLeave="Mouse_Leave_Navigate"/>
+    </Grid>
+</Page>
