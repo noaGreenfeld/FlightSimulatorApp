@@ -8,6 +8,7 @@ using System.Threading;
 using System.Windows;
 using FlightSimulator.other;
 using System.Text.RegularExpressions;
+using Microsoft.Maps.MapControl.WPF;
 
 namespace FlightSimulator.Model
 {
@@ -30,7 +31,9 @@ namespace FlightSimulator.Model
         bool changeAileron = false;
         double throttle;
         bool changeThrottle = false;
-        
+        double altitude;
+        double lattiude;
+
         public void setRudder(double rud)
         {
             changeRudder = true;
@@ -79,6 +82,7 @@ namespace FlightSimulator.Model
             {
                 String msg;
                 String ans;
+
                 ASCIIEncoding asen = new ASCIIEncoding();
                 List<string> dataList = new List<string>();
                 byte[] msgB = new byte[256];
@@ -189,7 +193,32 @@ namespace FlightSimulator.Model
                         ans = CutTheText(ans);
                         Altimeter_indicated_altitude_ft = Double.Parse(ans);
                     }
-
+                    //location 1
+                    msg = "get /position/latitude-deg\n";
+                    msgB = asen.GetBytes(msg);
+                    strm.Write(msgB, 0, msgB.Length);
+                    dataB = new byte[100];
+                    strm.Read(dataB, 0, 100);
+                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                    if (!ans.Contains("ERR"))
+                    {
+                        ans = CutTheText(ans);
+                        altitude = Double.Parse(ans);
+                    }
+         
+                    //location 2
+                    msg = "get /position/longitude-deg\n";
+                    msgB = asen.GetBytes(msg);
+                    strm.Write(msgB, 0, msgB.Length);
+                    dataB = new byte[100];
+                    strm.Read(dataB, 0, 100);
+                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                    if (!ans.Contains("ERR"))
+                    {
+                        ans = CutTheText(ans);
+                        lattiude = Double.Parse(ans);
+                    }
+                    setLocation(lattiude, altitude);
                     if (changeRudder)
                     {
                         Console.WriteLine("rudder" + rudder);
@@ -234,7 +263,18 @@ namespace FlightSimulator.Model
             stop = true;
             client.Close();
         }
+        private Location location;
+        public Location Location
+        {
+            get { return location; }
+        }
+        public void setLocation(double d1, double d2)
+        {
+            location.Latitude = d1;
+            location.Altitude = d2;
+            NotifyPropertyChanged("Location");
 
+        }
         private double indicated_heading_deg =40;
         public double Indicated_heading_deg
         {
