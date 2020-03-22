@@ -26,25 +26,8 @@ namespace FlightSimulator.Views
             InitializeComponent();
         }
 
-        public double S1
-        {
-            get { return s1.Value; }
-            set
-            {
-                Console.WriteLine("S1 set");
-                NotifyPropertyChanged("Aileron");
-            }
-        }
 
-        public double S2
-        {
-            get { return s2.Value; }
-            set
-            {
-                s2.Value = value;
-                NotifyPropertyChanged("Throttle");
-            }
-        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -54,14 +37,6 @@ namespace FlightSimulator.Views
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
 
-        private void s1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            S1 = e.NewValue;
-        }
 
-        private void s2_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            S2 = e.NewValue;
-        }
     }
 }

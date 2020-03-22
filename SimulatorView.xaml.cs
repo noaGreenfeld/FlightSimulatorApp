@@ -45,21 +45,6 @@ namespace FlightSimulator
                             break;
                     }
                 };
-            this.navigates.PropertyChanged+=
-                delegate (Object sender, PropertyChangedEventArgs e)
-                {
-                    string who = e.getS();
-                    switch (who)
-                    {
-                        case "Aileron":
-                            Console.WriteLine("simulator view switch");
-                            vm.notifyViewChange(this.navigates.S1, who);
-                            break;
-                        case "Throttle":
-                            vm.notifyViewChange(this.navigates.S2, who);
-                            break;
-                    }
-                };
         }
 
         private void Mouse_Up_Navigate(object sender, MouseButtonEventArgs e)

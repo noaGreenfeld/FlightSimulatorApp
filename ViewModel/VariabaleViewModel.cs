@@ -48,7 +48,27 @@ namespace FlightSimulator.ViewModel
             }
 
         }
-    
+        private double VM_aileron;
+        public double VM_Aileron
+        {
+            get { return VM_aileron; }
+            set
+            {
+                VM_aileron = value;
+                model.setAileron(value);
+            }
+        }
+        private double VM_throttle;
+        public double VM_Throttle
+        {
+            get { return VM_throttle; }
+            set
+            {
+                VM_throttle = value;
+                model.setThrottle(value);
+            }
+        }
+
 
 
         public double VM_Indicated_heading_deg

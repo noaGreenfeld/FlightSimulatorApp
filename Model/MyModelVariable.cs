@@ -208,7 +208,7 @@ namespace FlightSimulator.Model
                     }
                     if (changeThrottle)
                     {
-                        Console.WriteLine("throttle" + aileron);
+                        Console.WriteLine("throttle" + throttle);
                         msg = "set /controls/flight/throttle\n";
                         msgB = asen.GetBytes(msg);
                         strm.Write(msgB, 0, msgB.Length);
