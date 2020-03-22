@@ -7,6 +7,8 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Windows;
 using FlightSimulator.other;
+using System;
+using System.Text.RegularExpressions;
 
 namespace FlightSimulator.Model
 {
@@ -94,6 +96,7 @@ namespace FlightSimulator.Model
                     ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
                     if (!ans.Contains("ERR"))
                     {
+                        ans = CutTheText(ans);
                         Indicated_heading_deg = Double.Parse(ans);
                     }
 
@@ -106,6 +109,7 @@ namespace FlightSimulator.Model
                     ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
                     if (!ans.Contains("ERR"))
                     {
+                        ans = CutTheText(ans);
                         Gps_indicated_vertical_speed = Double.Parse(ans);
                     }
 
@@ -118,6 +122,7 @@ namespace FlightSimulator.Model
                     ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
                     if (!ans.Contains("ERR"))
                     {
+                        ans = CutTheText(ans);
                         Gps_indicated_ground_speed_kt = Double.Parse(ans);
                     }
 
@@ -130,6 +135,7 @@ namespace FlightSimulator.Model
                     ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
                     if (!ans.Contains("ERR"))
                     {
+                        ans = CutTheText(ans);
                         Airspeed_indicator_indicated_speed_kt = Double.Parse(ans);
                     }
 
@@ -142,6 +148,7 @@ namespace FlightSimulator.Model
                     ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
                     if (!ans.Contains("ERR"))
                     {
+                        ans = CutTheText(ans);
                         Gps_indicated_altitude_ft = Double.Parse(ans);
                     } 
 
@@ -154,6 +161,7 @@ namespace FlightSimulator.Model
                     ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
                     if (!ans.Contains("ERR"))
                     {
+                        ans = CutTheText(ans);
                         Attitude_indicator_internal_roll_deg = Double.Parse(ans);
                     }
 
@@ -166,6 +174,7 @@ namespace FlightSimulator.Model
                     ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
                     if (!ans.Contains("ERR"))
                     {
+                        ans = CutTheText(ans);
                         this.Attitude_indicator_internal_pitch_deg = Double.Parse(ans);
                     }
 
@@ -178,6 +187,7 @@ namespace FlightSimulator.Model
                     ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
                     if (!ans.Contains("ERR"))
                     {
+                        ans = CutTheText(ans);
                         Altimeter_indicated_altitude_ft = Double.Parse(ans);
                     }
 
@@ -320,6 +330,12 @@ namespace FlightSimulator.Model
             Console.WriteLine(propName);
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+        }
+        public string CutTheText(string s)
+        {
+            string[] lines = Regex.Split(s, "\n");
+            Console.WriteLine(lines[0]);
+            return lines[0];
         }
     }
 }
