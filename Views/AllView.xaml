@@ -9,14 +9,22 @@
              xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
              d:DesignHeight="500" d:DesignWidth="900">
     <Grid>
-        <local:Navigates x:Name="navigates" HorizontalAlignment="Left" Height="253" Margin="545,212,0,0" VerticalAlignment="Top" Width="284" MouseUp="navigates_MouseUp" MouseLeave="navigates_MouseLeave"/>
-        <m:Map x:Name="myMap" CredentialsProvider="AmM-5f5-E31yNc6LUhoJlE6nDVo7ZEXOPrcmgAJ4HfoJtLcSDG-EwwdT0_fODnUM" Height="472" Width="Auto" Margin="10,5,418,23" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="185"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="482"/>
+            <ColumnDefinition Width="413"/>
+        </Grid.ColumnDefinitions>
+        <local:Navigates x:Name="navigates" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="30" Height="253" Width="284" MouseUp="navigates_MouseUp" MouseLeave="navigates_MouseLeave"/>
+        <m:Map x:Name="myMap" Grid.RowSpan="2" CredentialsProvider="AmM-5f5-E31yNc6LUhoJlE6nDVo7ZEXOPrcmgAJ4HfoJtLcSDG-EwwdT0_fODnUM" Height="472" Width="Auto">
             <m:Pushpin x:Name="pin"  Location ="{Binding VM_Location}"  HorizontalAlignment="Center" VerticalAlignment="Stretch">
                 <Image x:Name="plane" Source ="plane.jpg"  Width="20" VerticalAlignment="Center" Height="20" HorizontalAlignment="Center"/>
             </m:Pushpin>
         </m:Map>
 
-        <local:DataBoard HorizontalAlignment="Left" Height="185" Margin="482,5,0,0" VerticalAlignment="Top" Width="413" RenderTransformOrigin="0.5,1.218"/>
+        <local:DataBoard Grid.Column="1" Height="185" Margin="0,0,0,0" Width="413"/>
 
     </Grid>
 </UserControl>
