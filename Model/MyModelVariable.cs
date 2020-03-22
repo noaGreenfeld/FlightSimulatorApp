@@ -56,13 +56,12 @@ namespace FlightSimulator.Model
         }
 
 
-
         void connect(string ip, int port) 
         {
             client = new TcpClient();
             while (!client.Connected)
             {
-                Console.WriteLine("Trying to connect to server...");
+                Console.WriteLine("Connecting to server...");
                 try
                 {
                     client.Connect(ip, port);
@@ -76,27 +75,31 @@ namespace FlightSimulator.Model
             start();
         }
 
+        void sendCommand(string command)
+        {
+            ASCIIEncoding asen = new ASCIIEncoding();
+            byte[] msgB = asen.GetBytes(command);
+            strm.Write(msgB, 0, msgB.Length);
+        }
+
+        String readData()
+        {
+            byte[] dataB = new byte[256];
+            strm.Read(dataB, 0, 100);
+            return System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+        }
+
         void start()
         {
             new Thread(delegate ()
             {
-                String msg;
                 String ans;
-
-                ASCIIEncoding asen = new ASCIIEncoding();
-                List<string> dataList = new List<string>();
-                byte[] msgB = new byte[256];
-                byte[] dataB = new byte[256];
                 while (!stop)
                 {
                     // get eight values for data board:
                     //1
-                    msg = "get /indicated-heading-deg\n";
-                    msgB = asen.GetBytes(msg);
-                    strm.Write(msgB, 0, msgB.Length);
-                    dataB = new byte[100];
-                    strm.Read(dataB, 0, 100);
-                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                    sendCommand("get /indicated-heading-deg\n");
+                    ans = readData();
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
@@ -104,12 +107,8 @@ namespace FlightSimulator.Model
                     }
 
                     //2
-                    msg = "get /gps_indicated-vertical-speed\n";
-                    msgB = asen.GetBytes(msg);
-                    strm.Write(msgB, 0, msgB.Length);
-                    dataB = new byte[100];
-                    strm.Read(dataB, 0, 100);
-                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                    sendCommand("get /gps_indicated-vertical-speed\n");
+                    ans = readData();
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
@@ -117,12 +116,8 @@ namespace FlightSimulator.Model
                     }
 
                     //3
-                    msg = "get /gps_indicated-ground-speed-kt\n";
-                    msgB = asen.GetBytes(msg);
-                    strm.Write(msgB, 0, msgB.Length);
-                    dataB = new byte[100];
-                    strm.Read(dataB, 0, 100);
-                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                    sendCommand("get /gps_indicated-ground-speed-kt\n");
+                    ans = readData();
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
@@ -130,12 +125,8 @@ namespace FlightSimulator.Model
                     }
 
                     //4
-                    msg = "get /airspeed-indicator_indicated-speed-kt\n";
-                    msgB = asen.GetBytes(msg);
-                    strm.Write(msgB, 0, msgB.Length);
-                    dataB = new byte[100];
-                    strm.Read(dataB, 0, 100);
-                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                    sendCommand("get /airspeed-indicator_indicated-speed-kt\n");
+                    ans = readData();
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
@@ -143,12 +134,8 @@ namespace FlightSimulator.Model
                     }
 
                     //5
-                    msg = "get /gps_indicated-altitude-ft\n";
-                    msgB = asen.GetBytes(msg);
-                    strm.Write(msgB, 0, msgB.Length);
-                    dataB = new byte[100];
-                    strm.Read(dataB, 0, 100);
-                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                    sendCommand("get /gps_indicated-altitude-ft\n");
+                    ans = readData();
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
@@ -156,12 +143,8 @@ namespace FlightSimulator.Model
                     } 
 
                     //6
-                    msg = "get /attitude-indicator_internal-roll-deg\n";
-                    msgB = asen.GetBytes(msg);
-                    strm.Write(msgB, 0, msgB.Length);
-                    dataB = new byte[100];
-                    strm.Read(dataB, 0, 100);
-                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                    sendCommand("get /attitude-indicator_internal-roll-deg\n");
+                    ans = readData();
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
@@ -169,12 +152,8 @@ namespace FlightSimulator.Model
                     }
 
                     //7
-                    msg = "get /attitude-indicator_internal-pitch-deg\n";
-                    msgB = asen.GetBytes(msg);
-                    strm.Write(msgB, 0, msgB.Length);
-                    dataB = new byte[100];
-                    strm.Read(dataB, 0, 100);
-                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                    sendCommand("get /attitude-indicator_internal-pitch-deg\n");
+                    ans = readData();
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
@@ -182,24 +161,17 @@ namespace FlightSimulator.Model
                     }
 
                     //8
-                    msg = "get /altimeter_indicated-altitude-ft\n";
-                    msgB = asen.GetBytes(msg);
-                    strm.Write(msgB, 0, msgB.Length);
-                    dataB = new byte[100];
-                    strm.Read(dataB, 0, 100);
-                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                    sendCommand("get /altimeter_indicated-altitude-ft\n");
+                    ans = readData();
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
                         Altimeter_indicated_altitude_ft = Double.Parse(ans);
                     }
+
                     //location 1
-                    msg = "get /position/latitude-deg\n";
-                    msgB = asen.GetBytes(msg);
-                    strm.Write(msgB, 0, msgB.Length);
-                    dataB = new byte[100];
-                    strm.Read(dataB, 0, 100);
-                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                    sendCommand("get /position/latitude-deg\n");
+                    ans = readData();
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
@@ -207,48 +179,38 @@ namespace FlightSimulator.Model
                     }
          
                     //location 2
-                    msg = "get /position/longitude-deg\n";
-                    msgB = asen.GetBytes(msg);
-                    strm.Write(msgB, 0, msgB.Length);
-                    dataB = new byte[100];
-                    strm.Read(dataB, 0, 100);
-                    ans = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                    sendCommand("get /position/longitude-deg\n");
+                    ans = readData();
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
                         lattiude = Double.Parse(ans);
                     }
+
                     setLocation(lattiude, altitude);
+
                     if (changeRudder)
                     {
                         Console.WriteLine("rudder" + rudder);
-                        msg = "set /controls/flight/rudder\n";
-                        msgB = asen.GetBytes(msg);
-                        strm.Write(msgB, 0, msgB.Length);
+                        sendCommand("set /controls/flight/rudder\n");
                         changeRudder = false;
                     }
                     if (changeElevator)
                     {
                         Console.WriteLine("elevator" + elevator);
-                        msg = "set /controls/flight/elevator\n";
-                        msgB = asen.GetBytes(msg);
-                        strm.Write(msgB, 0, msgB.Length);
+                        sendCommand("set /controls/flight/elevator\n");
                         changeElevator = false;
                     }
                     if (changeAileron)
                     {
                         Console.WriteLine("aileron" + aileron);
-                        msg = "set /controls/flight/aileron\n";
-                        msgB = asen.GetBytes(msg);
-                        strm.Write(msgB, 0, msgB.Length);
+                        sendCommand("set /controls/flight/aileron\n");
                         changeAileron = false;
                     }
                     if (changeThrottle)
                     {
                         Console.WriteLine("throttle" + throttle);
-                        msg = "set /controls/flight/throttle\n";
-                        msgB = asen.GetBytes(msg);
-                        strm.Write(msgB, 0, msgB.Length);
+                        sendCommand("set /controls/flight/throttle\n");
                         changeThrottle = false;
                     }
 
@@ -270,8 +232,8 @@ namespace FlightSimulator.Model
         }
         public void setLocation(double d1, double d2)
         {
-            //location.Latitude = d1;
-            //location.Altitude = d2;
+            location.Latitude = d1;
+            location.Altitude = d2;
             NotifyPropertyChanged("Location");
 
         }
@@ -353,7 +315,6 @@ namespace FlightSimulator.Model
         }
 
         private double altimeter_indicated_altitude_ft;
-
         public double Altimeter_indicated_altitude_ft
         {
             get { return altimeter_indicated_altitude_ft; }
@@ -370,6 +331,7 @@ namespace FlightSimulator.Model
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
+
         public string CutTheText(string s)
         {
             string[] lines = Regex.Split(s, "\n");

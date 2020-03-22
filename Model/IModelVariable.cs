@@ -28,7 +28,7 @@ namespace FlightSimulator.Model
         double Attitude_indicator_internal_roll_deg { set; get; }
         double Attitude_indicator_internal_pitch_deg { set; get; }
         double Altimeter_indicated_altitude_ft { set; get; }
-         Location Location { get; }
+        Location Location { get; }
 
 
     }
