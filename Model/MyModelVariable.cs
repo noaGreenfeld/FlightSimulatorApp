@@ -86,7 +86,7 @@ namespace FlightSimulator.Model
                 {
                     // get eight values for data board:
                     //1
-                    msg = "get/ indicated-heading-deg\n";
+                    msg = "get /indicated-heading-deg\n";
                     msgB = asen.GetBytes(msg);
                     strm.Write(msgB, 0, msgB.Length);
                     dataB = new byte[100];
@@ -96,10 +96,9 @@ namespace FlightSimulator.Model
                     {
                         Indicated_heading_deg = Double.Parse(ans);
                     }
-                    this.Indicated_heading_deg = 20;
 
                     //2
-                    msg = "get/ gps_indicated-vertical-speed\n";
+                    msg = "get /gps_indicated-vertical-speed\n";
                     msgB = asen.GetBytes(msg);
                     strm.Write(msgB, 0, msgB.Length);
                     dataB = new byte[100];
@@ -111,7 +110,7 @@ namespace FlightSimulator.Model
                     }
 
                     //3
-                    msg = "get/ gps_indicated-ground-speed-kt\n";
+                    msg = "get /gps_indicated-ground-speed-kt\n";
                     msgB = asen.GetBytes(msg);
                     strm.Write(msgB, 0, msgB.Length);
                     dataB = new byte[100];
@@ -123,7 +122,7 @@ namespace FlightSimulator.Model
                     }
 
                     //4
-                    msg = "get/ airspeed-indicator_indicated-speed-kt\n";
+                    msg = "get /airspeed-indicator_indicated-speed-kt\n";
                     msgB = asen.GetBytes(msg);
                     strm.Write(msgB, 0, msgB.Length);
                     dataB = new byte[100];
@@ -135,7 +134,7 @@ namespace FlightSimulator.Model
                     }
 
                     //5
-                    msg = "get/ gps_indicated-altitude-ft\n";
+                    msg = "get /gps_indicated-altitude-ft\n";
                     msgB = asen.GetBytes(msg);
                     strm.Write(msgB, 0, msgB.Length);
                     dataB = new byte[100];
@@ -147,7 +146,7 @@ namespace FlightSimulator.Model
                     } 
 
                     //6
-                    msg = "get/ attitude-indicator_internal-roll-deg\n";
+                    msg = "get /attitude-indicator_internal-roll-deg\n";
                     msgB = asen.GetBytes(msg);
                     strm.Write(msgB, 0, msgB.Length);
                     dataB = new byte[100];
@@ -159,7 +158,7 @@ namespace FlightSimulator.Model
                     }
 
                     //7
-                    msg = "get/ attitude-indicator_internal-pitch-deg\n";
+                    msg = "get /attitude-indicator_internal-pitch-deg\n";
                     msgB = asen.GetBytes(msg);
                     strm.Write(msgB, 0, msgB.Length);
                     dataB = new byte[100];
@@ -171,7 +170,7 @@ namespace FlightSimulator.Model
                     }
 
                     //8
-                    msg = "get/ altimeter_indicated-altitude-ft\n";
+                    msg = "get /altimeter_indicated-altitude-ft\n";
                     msgB = asen.GetBytes(msg);
                     strm.Write(msgB, 0, msgB.Length);
                     dataB = new byte[100];
@@ -227,7 +226,7 @@ namespace FlightSimulator.Model
             client.Close();
         }
 
-        private double indicated_heading_deg;
+        private double indicated_heading_deg =40;
         public double Indicated_heading_deg
         {
             get { return indicated_heading_deg; }
@@ -238,7 +237,7 @@ namespace FlightSimulator.Model
             }
         }
 
-        private double gps_indicated_vertical_speed;
+        private double gps_indicated_vertical_speed=50;
         public double Gps_indicated_vertical_speed
         {
             get { return gps_indicated_vertical_speed; }
@@ -318,6 +317,7 @@ namespace FlightSimulator.Model
 
         public void NotifyPropertyChanged(string propName)
         {
+            Console.WriteLine(propName);
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }

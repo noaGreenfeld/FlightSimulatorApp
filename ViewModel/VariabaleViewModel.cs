@@ -19,6 +19,7 @@ namespace FlightSimulator.ViewModel
             delegate (Object sender, PropertyChangedEventArgs e)
             {
                 NotifyPropertyChanged("VM_"+e.getS());
+                Console.WriteLine(e.getS());
             };
         }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -76,31 +77,31 @@ namespace FlightSimulator.ViewModel
             get { return model.Indicated_heading_deg; }
         }
 
-        public double VM_gps_indicated_ground_speed_kt
+        public double VM_Gps_indicated_ground_speed_kt
         {
             get { return model.Gps_indicated_ground_speed_kt; }
         }
-        public double VM_gps_indicated_vertical_speed
+        public double VM_Gps_indicated_vertical_speed
         {
             get { return model.Gps_indicated_vertical_speed; }
         }
-        public double VM_airspeed_indicator_indicated_speed_kt
+        public double VM_Airspeed_indicator_indicated_speed_kt
         {
             get { return model.Airspeed_indicator_indicated_speed_kt; }
         }
-        public double VM_gps_indicated_altitude_ft
+        public double VM_Gps_indicated_altitude_ft
         {
             get { return model.Gps_indicated_altitude_ft; }
         }
-        public double VM_attitude_indicator_internal_roll_deg
+        public double VM_Attitude_indicator_internal_roll_deg
         {
             get { return model.Attitude_indicator_internal_roll_deg; }
         }
-        public double VM_attitude_indicator_internal_pitch_deg
+        public double VM_Attitude_indicator_internal_pitch_deg
         {
             get { return model.Attitude_indicator_internal_pitch_deg; }
         }
-        public double VM_altimeter_indicated_altitude_ft
+        public double VM_Altimeter_indicated_altitude_ft
         {
             get { return model.Altimeter_indicated_altitude_ft; }
         }

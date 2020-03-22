@@ -5,22 +5,22 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FlightSimulator"
       mc:Ignorable="d" 
-      d:DesignHeight="650" d:DesignWidth="1000"
+      d:DesignHeight="500" d:DesignWidth="980"
       Title="HomePage">
     <Grid TextBlock.FontSize="14">
         <Grid.Background>
             <ImageBrush ImageSource="flight.jpg"/>
         </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="51*" />
+            <RowDefinition Height="11*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="157*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="66*" />
+            <RowDefinition Height="35*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
 
@@ -29,9 +29,9 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Image Grid.Column="1" Grid.Row="1" Grid.RowSpan="4" Source ="simbol.png" VerticalAlignment="Center" Height="212" Margin="47.667,9.667,47.667,66.333"/>
+        <Image Grid.Column="1" Grid.Row="0" Grid.RowSpan="5" Source ="simbol.png" VerticalAlignment="Center" Height="212" Margin="48,24,48,14"/>
 
-        <StackPanel Grid.Column="1" Grid.Row="4" Grid.RowSpan="4" Orientation="Vertical">
+        <StackPanel Grid.Column="1" Grid.Row="4" Grid.RowSpan="5" Orientation="Vertical" Margin="0,2.333,0,34">
             <TextBlock Padding="3" Margin="3,3,3,2.6" Grid.ColumnSpan="2" FontSize="25" HorizontalAlignment="Center" Foreground="White">Enter IP:</TextBlock>
             <TextBox x:Name="ServerIP"   Grid.Row="4" Grid.Column="1" Height="40" Width="270" Text="{Binding IP, Mode =TwoWay}"   Padding="3" Margin="3,3,2.6,2.6" BorderThickness="3" FontSize="18" HorizontalAlignment="Center" />
             <TextBlock Grid.Row="1" Padding="3" Margin="3,3.4,3,2.2" Grid.ColumnSpan="2" FontSize="25" HorizontalAlignment="Center" Foreground="White">Enter Port:</TextBlock>
