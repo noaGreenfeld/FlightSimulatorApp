@@ -7,7 +7,6 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Windows;
 using FlightSimulator.other;
-using System;
 using System.Text.RegularExpressions;
 
 namespace FlightSimulator.Model

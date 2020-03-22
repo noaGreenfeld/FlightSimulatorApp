@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FlightSimulator.Views"
              mc:Ignorable="d" 
-             Background="DarkGray"
+             Background="AliceBlue"
              d:DesignHeight="260" d:DesignWidth="275">
     <Grid x:Name="navigateControl">
         <Viewbox HorizontalAlignment="Left" Height="170" Margin="65,30,0,0" VerticalAlignment="Top" Width="170">
@@ -21,7 +21,7 @@
                 </TransformGroup>
             </Slider.RenderTransform>
         </Slider>
-        <Slider x:Name="s2" HorizontalAlignment="Right" Margin="0,211,32.667,0" VerticalAlignment="Top" Height="27" Width="177" Cursor="Hand" Maximum="1" Value="{Binding VM_Throttle}" TickPlacement="BottomRight" TickFrequency="0.1" AutoToolTipPrecision="3"/>
+        <Slider x:Name="s2" HorizontalAlignment="Right" Margin="0,211,32.667,0" VerticalAlignment="Top" Height="27" Width="177" Cursor="Hand" Maximum="1" Value="{Binding VM_Throttle}" TickPlacement="BottomRight" TickFrequency="0.1" AutoToolTipPrecision="2" AutoToolTipPlacement="TopLeft" LargeChange="0.1"/>
         <TextBlock HorizontalAlignment="Center" Height="19" Margin="30,8,0,0" TextWrapping="Wrap" Text="elevator" VerticalAlignment="Top" Width="49"/>
         <TextBlock HorizontalAlignment="Center" Height="19" Margin="229,108,-3.333,0" TextWrapping="Wrap" Text="rudder" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.474,0.267">
             <TextBlock.RenderTransform>

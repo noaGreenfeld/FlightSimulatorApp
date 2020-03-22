@@ -5,25 +5,40 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FlightSimulator.Views"
              mc:Ignorable="d" 
-             Background="LightGray"
-             d:DesignHeight="190" Width="430">
+             Background="AliceBlue"
+             d:DesignHeight="185" Width="413">
     <Grid Margin="0,0,0,0">
-        <TextBlock x:Name="d1" HorizontalAlignment="Left" Height="20" Margin="0,20,0,0" TextWrapping="Wrap" Text="{Binding VM_Indicated_heading_deg}" VerticalAlignment="Top" Width="210" Background="White"/>
-        <TextBlock x:Name="d2" HorizontalAlignment="Left" Height="20" Margin="0,70,0,0" TextWrapping="Wrap" Text="{Binding VM_Gps_indicated_vertical_speed}" VerticalAlignment="Top" Width="210" Background="White"/>
-        <TextBlock x:Name="d3" HorizontalAlignment="Left" Height="20" Margin="0,120,0,0" TextWrapping="Wrap" Text="{Binding VM_Gps_indicated_ground_speed_kt}" VerticalAlignment="Top" Width="210" Background="White"/>
-        <TextBlock x:Name="d4" HorizontalAlignment="Left" Height="20" Margin="0,170,0,0" TextWrapping="Wrap" Text="{Binding VM_Airspeed_indicator_indicated_speed_kt}" VerticalAlignment="Top" Width="210" Background="White"/>
-        <TextBlock x:Name="d5" HorizontalAlignment="Right" Height="20" Margin="0,20,0,0" TextWrapping="Wrap" Text="{Binding VM_Gps_indicated_altitude_ft}" VerticalAlignment="Top" Width="210" Background="White"/>
-        <TextBlock x:Name="d6" HorizontalAlignment="Right" Height="20" Margin="0,70,0,0" TextWrapping="Wrap" Text="{Binding VM_Attitude_indicator_internal_roll_deg}" VerticalAlignment="Top" Width="210" Background="White"/>
-        <TextBlock x:Name="d7" HorizontalAlignment="Right" Height="20" Margin="0,120,0,0" TextWrapping="Wrap" Text="{Binding VM_Attitude_indicator_internal_pitch_deg}" VerticalAlignment="Top" Width="210" Background="White"/>
-        <TextBlock x:Name="d8" HorizontalAlignment="Right" Height="20" Margin="0,170,0,0" TextWrapping="Wrap" Text="{Binding VM_Altimeter_indicated_altitude_ft}" VerticalAlignment="Top" Width="210" Background="White"/>
-        <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="indicated-heading-deg" VerticalAlignment="Top" Width="210" Margin="0,0,0,0"/>
-        <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="gps_indicated-vertical-speed" VerticalAlignment="Top" Width="210" Margin="0,50,0,0"/>
-        <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="gps_indicated-ground-speed-kt" VerticalAlignment="Top" Width="210" Margin="0,100,0,0"/>
-        <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="airspeed-indicator_indicated-speed-kt" VerticalAlignment="Top" Width="210" Margin="0,150,0,0"/>
-        <TextBlock HorizontalAlignment="Right" Height="20" TextWrapping="Wrap" Text="gps_indicated-altitude-ft" VerticalAlignment="Top" Width="210" Margin="0,0,0,0"/>
-        <TextBlock HorizontalAlignment="Right" Height="20" TextWrapping="Wrap" Text="attitude-indicator_internal-roll-deg" VerticalAlignment="Top" Width="210" Margin="0,50,0,0"/>
-        <TextBlock HorizontalAlignment="Right" Height="20" TextWrapping="Wrap" Text="attitude-indicator_internal-pitch-deg" VerticalAlignment="Top" Width="210" Margin="0,100,0,0"/>
-        <TextBlock HorizontalAlignment="Right" Height="20" TextWrapping="Wrap" Text="altimeter_indicated-altitude-ft" VerticalAlignment="Top" Width="210" Margin="0,150,0,0"/>
+        <TextBlock x:Name="d1" HorizontalAlignment="Left" Height="25" Margin="118,5,0,0" TextWrapping="Wrap" Text="{Binding VM_Indicated_heading_deg}" VerticalAlignment="Top" Width="70" Background="White" FontSize="14" LineStackingStrategy="BlockLineHeight"/>
+        <TextBlock x:Name="d2" HorizontalAlignment="Left" Height="25" Margin="118,55,0,0" TextWrapping="Wrap" Text="{Binding VM_Gps_indicated_vertical_speed}" VerticalAlignment="Top" Width="70" Background="White" FontSize="14" LineStackingStrategy="BlockLineHeight"/>
+        <TextBlock x:Name="d3" HorizontalAlignment="Left" Height="25" Margin="118,105,0,0" TextWrapping="Wrap" Text="{Binding VM_Gps_indicated_ground_speed_kt}" VerticalAlignment="Top" Width="70" Background="White" FontSize="14" LineStackingStrategy="BlockLineHeight"/>
+        <TextBlock x:Name="d4" HorizontalAlignment="Left" Height="25" Margin="118,155,0,0" TextWrapping="Wrap" Text="{Binding VM_Airspeed_indicator_indicated_speed_kt}" VerticalAlignment="Top" Width="69" Background="White" FontSize="14" LineStackingStrategy="BlockLineHeight"/>
+        <TextBlock x:Name="d5" HorizontalAlignment="Left" Height="25" Margin="337,5,0,0" TextWrapping="Wrap" Text="{Binding VM_Gps_indicated_altitude_ft}" VerticalAlignment="Top" Width="70" Background="White" FontSize="14" LineStackingStrategy="BlockLineHeight"/>
+        <TextBlock x:Name="d6" HorizontalAlignment="Left" Height="25" Margin="337,55,0,0" TextWrapping="Wrap" Text="{Binding VM_Attitude_indicator_internal_roll_deg}" VerticalAlignment="Top" Width="70" Background="White" FontSize="14" LineStackingStrategy="BlockLineHeight"/>
+        <TextBlock x:Name="d7" HorizontalAlignment="Left" Height="25" Margin="337,105,0,0" TextWrapping="Wrap" Text="{Binding VM_Attitude_indicator_internal_pitch_deg}" VerticalAlignment="Top" Width="70" Background="White" FontSize="14" LineStackingStrategy="BlockLineHeight"/>
+        <TextBlock x:Name="d8" HorizontalAlignment="Left" Height="25" Margin="337,155,0,0" TextWrapping="Wrap" Text="{Binding VM_Altimeter_indicated_altitude_ft}" VerticalAlignment="Top" Width="70" Background="White" FontSize="14" LineStackingStrategy="BlockLineHeight"/>
+
+        <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="indicated-" VerticalAlignment="Top" Width="82" Margin="5,0,0,0"/>
+        <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="-heading-deg" VerticalAlignment="Top" Width="82" Margin="5,15,0,0"/>
+
+        <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="gps_indicated-" VerticalAlignment="Top" Width="84" Margin="5,50,0,0"/>
+        <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="-vertical-speed" VerticalAlignment="Top" Width="84" Margin="5,65,0,0"/>
+
+        <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="gps_indicated-" VerticalAlignment="Top" Width="84" Margin="5,100,0,0"/>
+        <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="-ground-speed-kt" VerticalAlignment="Top" Width="99" Margin="5,115,0,0"/>
+
+        <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="airspeed-indicator_" VerticalAlignment="Top" Width="112" Margin="5,150,0,0"/>
+        <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="_indicated-speed-kt" VerticalAlignment="Top" Width="112" Margin="5,165,0,0"/>
+        <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="gps_indicated-" VerticalAlignment="Top" Width="100" Margin="226,0,0,0"/>
+        <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="-altitude-ft" VerticalAlignment="Top" Width="90" Margin="226,15,119.667,0"/>
+
+        <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="attitude-indicator_" VerticalAlignment="Top" Width="125" Margin="226,50,0,0"/>
+        <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="_internal-roll-deg" VerticalAlignment="Top" Width="110" Margin="226,65,0,0"/>
+
+        <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="attitude-indicator_" VerticalAlignment="Top" Width="110" Margin="226,100,0,0"/>
+        <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="_internal-pitch-deg" VerticalAlignment="Top" Width="125" Margin="226,115,0,0"/>
+
+        <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="altimeter_indicated-" VerticalAlignment="Top" Width="125" Margin="226,150,0,0"/>
+        <TextBlock HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="-altitude-ft" VerticalAlignment="Top" Width="105" Margin="226,165,104.667,0"/>
 
     </Grid>
 </UserControl>

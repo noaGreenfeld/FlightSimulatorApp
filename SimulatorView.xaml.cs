@@ -25,12 +25,11 @@ namespace FlightSimulator
     public partial class SimulatorView : Page
     {
         VariabaleViewModel vm;
-        public SimulatorView(string ip, string port)
+        public SimulatorView()
         {
             InitializeComponent();
-            //string s = "127.0.0.1";
-            int portI = Int32.Parse(port);
-            vm = new VariabaleViewModel(new MyModelVariable(ip, portI));
+            string s = "127.0.0.1";
+            vm = new VariabaleViewModel(new MyModelVariable(s, 5402));
             DataContext = vm;
             this.navigates.joystickN.PropertyChanged +=
                 delegate (Object sender, PropertyChangedEventArgs e)
@@ -59,6 +58,8 @@ namespace FlightSimulator
             navigates.joystickN.knobPosition.X = 0;
             navigates.joystickN.knobPosition.Y = 0;
         }
+
+
     }
 }
 

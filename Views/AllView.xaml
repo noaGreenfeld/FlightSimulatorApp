@@ -5,12 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FlightSimulator.Views"
              mc:Ignorable="d" 
+             Background="AliceBlue"
              xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
              d:DesignHeight="500" d:DesignWidth="900">
     <Grid>
-        <local:Navigates HorizontalAlignment="Left" Height="253" Margin="532,217,0,0" VerticalAlignment="Top" Width="250"/>
-        <local:DataBoard HorizontalAlignment="Left" Height="199" Margin="455,10,0,0" VerticalAlignment="Top" Width="435"/>
-        <m:Map CredentialsProvider="AuueWP7v-L_V1cGHHF5OnszGscwh2flWSX6tDiOVCCyHz6C4U4n9E_4m9ZD2nl92"   HorizontalAlignment="Left"  Width="442" Mode="AerialWithLabels" Center="37.806029,-122.407007" ZoomLevel="12" Margin="0,10"/>
+        <local:Navigates HorizontalAlignment="Left" Height="253" Margin="545,212,0,0" VerticalAlignment="Top" Width="284"/>
+        <m:Map CredentialsProvider="AuueWP7v-L_V1cGHHF5OnszGscwh2flWSX6tDiOVCCyHz6C4U4n9E_4m9ZD2nl92" HorizontalAlignment="Left" Width="472" Mode="AerialWithLabels" Center="37.806029,-122.407007" ZoomLevel="12" Margin="5,5,0,5"/>
+        <local:DataBoard HorizontalAlignment="Left" Height="185" Margin="482,5,0,0" VerticalAlignment="Top" Width="413" RenderTransformOrigin="0.5,1.218"/>
 
     </Grid>
 </UserControl>
