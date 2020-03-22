@@ -46,20 +46,6 @@ namespace FlightSimulator
                     }
                 };
         }
-
-        private void Mouse_Up_Navigate(object sender, MouseButtonEventArgs e)
-        {
-            allView.navigates.joystickN.knobPosition.X = 0;
-            allView.navigates.joystickN.knobPosition.Y = 0;
-        }
-
-        private void Mouse_Leave_Navigate(object sender, MouseEventArgs e)
-        {
-            allView.navigates.joystickN.knobPosition.X = 0;
-            allView.navigates.joystickN.knobPosition.Y = 0;
-        }
-
-
     }
 }
 

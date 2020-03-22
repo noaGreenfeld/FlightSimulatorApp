@@ -24,5 +24,17 @@ namespace FlightSimulator.Views
         {
             InitializeComponent();
         }
+
+        private void navigates_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            navigates.joystickN.knobPosition.X = 0;
+            navigates.joystickN.knobPosition.Y = 0;
+        }
+
+        private void navigates_MouseLeave(object sender, MouseEventArgs e)
+        {
+            navigates.joystickN.knobPosition.X = 0;
+            navigates.joystickN.knobPosition.Y = 0;
+        }
     }
 }

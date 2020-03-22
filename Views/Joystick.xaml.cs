@@ -74,13 +74,13 @@ namespace FlightSimulator.Views
             {
                 x = e.GetPosition(this).X - startPoint.X;
                 y = e.GetPosition(this).Y - startPoint.Y;
-                if (Math.Sqrt(x * x + y * y) < (Base.Width - KnobBase.Width) / 2)
+                if (Math.Sqrt(x * x + y * y) < (internalBase.Width - KnobBase.Width/4) / 2)
                 {
                     knobPosition.X = x;
                     knobPosition.Y = y;
                 }
-                Rudder = x / ((Base.Width - KnobBase.Width))*2;
-                Elevator = y / ((Base.Width - KnobBase.Width))*2;
+                Rudder = x / (internalBase.Width - KnobBase.Width)*2;
+                Elevator = y / (internalBase.Width - KnobBase.Width)*2;
             } 
         }
 
