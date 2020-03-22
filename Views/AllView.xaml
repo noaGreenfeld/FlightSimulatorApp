@@ -10,7 +10,12 @@
              d:DesignHeight="500" d:DesignWidth="900">
     <Grid>
         <local:Navigates x:Name="navigates" HorizontalAlignment="Left" Height="253" Margin="545,212,0,0" VerticalAlignment="Top" Width="284" MouseUp="navigates_MouseUp" MouseLeave="navigates_MouseLeave"/>
-        <m:Map CredentialsProvider="AuueWP7v-L_V1cGHHF5OnszGscwh2flWSX6tDiOVCCyHz6C4U4n9E_4m9ZD2nl92" HorizontalAlignment="Left" Width="472" Height="495" Mode="AerialWithLabels" Center="37.806029,-122.407007" ZoomLevel="12" Margin="5,5,0,5"/>
+        <m:Map x:Name="myMap" CredentialsProvider="AmM-5f5-E31yNc6LUhoJlE6nDVo7ZEXOPrcmgAJ4HfoJtLcSDG-EwwdT0_fODnUM" Height="472" Width="Auto" Margin="10,5,418,23" >
+            <m:Pushpin x:Name="pin"  Location ="{Binding VM_Location}"  HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                <Image x:Name="plane" Source ="plane.jpg"  Width="20" VerticalAlignment="Center" Height="20" HorizontalAlignment="Center"/>
+            </m:Pushpin>
+        </m:Map>
+
         <local:DataBoard HorizontalAlignment="Left" Height="185" Margin="482,5,0,0" VerticalAlignment="Top" Width="413" RenderTransformOrigin="0.5,1.218"/>
 
     </Grid>

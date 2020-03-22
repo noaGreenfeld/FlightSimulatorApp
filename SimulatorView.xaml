@@ -11,5 +11,10 @@
       Title="SimulatorView">
     <Grid>
         <Views:AllView x:Name="allView" HorizontalAlignment="Stretch" Height="Auto" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="Auto"/>
+        <m:Map x:Name="myMap" CredentialsProvider="AmM-5f5-E31yNc6LUhoJlE6nDVo7ZEXOPrcmgAJ4HfoJtLcSDG-EwwdT0_fODnUM" Height="430" Width="725">
+            <m:Pushpin x:Name="pin"  Location ="{Binding VM_Location}"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image x:Name="plane" Source ="plane.png"  Width="20" VerticalAlignment="Center" Height="20" HorizontalAlignment="Center"/>
+            </m:Pushpin>
+        </m:Map>
     </Grid>
 </Page>
