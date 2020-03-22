@@ -31,17 +31,17 @@ namespace FlightSimulator
             string s = "127.0.0.1";
             vm = new VariabaleViewModel(new MyModelVariable(s, 5402));
             DataContext = vm;
-            this.navigates.joystickN.PropertyChanged +=
+            this.allView.navigates.joystickN.PropertyChanged +=
                 delegate (Object sender, PropertyChangedEventArgs e)
                 {
                     string who = e.getS();
                     switch (who)
                     {
                         case "Rudder":
-                            vm.notifyViewChange(this.navigates.joystickN.Rudder, who);
+                            vm.notifyViewChange(this.allView.navigates.joystickN.Rudder, who);
                             break;
                         case "Elevator":
-                            vm.notifyViewChange(this.navigates.joystickN.Elevator, who);
+                            vm.notifyViewChange(this.allView.navigates.joystickN.Elevator, who);
                             break;
                     }
                 };
@@ -49,14 +49,14 @@ namespace FlightSimulator
 
         private void Mouse_Up_Navigate(object sender, MouseButtonEventArgs e)
         {
-            navigates.joystickN.knobPosition.X = 0;
-            navigates.joystickN.knobPosition.Y = 0;
+            allView.navigates.joystickN.knobPosition.X = 0;
+            allView.navigates.joystickN.knobPosition.Y = 0;
         }
 
         private void Mouse_Leave_Navigate(object sender, MouseEventArgs e)
         {
-            navigates.joystickN.knobPosition.X = 0;
-            navigates.joystickN.knobPosition.Y = 0;
+            allView.navigates.joystickN.knobPosition.X = 0;
+            allView.navigates.joystickN.knobPosition.Y = 0;
         }
 
 
