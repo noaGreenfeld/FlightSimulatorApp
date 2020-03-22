@@ -22,6 +22,7 @@
             <m:Pushpin x:Name="pin"  Location ="{Binding VM_Location}"  HorizontalAlignment="Center" VerticalAlignment="Stretch">
                 <Image x:Name="plane" Source ="plane.jpg"  Width="20" VerticalAlignment="Center" Height="20" HorizontalAlignment="Center"/>
             </m:Pushpin>
+            
         </m:Map>
 
         <local:DataBoard Grid.Column="1" Height="185" Margin="0,0,0,0" Width="413"/>

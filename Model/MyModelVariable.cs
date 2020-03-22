@@ -270,8 +270,8 @@ namespace FlightSimulator.Model
         }
         public void setLocation(double d1, double d2)
         {
-            location.Latitude = d1;
-            location.Altitude = d2;
+            //location.Latitude = d1;
+            //location.Altitude = d2;
             NotifyPropertyChanged("Location");
 
         }

@@ -61,7 +61,7 @@ namespace FlightSimulator.Views
         {
            if (e.LeftButton == MouseButtonState.Pressed)
             {
-                //Rudder = 7;
+                Mouse.Capture(this.KnobBase);
                 startPoint = e.GetPosition(this);
             }
         }
@@ -88,6 +88,7 @@ namespace FlightSimulator.Views
         {
             knobPosition.X = 0;
             knobPosition.Y = 0;
+            Mouse.Capture(null);
         }
     }
 }
