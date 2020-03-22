@@ -14,6 +14,8 @@ namespace FlightSimulator.Model
         
         void setRudder(double rud);
         void setElevator(double ele);
+        void setAileron(double ail);
+        void setThrottle(double thr);
 
         // variables properties
         double Indicated_heading_deg { set; get; }

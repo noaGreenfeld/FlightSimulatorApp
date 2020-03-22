@@ -27,7 +27,6 @@ namespace FlightSimulator
         VariabaleViewModel vm;
         public SimulatorView()
         {
-            Console.WriteLine("construsctorrr");
             InitializeComponent();
             string s = "127.0.0.1";
             vm = new VariabaleViewModel(new MyModelVariable(s, 5402));
@@ -39,14 +38,27 @@ namespace FlightSimulator
                     switch (who)
                     {
                         case "Rudder":
-                            Console.WriteLine("switch main");
-                            vm.notifyViewChange(this.navigates.joystickN.getRudder(), who);
+                            vm.notifyViewChange(this.navigates.joystickN.Rudder, who);
                             break;
                         case "Elevator":
-                            vm.notifyViewChange(this.navigates.joystickN.getElevator(), who);
+                            vm.notifyViewChange(this.navigates.joystickN.Elevator, who);
                             break;
                     }
-
+                };
+            this.navigates.PropertyChanged+=
+                delegate (Object sender, PropertyChangedEventArgs e)
+                {
+                    string who = e.getS();
+                    switch (who)
+                    {
+                        case "Aileron":
+                            Console.WriteLine("simulator view switch");
+                            vm.notifyViewChange(this.navigates.S1, who);
+                            break;
+                        case "Throttle":
+                            vm.notifyViewChange(this.navigates.S2, who);
+                            break;
+                    }
                 };
         }
 

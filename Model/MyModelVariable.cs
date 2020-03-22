@@ -25,6 +25,10 @@ namespace FlightSimulator.Model
         double rudder;
         bool changeElevator = false;
         double elevator;
+        double aileron;
+        bool changeAileron = false;
+        double throttle;
+        bool changeThrottle = false;
         
         public void setRudder(double rud)
         {
@@ -36,6 +40,17 @@ namespace FlightSimulator.Model
             changeElevator = true;
             elevator = ele;
         }
+        public void setAileron(double ail)
+        {
+            changeAileron = true;
+            aileron = ail;
+        }
+        public void setThrottle(double thr)
+        {
+            changeThrottle = true;
+            throttle = thr;
+        }
+
 
 
         void connect(string ip, int port) 
@@ -178,11 +193,26 @@ namespace FlightSimulator.Model
                     if (changeElevator)
                     {
                         Console.WriteLine("elevator" + elevator);
-
                         msg = "set /controls/flight/elevator\n";
                         msgB = asen.GetBytes(msg);
                         strm.Write(msgB, 0, msgB.Length);
                         changeElevator = false;
+                    }
+                    if (changeAileron)
+                    {
+                        Console.WriteLine("aileron" + aileron);
+                        msg = "set /controls/flight/aileron\n";
+                        msgB = asen.GetBytes(msg);
+                        strm.Write(msgB, 0, msgB.Length);
+                        changeAileron = false;
+                    }
+                    if (changeThrottle)
+                    {
+                        Console.WriteLine("throttle" + aileron);
+                        msg = "set /controls/flight/throttle\n";
+                        msgB = asen.GetBytes(msg);
+                        strm.Write(msgB, 0, msgB.Length);
+                        changeThrottle = false;
                     }
 
                     Thread.Sleep(250);

@@ -38,6 +38,13 @@ namespace FlightSimulator.ViewModel
                 case "Elevator":
                     model.setElevator(val);
                     break;
+                case "Aileron":
+                    model.setAileron(val);
+                    break;
+                case "Throttle":
+                    model.setThrottle(val);
+                    break;
+
             }
 
         }

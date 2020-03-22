@@ -89,14 +89,5 @@ namespace FlightSimulator.Views
             knobPosition.X = 0;
             knobPosition.Y = 0;
         }
-
-        public double getRudder()
-        {
-            return this.rudder;
-        }
-        public double getElevator()
-        {
-            return this.elevator;
-        }
     }
 }
