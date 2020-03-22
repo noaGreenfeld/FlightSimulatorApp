@@ -6,12 +6,12 @@
              xmlns:local="clr-namespace:FlightSimulator.Views"
              mc:Ignorable="d" 
              Background="DarkGray"
-             d:DesignHeight="250" d:DesignWidth="250">
+             d:DesignHeight="260" d:DesignWidth="275">
     <Grid x:Name="navigateControl">
-        <Viewbox HorizontalAlignment="Left" Height="170" Margin="50,20,0,0" VerticalAlignment="Top" Width="170">
+        <Viewbox HorizontalAlignment="Left" Height="170" Margin="65,30,0,0" VerticalAlignment="Top" Width="170">
             <local:Joystick x:Name="joystickN" Height="330" Width="330"/>
         </Viewbox>
-        <Slider x:Name="s1" HorizontalAlignment="Left" Margin="-59,102,0,0" VerticalAlignment="Top" Width="177" Height="21" RenderTransformOrigin="0.5,0.5" Cursor="Hand" Maximum="1" Minimum="-1" Value="{Binding VM_Aileron}">
+        <Slider x:Name="s1" HorizontalAlignment="Left" Margin="-45,99,0,0" VerticalAlignment="Top" Width="177" Height="27" RenderTransformOrigin="0.5,0.5" Cursor="Hand" Maximum="1" Minimum="-1" Value="{Binding VM_Aileron}" AutoToolTipPlacement="TopLeft" TickPlacement="TopLeft" Background="{x:Null}" LargeChange="0.1" TickFrequency="0.1" AutoToolTipPrecision="2">
             <Slider.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -21,20 +21,20 @@
                 </TransformGroup>
             </Slider.RenderTransform>
         </Slider>
-        <Slider x:Name="s2" HorizontalAlignment="Right" Margin="0,210,21,0" VerticalAlignment="Top" Height="21" Width="177" Cursor="Hand" Maximum="1" Value="{Binding VM_Throttle}"/>
-        <TextBlock HorizontalAlignment="Center" Height="19" Margin="30,1,0,0" TextWrapping="Wrap" Text="elevator" VerticalAlignment="Top" Width="49"/>
-        <TextBlock HorizontalAlignment="Center" Height="19" Margin="210,108,-9,0" TextWrapping="Wrap" Text="rudder" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.5,0.5">
+        <Slider x:Name="s2" HorizontalAlignment="Right" Margin="0,211,32.667,0" VerticalAlignment="Top" Height="27" Width="177" Cursor="Hand" Maximum="1" Value="{Binding VM_Throttle}" TickPlacement="BottomRight" TickFrequency="0.1" AutoToolTipPrecision="3"/>
+        <TextBlock HorizontalAlignment="Center" Height="19" Margin="30,8,0,0" TextWrapping="Wrap" Text="elevator" VerticalAlignment="Top" Width="49"/>
+        <TextBlock HorizontalAlignment="Center" Height="19" Margin="229,108,-3.333,0" TextWrapping="Wrap" Text="rudder" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.474,0.267">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
                     <RotateTransform Angle="90.506"/>
-                    <TranslateTransform/>
+                    <TranslateTransform X="5.712" Y="3.192"/>
                 </TransformGroup>
             </TextBlock.RenderTransform>
         </TextBlock>
-        <TextBlock HorizontalAlignment="Center" Height="19" Margin="118,225,83,0" TextWrapping="Wrap" Text="throttle" VerticalAlignment="Top" Width="49"/>
-        <TextBlock HorizontalAlignment="Center" Height="19" Margin="-7,99,208,0" TextWrapping="Wrap" Text="aileron" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.5,0.5">
+        <TextBlock HorizontalAlignment="Center" Height="19" Margin="118,238,83,0" TextWrapping="Wrap" Text="throttle" VerticalAlignment="Top" Width="49"/>
+        <TextBlock HorizontalAlignment="Center" Height="21" Margin="-9,98,234.667,0" TextWrapping="Wrap" Text="aileron" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.5,0.5">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

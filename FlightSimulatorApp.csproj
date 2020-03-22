@@ -70,6 +70,9 @@
       <DependentUpon>SimulatorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\VariabaleViewModel.cs" />
+    <Compile Include="Views\AllView.xaml.cs">
+      <DependentUpon>AllView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DataBoard.xaml.cs">
       <DependentUpon>DataBoard.xaml</DependentUpon>
     </Compile>
@@ -94,6 +97,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SimulatorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
