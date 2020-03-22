@@ -20,6 +20,7 @@ namespace FlightSimulator
     /// </summary>
     public partial class HomePage : Page
     {
+
         public HomePage()
         {
             InitializeComponent();
@@ -27,18 +28,29 @@ namespace FlightSimulator
 
         private void Button_Click_Fly(object sender, RoutedEventArgs e)
         {
-            SimulatorView simulatorView = new SimulatorView();
+            Console.WriteLine(ServerPort.Text);
+
+            if (ServerIP.Text == "")
+            {
+                ServerIP.Text = "127.0.0.1";
+            }
+            if (ServerPort.Text == "")
+            {
+                ServerPort.Text = "5402";
+            }
+            SimulatorView simulatorView = new SimulatorView(ServerIP.Text, ServerPort.Text);
             this.NavigationService.Navigate(simulatorView);
         }
 
         private void ServerPort_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            
+            int il;
         }
 
         private void ServerPort_MouseEnter(object sender, MouseEventArgs e)
         {
 
         }
+
     }
 }
