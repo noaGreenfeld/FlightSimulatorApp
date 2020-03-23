@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,6 +21,7 @@ namespace FlightSimulator
     /// </summary>
     public partial class HomePage : Page
     {
+        //bool push = false;
 
         public HomePage()
         {
@@ -28,8 +30,6 @@ namespace FlightSimulator
 
         private void Button_Click_Fly(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine(ServerPort.Text);
-
             if (ServerIP.Text == "")
             {
                 ServerIP.Text = "127.0.0.1";
@@ -42,14 +42,22 @@ namespace FlightSimulator
             this.NavigationService.Navigate(simulatorView);
         }
 
-        private void ServerPort_MouseDown(object sender, MouseButtonEventArgs e)
+
+        private void Button_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            int il;
+            
         }
 
-        private void ServerPort_MouseEnter(object sender, MouseEventArgs e)
+        private void Button_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            if (ServerIP.Text == "")
+            {
+                ServerIP.Text = "127.0.0.2";
+            }
+            if (ServerPort.Text == "")
+            {
+                ServerPort.Text = "5402";
+            }
         }
 
     }

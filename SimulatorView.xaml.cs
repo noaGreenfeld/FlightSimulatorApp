@@ -27,11 +27,12 @@ namespace FlightSimulator
         VariabaleViewModel vm;
         public SimulatorView(string ip, string port)
         {
-            InitializeComponent();
+            
             //string s = "127.0.0.1";
             int portI = Int32.Parse(port);
             vm = new VariabaleViewModel(new MyModelVariable(ip, portI));
             DataContext = vm;
+            InitializeComponent();
             this.allView.navigates.joystickN.PropertyChanged +=
                 delegate (Object sender, PropertyChangedEventArgs e)
                 {

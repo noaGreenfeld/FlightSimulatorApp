@@ -58,17 +58,17 @@ namespace FlightSimulator.Model
         void connect(string ip, int port) 
         {
             client = new TcpClient();
-            while (!client.Connected)
-            {
+           // while (!client.Connected)
+           // {
                 Console.WriteLine("Connecting to server...");
                 try
                 {
                     client.Connect(ip, port);
                 } catch (Exception)
                 {
-                    Console.WriteLine("Can't connect. Trying again...");
+              //      Console.WriteLine("Can't connect. Trying again...");
                 }
-            }
+           // }
             strm = client.GetStream();
             stop = false;
             start();
@@ -102,7 +102,7 @@ namespace FlightSimulator.Model
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
-                        Indicated_heading_deg = Double.Parse(ans);
+                        Indicated_heading_deg = Math.Round(Double.Parse(ans), 3);
                     }
 
                     //2
@@ -111,7 +111,7 @@ namespace FlightSimulator.Model
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
-                        Gps_indicated_vertical_speed = Double.Parse(ans);
+                        Gps_indicated_vertical_speed = Math.Round(Double.Parse(ans), 3);
                     }
 
                     //3
@@ -120,7 +120,7 @@ namespace FlightSimulator.Model
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
-                        Gps_indicated_ground_speed_kt = Double.Parse(ans);
+                        Gps_indicated_ground_speed_kt = Math.Round(Double.Parse(ans), 3);
                     }
 
                     //4
@@ -129,7 +129,7 @@ namespace FlightSimulator.Model
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
-                        Airspeed_indicator_indicated_speed_kt = Double.Parse(ans);
+                        Airspeed_indicator_indicated_speed_kt = Math.Round(Double.Parse(ans), 3);
                     }
 
                     //5
@@ -138,7 +138,7 @@ namespace FlightSimulator.Model
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
-                        Gps_indicated_altitude_ft = Double.Parse(ans);
+                        Gps_indicated_altitude_ft = Math.Round(Double.Parse(ans), 3);
                     } 
 
                     //6
@@ -147,7 +147,7 @@ namespace FlightSimulator.Model
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
-                        Attitude_indicator_internal_roll_deg = Double.Parse(ans);
+                        Attitude_indicator_internal_roll_deg = Math.Round(Double.Parse(ans), 3);
                     }
 
                     //7
@@ -156,7 +156,7 @@ namespace FlightSimulator.Model
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
-                        this.Attitude_indicator_internal_pitch_deg = Double.Parse(ans);
+                        this.Attitude_indicator_internal_pitch_deg = Math.Round(Double.Parse(ans), 3);
                     }
 
                     //8
@@ -165,7 +165,7 @@ namespace FlightSimulator.Model
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
-                        Altimeter_indicated_altitude_ft = Double.Parse(ans);
+                        Altimeter_indicated_altitude_ft = Math.Round(Double.Parse(ans), 3);
                     }
 
                     //location 1
@@ -191,26 +191,26 @@ namespace FlightSimulator.Model
 
                     if (changeRudder)
                     {
-                        Console.WriteLine("rudder" + rudder);
-                        sendCommand("set /controls/flight/rudder" + rudder + "\n");
+                        sendCommand("set /controls/flight/rudder " + rudder + "\n");
+                        ans = readData();
                         changeRudder = false;
                     }
                     if (changeElevator)
                     {
-                        Console.WriteLine("elevator" + elevator);
-                        sendCommand("set /controls/flight/elevator" + elevator + "\n");
+                        sendCommand("set /controls/flight/elevator " + elevator + "\n");
+                        ans = readData();
                         changeElevator = false;
                     }
                     if (changeAileron)
                     {
-                        Console.WriteLine("aileron" + aileron);
-                        sendCommand("set /controls/flight/aileron" + aileron + "\n");
+                        sendCommand("set /controls/flight/aileron " + aileron + "\n");
+                        ans = readData();
                         changeAileron = false;
                     }
                     if (changeThrottle)
                     {
-                        Console.WriteLine("throttle" + throttle);
-                        sendCommand("set /controls/engines/current-engine/throttle" + throttle + "\n");
+                        sendCommand("set /controls/engines/current-engine/throttle " + throttle + "\n");
+                        ans = readData();
                         changeThrottle = false;
                     }
 
