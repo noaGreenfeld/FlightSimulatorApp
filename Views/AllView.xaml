@@ -19,8 +19,8 @@
         </Grid.ColumnDefinitions>
         <local:Navigates x:Name="navigates" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="30" Height="253" Width="284" MouseUp="navigates_MouseUp" MouseLeave="navigates_MouseLeave"/>
         <m:Map x:Name="myMap" Grid.RowSpan="2" CredentialsProvider="AmM-5f5-E31yNc6LUhoJlE6nDVo7ZEXOPrcmgAJ4HfoJtLcSDG-EwwdT0_fODnUM" Height="472" Width="Auto">
-            <m:Pushpin x:Name="pin"  Location ="{Binding VM_Location}"  HorizontalAlignment="Center" VerticalAlignment="Stretch">
-                <Image x:Name="plane" Source ="plane.jpg"  Width="20" VerticalAlignment="Center" Height="20" HorizontalAlignment="Center"/>
+            <m:Pushpin x:Name="pin" Location ="{Binding VM_Location}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image x:Name="plane" Width="20" VerticalAlignment="Center" Height="20" HorizontalAlignment="Center"/>
             </m:Pushpin>
 
         </m:Map>

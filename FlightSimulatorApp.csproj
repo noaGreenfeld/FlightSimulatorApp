@@ -64,8 +64,6 @@
     <Compile Include="Model\Communication.cs" />
     <Compile Include="Model\IModelVariable.cs" />
     <Compile Include="Model\MyModelVariable.cs" />
-    <Compile Include="other\INotifyPropertyChanged.cs" />
-    <Compile Include="other\PropertyChangedEventArgs.cs" />
     <Compile Include="SimulatorView.xaml.cs">
       <DependentUpon>SimulatorView.xaml</DependentUpon>
     </Compile>
@@ -148,6 +146,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Views\planeIcon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="other\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

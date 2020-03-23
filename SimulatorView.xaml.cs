@@ -12,10 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using FlightSimulator.other;
 using FlightSimulator.ViewModel;
 using FlightSimulator.Views;
 using FlightSimulator.Model;
+using System.ComponentModel;
 
 namespace FlightSimulator
 {
@@ -35,7 +35,7 @@ namespace FlightSimulator
             this.allView.navigates.joystickN.PropertyChanged +=
                 delegate (Object sender, PropertyChangedEventArgs e)
                 {
-                    string who = e.getS();
+                    string who = e.PropertyName;
                     switch (who)
                     {
                         case "Rudder":

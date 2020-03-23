@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using FlightSimulator.other;
+using System.ComponentModel;
 
 namespace FlightSimulator.Views
 {
@@ -25,8 +25,6 @@ namespace FlightSimulator.Views
         {
             InitializeComponent();
         }
-
-
 
 
         public event PropertyChangedEventHandler PropertyChanged;

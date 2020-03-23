@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Threading;
 using System.Windows;
-using FlightSimulator.other;
 using System.Text.RegularExpressions;
 using Microsoft.Maps.MapControl.WPF;
+using System.ComponentModel;
 
 namespace FlightSimulator.Model
 {
@@ -18,7 +18,6 @@ namespace FlightSimulator.Model
         {
             connect(s, i);
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
         volatile Boolean stop;
         TcpClient client;
@@ -98,7 +97,7 @@ namespace FlightSimulator.Model
                 {
                     // get eight values for data board:
                     //1
-                    sendCommand("get /indicated-heading-deg\n");
+                    sendCommand("get /instrumentation/heading-indicator/indicated-heading-deg\n");
                     ans = readData();
                     if (!ans.Contains("ERR"))
                     {
@@ -107,7 +106,7 @@ namespace FlightSimulator.Model
                     }
 
                     //2
-                    sendCommand("get /gps_indicated-vertical-speed\n");
+                    sendCommand("get /instrumentation/gps/indicated-vertical-speed\n");
                     ans = readData();
                     if (!ans.Contains("ERR"))
                     {
@@ -116,7 +115,7 @@ namespace FlightSimulator.Model
                     }
 
                     //3
-                    sendCommand("get /gps_indicated-ground-speed-kt\n");
+                    sendCommand("get /instrumentation/gps/indicated-ground-speed-kt\n");
                     ans = readData();
                     if (!ans.Contains("ERR"))
                     {
@@ -125,7 +124,7 @@ namespace FlightSimulator.Model
                     }
 
                     //4
-                    sendCommand("get /airspeed-indicator_indicated-speed-kt\n");
+                    sendCommand("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
                     ans = readData();
                     if (!ans.Contains("ERR"))
                     {
@@ -134,7 +133,7 @@ namespace FlightSimulator.Model
                     }
 
                     //5
-                    sendCommand("get /gps_indicated-altitude-ft\n");
+                    sendCommand("get /instrumentation/gps/indicated-altitude-ft\n");
                     ans = readData();
                     if (!ans.Contains("ERR"))
                     {
@@ -143,7 +142,7 @@ namespace FlightSimulator.Model
                     } 
 
                     //6
-                    sendCommand("get /attitude-indicator_internal-roll-deg\n");
+                    sendCommand("get /instrumentation/attitude-indicator/internal-roll-deg\n");
                     ans = readData();
                     if (!ans.Contains("ERR"))
                     {
@@ -152,7 +151,7 @@ namespace FlightSimulator.Model
                     }
 
                     //7
-                    sendCommand("get /attitude-indicator_internal-pitch-deg\n");
+                    sendCommand("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
                     ans = readData();
                     if (!ans.Contains("ERR"))
                     {
@@ -161,7 +160,7 @@ namespace FlightSimulator.Model
                     }
 
                     //8
-                    sendCommand("get /altimeter_indicated-altitude-ft\n");
+                    sendCommand("get /instrumentation/gps/indicated-altitude-ft\n");
                     ans = readData();
                     if (!ans.Contains("ERR"))
                     {
@@ -188,29 +187,30 @@ namespace FlightSimulator.Model
                     }
 
                     setLocation(lattiude, altitude);
+                    //Console.WriteLine(altitude + "   " + lattiude);
 
                     if (changeRudder)
                     {
                         Console.WriteLine("rudder" + rudder);
-                        sendCommand("set /controls/flight/rudder\n");
+                        sendCommand("set /controls/flight/rudder" + rudder + "\n");
                         changeRudder = false;
                     }
                     if (changeElevator)
                     {
                         Console.WriteLine("elevator" + elevator);
-                        sendCommand("set /controls/flight/elevator\n");
+                        sendCommand("set /controls/flight/elevator" + elevator + "\n");
                         changeElevator = false;
                     }
                     if (changeAileron)
                     {
                         Console.WriteLine("aileron" + aileron);
-                        sendCommand("set /controls/flight/aileron\n");
+                        sendCommand("set /controls/flight/aileron" + aileron + "\n");
                         changeAileron = false;
                     }
                     if (changeThrottle)
                     {
                         Console.WriteLine("throttle" + throttle);
-                        sendCommand("set /controls/flight/throttle\n");
+                        sendCommand("set /controls/engines/current-engine/throttle" + throttle + "\n");
                         changeThrottle = false;
                     }
 
@@ -225,19 +225,21 @@ namespace FlightSimulator.Model
             stop = true;
             client.Close();
         }
+
         private Location location;
         public Location Location
         {
-            get { return location; }
+            get { return new Location(location.Latitude, location.Altitude); }
         }
-        public void setLocation(double d1, double d2)
+
+        public void setLocation(double latitude, double altitude)
         {
-            location = new Location(d1, d2);
+            location = new Location(latitude, altitude);
             //location.Latitude = d1;
             //location.Altitude = d2;
             NotifyPropertyChanged("Location");
-
         }
+
         private double indicated_heading_deg =40;
         public double Indicated_heading_deg
         {
@@ -328,7 +330,7 @@ namespace FlightSimulator.Model
 
         public void NotifyPropertyChanged(string propName)
         {
-            Console.WriteLine(propName);
+            //Console.WriteLine(propName);
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
@@ -336,7 +338,7 @@ namespace FlightSimulator.Model
         public string CutTheText(string s)
         {
             string[] lines = Regex.Split(s, "\n");
-            Console.WriteLine(lines[0]);
+            //Console.WriteLine(lines[0]);
             return lines[0];
         }
     }

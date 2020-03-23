@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using FlightSimulator.Model;
 using FlightSimulator.Views;
-using FlightSimulator.other;
 using Microsoft.Maps.MapControl.WPF;
+using System.ComponentModel;
 
 
 namespace FlightSimulator.ViewModel
@@ -20,14 +20,14 @@ namespace FlightSimulator.ViewModel
             model.PropertyChanged +=
             delegate (Object sender, PropertyChangedEventArgs e)
             {
-                NotifyPropertyChanged("VM_"+e.getS());
-                Console.WriteLine(e.getS());
+                NotifyPropertyChanged("VM_"+e.PropertyName);
+                //Console.WriteLine("view   "+e.getS());
             };
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
         {
-
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
@@ -35,7 +35,7 @@ namespace FlightSimulator.ViewModel
             switch (who)
             {
                 case "Rudder":
-                    Console.WriteLine("case vm");
+                    //Console.WriteLine("case vm");
                     model.setRudder(val);
                     break;
                 case "Elevator":
@@ -76,7 +76,9 @@ namespace FlightSimulator.ViewModel
 
         public Location VM_Location
         {
-            get { return model.Location; }
+            get {
+                //Console.WriteLine("get  " + model.Location.Altitude);
+                return model.Location; }
         }
         public double VM_Indicated_heading_deg
         {

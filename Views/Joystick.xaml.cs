@@ -10,8 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using FlightSimulator.other;
 using FlightSimulator.Model;
+using System.ComponentModel;
 
 namespace FlightSimulator.Views
 {
@@ -23,7 +23,7 @@ namespace FlightSimulator.Views
             get { return rudder; }
             set
             {
-                Console.WriteLine(value+"  set");
+                //Console.WriteLine(value+"  set");
                 rudder = value;
                 NotifyPropertyChanged("Rudder");
             }
@@ -74,13 +74,13 @@ namespace FlightSimulator.Views
             {
                 x = e.GetPosition(this).X - startPoint.X;
                 y = e.GetPosition(this).Y - startPoint.Y;
-                if (Math.Sqrt(x * x + y * y) < (internalBase.Width - KnobBase.Width/4) / 2)
+                if (Math.Sqrt(x * x + y * y) < (internalBase.Width / 2))
                 {
                     knobPosition.X = x;
                     knobPosition.Y = y;
+                    Rudder = x / (internalBase.Width/2.0);
+                    Elevator = y / (internalBase.Width/2.0);
                 }
-                Rudder = x / (internalBase.Width - KnobBase.Width)*2;
-                Elevator = y / (internalBase.Width - KnobBase.Width)*2;
             } 
         }
 

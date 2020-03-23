@@ -15,7 +15,6 @@ using System.Windows.Shapes;
 using FlightSimulator.Views;
 using FlightSimulator.Model;
 using FlightSimulator.ViewModel;
-using FlightSimulator.other;
 
 namespace FlightSimulator
 {
