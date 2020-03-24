@@ -55,7 +55,11 @@ namespace FlightSimulator.Views
             InitializeComponent();
         }
 
-        private void centerKnob_Completed(object sender, EventArgs e) {}
+        private void centerKnob_Completed(object sender, EventArgs e) 
+        {
+            knobPosition.X = 0;
+            knobPosition.Y = 0;
+        }
 
         private void Knob_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -86,8 +90,8 @@ namespace FlightSimulator.Views
 
         private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            knobPosition.X = 0;
-            knobPosition.Y = 0;
+           // knobPosition.X = 0;
+           // knobPosition.Y = 0;
             Mouse.Capture(null);
         }
     }

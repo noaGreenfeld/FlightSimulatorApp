@@ -76,16 +76,31 @@ namespace FlightSimulator.Model
 
         void sendCommand(string command)
         {
-            ASCIIEncoding asen = new ASCIIEncoding();
-            byte[] msgB = asen.GetBytes(command);
-            strm.Write(msgB, 0, msgB.Length);
+            try
+            {
+                ASCIIEncoding asen = new ASCIIEncoding();
+                byte[] msgB = asen.GetBytes(command);
+                strm.Write(msgB, 0, msgB.Length);
+            } catch
+            {
+                Console.WriteLine("Could'nt send command to server");
+            }
+            
         }
 
         String readData()
         {
-            byte[] dataB = new byte[256];
-            strm.Read(dataB, 0, 100);
-            return System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+            try
+            {
+                byte[] dataB = new byte[256];
+                strm.Read(dataB, 0, 100);
+                return System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+            } catch
+            {
+                Console.WriteLine("Could'nt read data from server");
+                return "ERR";
+            }
+            
         }
 
         void start()
