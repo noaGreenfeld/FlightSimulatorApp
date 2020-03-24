@@ -9,6 +9,7 @@ using System.Windows;
 using System.Text.RegularExpressions;
 using Microsoft.Maps.MapControl.WPF;
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace FlightSimulator.Model
 {
@@ -17,6 +18,7 @@ namespace FlightSimulator.Model
         public MyModelVariable(string s, int i)
         {
             connect(s, i);
+            stopwatch = new Stopwatch();
         }
         public event PropertyChangedEventHandler PropertyChanged;
         volatile Boolean stop;
@@ -32,6 +34,8 @@ namespace FlightSimulator.Model
         bool changeThrottle = false;
         double altitude;
         double lattiude;
+        bool serverNotResponding = false;
+        Stopwatch stopwatch;
 
         public void setRudder(double rud)
         {
@@ -58,17 +62,14 @@ namespace FlightSimulator.Model
         void connect(string ip, int port) 
         {
             client = new TcpClient();
-           // while (!client.Connected)
-           // {
-                Console.WriteLine("Connecting to server...");
-                try
-                {
-                    client.Connect(ip, port);
-                } catch (Exception)
-                {
+            Console.WriteLine("Connecting to server...");
+            try
+            {
+                client.Connect(ip, port);
+            } catch (Exception)
+            {
                 throw new Exception("connect");
-                }
-           // }
+            }
             strm = client.GetStream();
             stop = false;
             start();
@@ -81,8 +82,21 @@ namespace FlightSimulator.Model
                 ASCIIEncoding asen = new ASCIIEncoding();
                 byte[] msgB = asen.GetBytes(command);
                 strm.Write(msgB, 0, msgB.Length);
+                stopwatch.Stop();
             } catch
             {
+                if (serverNotResponding)
+                {
+                    TimeSpan stopwatchElapsed = stopwatch.Elapsed;
+                    if ((Convert.ToInt32(stopwatchElapsed.TotalSeconds)) >= 10)
+                    {
+                        Console.WriteLine("Server hasn't responded for 10 seconds");
+                    }
+                } else
+                {
+                    stopwatch.Start();
+                    serverNotResponding = true;
+                }
                 Console.WriteLine("Could'nt send command to server");
             }
             
@@ -94,9 +108,23 @@ namespace FlightSimulator.Model
             {
                 byte[] dataB = new byte[256];
                 strm.Read(dataB, 0, 100);
+                stopwatch.Stop();
                 return System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
             } catch
             {
+                if (serverNotResponding)
+                {
+                    TimeSpan stopwatchElapsed = stopwatch.Elapsed;
+                    if ((Convert.ToInt32(stopwatchElapsed.TotalSeconds)) >= 10)
+                    {
+                        Console.WriteLine("Server hasn't responded for 10 seconds");
+                    }
+                }
+                else
+                {
+                    stopwatch.Start();
+                    serverNotResponding = true;
+                }
                 Console.WriteLine("Could'nt read data from server");
                 return "ERR";
             }
