@@ -66,7 +66,7 @@ namespace FlightSimulator.Model
                     client.Connect(ip, port);
                 } catch (Exception)
                 {
-              //      Console.WriteLine("Can't connect. Trying again...");
+                throw new Exception("connect");
                 }
            // }
             strm = client.GetStream();

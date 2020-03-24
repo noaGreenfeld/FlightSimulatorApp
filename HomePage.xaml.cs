@@ -38,8 +38,18 @@ namespace FlightSimulator
             {
                 ServerPort.Text = "5402";
             }
-            SimulatorView simulatorView = new SimulatorView(ServerIP.Text, ServerPort.Text);
-            this.NavigationService.Navigate(simulatorView);
+            try
+            {
+                SimulatorView simulatorView = new SimulatorView(ServerIP.Text, ServerPort.Text);
+                this.NavigationService.Navigate(simulatorView);
+            }
+            catch(Exception)
+            {
+                text.Text = "ip and port wrong - try again";
+        {
+
+        }
+            }
         }
 
 
