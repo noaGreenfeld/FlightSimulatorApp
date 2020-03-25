@@ -23,11 +23,7 @@ namespace FlightSimulator.Views
         public AllView()
         {
             InitializeComponent();
-            while(t1 != null)
-            {
-                t1.Background = Brushes.Red;
-                int ti;
-            }
+
         }
 
         private void navigates_MouseUp(object sender, MouseButtonEventArgs e)
