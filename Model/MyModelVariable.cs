@@ -90,14 +90,15 @@ namespace FlightSimulator.Model
                     TimeSpan stopwatchElapsed = stopwatch.Elapsed;
                     if ((Convert.ToInt32(stopwatchElapsed.TotalSeconds)) >= 10)
                     {
-                        Console.WriteLine("Server hasn't responded for 10 seconds");
+                        Error = ("Server hasn't responded for 10 seconds");
                     }
                 } else
                 {
                     stopwatch.Start();
                     serverNotResponding = true;
                 }
-                Console.WriteLine("Could'nt send command to server");
+               Error = ("Could'nt send command to server");
+      
             }
             
         }
@@ -117,7 +118,7 @@ namespace FlightSimulator.Model
                     TimeSpan stopwatchElapsed = stopwatch.Elapsed;
                     if ((Convert.ToInt32(stopwatchElapsed.TotalSeconds)) >= 10)
                     {
-                        Console.WriteLine("Server hasn't responded for 10 seconds");
+                        Error = ("Server hasn't responded for 10 seconds");
                     }
                 }
                 else
@@ -125,7 +126,7 @@ namespace FlightSimulator.Model
                     stopwatch.Start();
                     serverNotResponding = true;
                 }
-                Console.WriteLine("Could'nt read data from server");
+                Error = ("Could'nt read data from server");
                 return "ERR";
             }
             
@@ -370,11 +371,23 @@ namespace FlightSimulator.Model
                 NotifyPropertyChanged("Altimeter_indicated_altitude_ft");
             }
         }
+        private string error = "";
+        public string Error
+        {
+            get { return error; }
+            set
+            {
+                Console.WriteLine("set" + value);
+                error = value;
+                NotifyPropertyChanged("Error");
+            }
+        }
 
         public void NotifyPropertyChanged(string propName)
         {
             //Console.WriteLine(propName);
             if (this.PropertyChanged != null)
+                Console.WriteLine(propName);
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
 

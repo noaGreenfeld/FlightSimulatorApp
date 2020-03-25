@@ -21,7 +21,7 @@ namespace FlightSimulator.ViewModel
             delegate (Object sender, PropertyChangedEventArgs e)
             {
                 NotifyPropertyChanged("VM_"+e.PropertyName);
-                //Console.WriteLine("view   "+e.getS());
+                Console.WriteLine("view   "+e.PropertyName);
             };
         }
 
@@ -112,6 +112,12 @@ namespace FlightSimulator.ViewModel
         public double VM_Altimeter_indicated_altitude_ft
         {
             get { return model.Altimeter_indicated_altitude_ft; }
+        }
+        public string VM_Error
+        {
+            get {
+                Console.WriteLine("get" + model.Error);
+                return model.Error; }
         }
     }
 }
