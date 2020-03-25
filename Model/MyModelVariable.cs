@@ -32,8 +32,8 @@ namespace FlightSimulator.Model
         bool changeAileron = false;
         double throttle;
         bool changeThrottle = false;
-        double altitude;
-        double lattiude;
+        double longitude;
+        double latitude;
         bool serverNotResponding = false;
         Stopwatch stopwatch;
 
@@ -66,9 +66,9 @@ namespace FlightSimulator.Model
             try
             {
                 client.Connect(ip, port);
-            } catch (Exception)
+            } catch
             {
-                throw new Exception("connect");
+                throw new Exception("Can't connect");
             }
             strm = client.GetStream();
             stop = false;
@@ -211,25 +211,25 @@ namespace FlightSimulator.Model
                         Altimeter_indicated_altitude_ft = Math.Round(Double.Parse(ans), 3);
                     }
 
-                    //location 1
+                    // latitude
                     sendCommand("get /position/latitude-deg\n");
                     ans = readData();
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
-                        altitude = Double.Parse(ans);
+                        latitude = Double.Parse(ans);
                     }
          
-                    //location 2
+                    // longitude
                     sendCommand("get /position/longitude-deg\n");
                     ans = readData();
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
-                        lattiude = Double.Parse(ans);
+                        longitude = Double.Parse(ans);
                     }
 
-                    setLocation(lattiude, altitude);
+                    setLocation(latitude, longitude);
                     //Console.WriteLine(altitude + "   " + lattiude);
 
                     if (changeRudder)
@@ -272,12 +272,12 @@ namespace FlightSimulator.Model
         private Location location;
         public Location Location
         {
-            get { return new Location(location.Latitude, location.Altitude); }
+            get { return new Location(location.Latitude, location.Longitude); }
         }
 
-        public void setLocation(double latitude, double altitude)
+        public void setLocation(double latitude, double longitude)
         {
-            location = new Location(latitude, altitude);
+            location = new Location(latitude, longitude);
             //location.Latitude = d1;
             //location.Altitude = d2;
             NotifyPropertyChanged("Location");

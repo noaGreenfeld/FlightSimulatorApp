@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FlightSimulator"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="980"
+      d:DesignHeight="500" d:DesignWidth="900"
       Title="HomePage">
     <Grid TextBlock.FontSize="14">
         <Grid.Background>
