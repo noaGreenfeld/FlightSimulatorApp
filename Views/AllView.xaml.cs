@@ -26,6 +26,7 @@ namespace FlightSimulator.Views
             while(t1 != null)
             {
                 t1.Background = Brushes.Red;
+                int ti;
             }
         }
 
