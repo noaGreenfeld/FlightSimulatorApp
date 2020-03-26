@@ -85,7 +85,10 @@ namespace FlightSimulator.Model
                 stopwatch.Stop();
             } catch
             {
-                if (serverNotResponding)
+                if (!client.Connected)
+                {
+                    Error = ("Not connected to server, go back to try connecting again");
+                } else if (serverNotResponding)
                 {
                     TimeSpan stopwatchElapsed = stopwatch.Elapsed;
                     if ((Convert.ToInt32(stopwatchElapsed.TotalSeconds)) >= 10)
@@ -96,9 +99,8 @@ namespace FlightSimulator.Model
                 {
                     stopwatch.Start();
                     serverNotResponding = true;
+                    Error = ("Server isn't responding");
                 }
-               Error = ("Could'nt send command to server");
-      
             }
             
         }
@@ -113,7 +115,11 @@ namespace FlightSimulator.Model
                 return System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
             } catch
             {
-                if (serverNotResponding)
+                if (!client.Connected)
+                {
+                    Error = ("Not connected to server, go back to try connecting again");
+                }
+                else if (serverNotResponding)
                 {
                     TimeSpan stopwatchElapsed = stopwatch.Elapsed;
                     if ((Convert.ToInt32(stopwatchElapsed.TotalSeconds)) >= 10)
@@ -125,8 +131,8 @@ namespace FlightSimulator.Model
                 {
                     stopwatch.Start();
                     serverNotResponding = true;
+                    Error = ("Server isn't responding");
                 }
-                Error = ("Could'nt read data from server");
                 return "ERR";
             }
             
@@ -378,8 +384,11 @@ namespace FlightSimulator.Model
             set
             {
                 Console.WriteLine("set" + value);
-                error = value;
-                NotifyPropertyChanged("Error");
+                if (!error.Equals(value))
+                {
+                    error = value;
+                    NotifyPropertyChanged("Error");
+                }
             }
         }
 
