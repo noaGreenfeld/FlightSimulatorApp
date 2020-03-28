@@ -69,7 +69,7 @@ namespace FlightSimulator.Views
                 startPoint = e.GetPosition(this);
             }
         }
-
+        
         private void Knob_MouseMove(object sender, MouseEventArgs e)
         {
             double x;
