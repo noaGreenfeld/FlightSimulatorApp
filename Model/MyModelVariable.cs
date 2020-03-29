@@ -60,7 +60,7 @@ namespace FlightSimulator.Model
         }
 
 
-        void connect(string ip, int port) 
+        public void connect(string ip, int port) 
         {
             client = new TcpClient();
             Console.WriteLine("Connecting to server...");
@@ -158,7 +158,7 @@ namespace FlightSimulator.Model
             
         }
 
-        void start()
+        public void start()
         {
             new Thread(delegate ()
             {
@@ -360,7 +360,7 @@ namespace FlightSimulator.Model
             }).Start();
         }
 
-        void disconnect() 
+        public void disconnect() 
         {
             stop = true;
             client.Close();
