@@ -49,7 +49,7 @@ namespace FlightSimulator
             vm_control = new VM_control(model);
             //DataContext = vm_databoard;
             
-            this.allView.navigates.joystickN.PropertyChanged +=
+            this.allView.navigates.PropertyChanged +=
                 delegate (Object sender, PropertyChangedEventArgs e)
                 {
                     string who = e.PropertyName;
@@ -57,10 +57,10 @@ namespace FlightSimulator
                     switch (who)
                     {
                         case "Rudder":
-                            vm_navigates.notifyViewChange(this.allView.navigates.joystickN.Rudder, who);
+                            vm_navigates.notifyViewChange(this.allView.navigates.Rudder, who);
                             break;
                         case "Elevator":
-                            vm_navigates.notifyViewChange(this.allView.navigates.joystickN.Elevator, who);
+                            vm_navigates.notifyViewChange(this.allView.navigates.Elevator, who);
                             break;
                     }
                 };

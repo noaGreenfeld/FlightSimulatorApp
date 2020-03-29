@@ -441,8 +441,15 @@ namespace FlightSimulator.Model
 
         public void setLocation(double latitude, double longitude)
         {
-            location = new Location(latitude, longitude);
-            NotifyPropertyChanged("Location");
+            Console.WriteLine(latitude + "  " + longitude);
+            if (((latitude < 90) && (latitude > -90)) && ((longitude<180)&&(longitude>-180))){
+                location = new Location(latitude, longitude);
+                NotifyPropertyChanged("Location");
+            }
+            else
+            {
+                Error = "the location is out of earth";
+            }
         }
 
         private string indicated_heading_deg ;

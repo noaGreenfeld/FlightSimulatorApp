@@ -17,36 +17,26 @@ namespace FlightSimulator.Views
 {
     public partial class Joystick : UserControl, INotifyPropertyChanged
     {
-        private double rudder;
-        public double Rudder
+        private double x;
+        public double X
         {
-            get { return rudder; }
+            get { return x; }
             set
             {
-                //Console.WriteLine(value+"  set");
-                rudder = value;
-                NotifyPropertyChanged("Rudder");
+                x = value;
+                NotifyPropertyChanged("X");
             }
         }
-
-        private double elevator;
-        public double Elevator
+        private double y;
+        public double Y
         {
-            get { return elevator; }
+            get { return y; }
             set
             {
-                elevator = value;
+                y = value;
+                NotifyPropertyChanged("Y");
 
-                NotifyPropertyChanged("Elevator");
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void NotifyPropertyChanged(string propName)
-        {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
 
         private Point startPoint = new Point();
@@ -70,21 +60,27 @@ namespace FlightSimulator.Views
                 startPoint = e.GetPosition(this);
             }
         }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void NotifyPropertyChanged(string propName)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+        }
 
         private void Knob_MouseMove(object sender, MouseEventArgs e)
         {
-            double x;
-            double y;
+
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                x = e.GetPosition(this).X - startPoint.X;
-                y = e.GetPosition(this).Y - startPoint.Y;
+                X = e.GetPosition(this).X - startPoint.X;
+                Y = e.GetPosition(this).Y - startPoint.Y;
                 if (Math.Sqrt(x * x + y * y) < (internalBase.Width / 2))
                 {
                     knobPosition.X = x;
                     knobPosition.Y = y;
-                    Rudder = x / (internalBase.Width / 2.0);
-                    Elevator = y / (internalBase.Width / 2.0);
+                   // Rudder = x / (internalBase.Width / 2.0);
+                  //  Elevator = y / (internalBase.Width / 2.0);
                 }
             }
         }
