@@ -36,6 +36,7 @@ namespace FlightSimulator.Model
         double latitude;
         bool serverNotResponding = false;
         Stopwatch stopwatch;
+        bool connected;
 
         public void setRudder(double rud)
         {
@@ -59,18 +60,22 @@ namespace FlightSimulator.Model
         }
 
 
-        void connect(string ip, int port) 
+        public void connect(string ip, int port) 
         {
             client = new TcpClient();
             Console.WriteLine("Connecting to server...");
             try
             {
                 client.Connect(ip, port);
+                connected = true;
             } catch
             {
+                connected = false;
                 throw new Exception("Can't connect");
             }
             strm = client.GetStream();
+            client.ReceiveTimeout = 5000;
+            client.SendTimeout = 5000;
             stop = false;
             start();
         }
@@ -88,6 +93,7 @@ namespace FlightSimulator.Model
                 if (!client.Connected)
                 {
                     Error = ("Not connected to server, go back to try connecting again");
+                    connected = false;
                 } else if (serverNotResponding)
                 {
                     TimeSpan stopwatchElapsed = stopwatch.Elapsed;
@@ -109,14 +115,27 @@ namespace FlightSimulator.Model
         {
             try
             {
-                byte[] dataB = new byte[256];
+                byte[] dataB = new byte[512];
                 strm.Read(dataB, 0, 100);
                 stopwatch.Stop();
                 return System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                /*string ansStr = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                Console.WriteLine(ansStr);
+                String[] ansArr = ansStr.Split('\n');
+                int size = ansArr.Length;
+                for (int i = 0; i < size; i++)
+                {
+                    if (ansArr[i].Contains("ERR"))
+                    {
+                        ansArr[i] = "";
+                    }
+                }
+                return ansArr;*/
             } catch
             {
                 if (!client.Connected)
                 {
+                    connected = false;
                     Error = ("Not connected to server, go back to try connecting again");
                 }
                 else if (serverNotResponding)
@@ -134,17 +153,88 @@ namespace FlightSimulator.Model
                     Error = ("Server isn't responding");
                 }
                 return "ERR";
+                //return null;
             }
             
         }
 
-        void start()
+        public void start()
         {
             new Thread(delegate ()
             {
+                string com;
                 String ans;
                 while (!stop)
                 {
+                    /*com = "get /instrumentation/heading-indicator/indicated-heading-deg\n" +
+                    "get /instrumentation/gps/indicated-vertical-speed\n" +
+                    "get /instrumentation/gps/indicated-ground-speed-kt\n" +
+                    "get /instrumentation/airspeed-indicator/indicated-speed-kt\n" +
+                    "get /instrumentation/gps/indicated-altitude-ft\n" +
+                    "get /instrumentation/attitude-indicator/internal-roll-deg\n" +
+                    "get /instrumentation/attitude-indicator/internal-pitch-deg\n" +
+                    "get /instrumentation/gps/indicated-altitude-ft\n" +
+                    "get /position/latitude-deg\n" +
+                    "get /position/longitude-deg\n";
+
+                    if (changeRudder)
+                    {
+                        com += "set /controls/flight/rudder " + rudder + "\n";
+                        changeRudder = false;
+                    }
+                    if (changeElevator)
+                    {
+                        com += "set /controls/flight/elevator " + elevator + "\n";
+                        changeElevator = false;
+                    }
+                    if (changeAileron)
+                    {
+                        com += "set /controls/flight/aileron " + aileron + "\n";
+                        changeAileron = false;
+                    }
+                    if (changeThrottle)
+                    {
+                        com += "set /controls/engines/current-engine/throttle " + throttle + "\n";
+                        changeThrottle = false;
+                    }
+
+                    sendCommand(com);
+                    String[] ansArr = readData();
+                    if (ansArr == null)
+                    {
+                        continue;
+                    }
+                    for (int i = 0; i < ansArr.Length; i++)
+                    {
+                        Console.WriteLine(ansArr[i] + '\n');
+                    }
+                    if (ansArr[0] != "")
+                        Indicated_heading_deg = Math.Round(Double.Parse(ansArr[0]), 3);
+                    if (ansArr[1] != "")
+                        Console.WriteLine(ansArr[1]);
+                        Gps_indicated_vertical_speed = Double.Parse(ansArr[1]);
+                    if (ansArr[2] != "")
+                        Gps_indicated_ground_speed_kt = Math.Round(Double.Parse(ansArr[2]), 3);
+                    if (ansArr[3] != "")
+                        Airspeed_indicator_indicated_speed_kt = Math.Round(Double.Parse(ansArr[3]), 3);
+                    if (ansArr[4] != "")
+                        Gps_indicated_altitude_ft = Math.Round(Double.Parse(ansArr[4]), 3);
+                    if (ansArr[5] != "")
+                        Attitude_indicator_internal_roll_deg = Math.Round(Double.Parse(ansArr[5]), 3);
+                    if (ansArr[6] != "")
+                        Attitude_indicator_internal_pitch_deg = Math.Round(Double.Parse(ansArr[6]), 3);
+                    if (ansArr[7] != "")
+                        Altimeter_indicated_altitude_ft = Math.Round(Double.Parse(ansArr[7]), 3);
+                    if (ansArr[8] != "")
+                      latitude = Double.Parse(ansArr[8]);
+                    if (ansArr[9] != "")
+                        Console.WriteLine(ansArr[9]);
+                        longitude = Double.Parse(ansArr[9]);
+                    latitude = 10;
+                     longitude = 10;
+                    setLocation(latitude, longitude);
+                    */
+                    
                     // get eight values for data board:
                     //1
                     sendCommand("get /instrumentation/heading-indicator/indicated-heading-deg\n");
@@ -206,7 +296,7 @@ namespace FlightSimulator.Model
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
-                        this.Attitude_indicator_internal_pitch_deg = Math.Round(Double.Parse(ans), 3);
+                        Attitude_indicator_internal_pitch_deg = Math.Round(Double.Parse(ans), 3);
                     }
 
                     //8
@@ -235,10 +325,10 @@ namespace FlightSimulator.Model
                         ans = CutTheText(ans);
                         longitude = Double.Parse(ans);
                     }
-
-                    setLocation(latitude, longitude);
+                    
+                    setLocation(latitude, longitude); 
                     //Console.WriteLine(altitude + "   " + lattiude);
-
+                    
                     if (changeRudder)
                     {
                         sendCommand("set /controls/flight/rudder " + rudder + "\n");
@@ -263,14 +353,14 @@ namespace FlightSimulator.Model
                         ans = readData();
                         changeThrottle = false;
                     }
-
+                    
                     Thread.Sleep(250);
                 }
 
             }).Start();
         }
 
-        void disconnect() 
+        public void disconnect() 
         {
             stop = true;
             client.Close();
@@ -396,7 +486,7 @@ namespace FlightSimulator.Model
         {
             //Console.WriteLine(propName);
             if (this.PropertyChanged != null)
-                Console.WriteLine(propName);
+                //Console.WriteLine(propName);
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
 
