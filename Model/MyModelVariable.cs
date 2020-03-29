@@ -36,6 +36,7 @@ namespace FlightSimulator.Model
         double latitude;
         bool serverNotResponding = false;
         Stopwatch stopwatch;
+        bool connected;
 
         public void setRudder(double rud)
         {
@@ -66,8 +67,10 @@ namespace FlightSimulator.Model
             try
             {
                 client.Connect(ip, port);
+                connected = true;
             } catch
             {
+                connected = false;
                 throw new Exception("Can't connect");
             }
             strm = client.GetStream();
@@ -90,6 +93,7 @@ namespace FlightSimulator.Model
                 if (!client.Connected)
                 {
                     Error = ("Not connected to server, go back to try connecting again");
+                    connected = false;
                 } else if (serverNotResponding)
                 {
                     TimeSpan stopwatchElapsed = stopwatch.Elapsed;
@@ -131,6 +135,7 @@ namespace FlightSimulator.Model
             {
                 if (!client.Connected)
                 {
+                    connected = false;
                     Error = ("Not connected to server, go back to try connecting again");
                 }
                 else if (serverNotResponding)

@@ -35,19 +35,20 @@ namespace FlightSimulator
         // VariabaleViewModel vm;
         public SimulatorView(string ip, string port)
         {
-            
-            //string s = "127.0.0.1";
+            InitializeComponent();
             int portI = Int32.Parse(port);
             this.ip = ip;
             this.port = portI;
+
             //vm = new VariabaleViewModel(new MyModelVariable(ip, portI));
             model = new MyModelVariable(ip, portI);
+
             vm_databoard = new VM_dataBoard(model);
             vm_map = new VM_map(model);
             vm_navigates = new VM_navigates(model);
             vm_control = new VM_control(model);
             //DataContext = vm_databoard;
-            InitializeComponent();
+            
             this.allView.navigates.joystickN.PropertyChanged +=
                 delegate (Object sender, PropertyChangedEventArgs e)
                 {
@@ -78,6 +79,17 @@ namespace FlightSimulator
         private void connect_Click(object sender, RoutedEventArgs e)
         {
             vm_control.connect(ip, port);
+        }
+
+        private void connect_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (vm_control.isConnected())
+            {
+                IsEnabled = false;
+            } else
+            {
+                IsEnabled = true;
+            }
         }
     }
 }
