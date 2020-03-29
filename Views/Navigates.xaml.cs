@@ -24,6 +24,7 @@ namespace FlightSimulator.Views
         public Navigates()
         {
             InitializeComponent();
+            
         }
 
 
@@ -34,7 +35,40 @@ namespace FlightSimulator.Views
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
+        Point startPoint;
+        private void Knob_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                Mouse.Capture(this.joystickN.KnobBase);
+                startPoint = e.GetPosition(this);
+            }
+        }
 
+        private void Knob_MouseMove(object sender, MouseEventArgs e)
+        {
+            double x;
+            double y;
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                x = e.GetPosition(this).X - startPoint.X;
+                y = e.GetPosition(this).Y - startPoint.Y;
+                if (Math.Sqrt(x * x + y * y) < (internalBase.Width / 2))
+                {
+                    knobPosition.X = x;
+                    knobPosition.Y = y;
+                    Rudder = x / (internalBase.Width / 2.0);
+                    Elevator = y / (internalBase.Width / 2.0);
+                }
+            }
+        }
+
+        private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            // knobPosition.X = 0;
+            // knobPosition.Y = 0;
+            Mouse.Capture(null);
+        }
 
     }
 }
