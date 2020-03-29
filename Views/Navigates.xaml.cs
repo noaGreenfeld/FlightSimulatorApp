@@ -19,5 +19,6 @@ namespace FlightSimulator.Views
         {
             InitializeComponent();
         }
+
     }
 }

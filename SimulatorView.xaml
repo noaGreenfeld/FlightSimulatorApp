@@ -10,10 +10,12 @@
       d:DesignHeight="520" d:DesignWidth="920"
       Title="SimulatorView">
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" ClipToBounds="True" >
-    <Grid>
-        <Views:AllView x:Name="allView" HorizontalAlignment="Stretch" Height="Auto" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="Auto"/>
-        <Button x:Name="connect" Content="Connect" HorizontalAlignment="Left" Height="23" Margin="10,5,0,0" VerticalAlignment="Top" Width="61" Click="connect_Click" IsEnabled="{Binding VM_CanConnect}"/>
-        <Button x:Name="disconnect" Content="Disonnect" HorizontalAlignment="Left" Height="23" Margin="80,5,0,0" VerticalAlignment="Top" Width="61" Click="disconnect_Click"/>
-    </Grid>
+        <Grid>
+            <Views:AllView x:Name="allView" HorizontalAlignment="Stretch" Height="Auto" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="Auto"/>
+            <Button x:Name="connect" Content="Connect" HorizontalAlignment="Left" Height="23" Margin="10,5,0,0" VerticalAlignment="Top" Width="61" Click="connect_Click" IsEnabled="{Binding VM_CanConnect}" Background="#FF41FF00">
+
+            </Button>
+            <Button x:Name="disconnect" Content="Disonnect" HorizontalAlignment="Left" Height="23" Margin="80,5,0,0" VerticalAlignment="Top" Width="61" Click="disconnect_Click" BorderBrush="#FFFF4306" Background="#FFE90505"/>
+        </Grid>
     </ScrollViewer>
 </Page>

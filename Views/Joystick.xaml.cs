@@ -36,6 +36,7 @@ namespace FlightSimulator.Views
             set
             {
                 elevator = value;
+
                 NotifyPropertyChanged("Elevator");
             }
         }

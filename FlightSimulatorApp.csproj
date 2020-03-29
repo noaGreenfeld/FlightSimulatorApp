@@ -164,5 +164,11 @@
   <ItemGroup>
     <Folder Include="other\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="disonnect.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="connect.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
