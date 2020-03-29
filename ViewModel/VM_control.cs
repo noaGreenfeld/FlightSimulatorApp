@@ -27,7 +27,7 @@ namespace FlightSimulator.ViewModel
 
         public bool isConnected()
         {
-            return model.connected;
+            return model.Connected;
         }
     }
 }

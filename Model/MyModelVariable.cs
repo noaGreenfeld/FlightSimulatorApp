@@ -36,7 +36,7 @@ namespace FlightSimulator.Model
         double latitude;
         bool serverNotResponding = false;
         Stopwatch stopwatch;
-        bool connected;
+        
 
         public void setRudder(double rud)
         {
@@ -467,6 +467,13 @@ namespace FlightSimulator.Model
                 NotifyPropertyChanged("Altimeter_indicated_altitude_ft");
             }
         }
+        private bool connected;
+        public bool Connected
+        {
+            get { return connected; }
+        }
+
+
         private string error = "";
         public string Error
         {
