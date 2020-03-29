@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              Background="AliceBlue"
              xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
-             d:DesignHeight="515" d:DesignWidth="915">
+             d:DesignHeight="520" d:DesignWidth="920">
     <Grid ClipToBounds="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="215"/>
