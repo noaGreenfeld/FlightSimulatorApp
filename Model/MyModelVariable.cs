@@ -237,79 +237,136 @@ namespace FlightSimulator.Model
                      longitude = 10;
                     setLocation(latitude, longitude);
                     */
-                    
+
                     // get eight values for data board:
                     //1
                     sendCommand("get /instrumentation/heading-indicator/indicated-heading-deg\n");
                     ans = readData();
+
+                    ans = ans.Substring(0, 6);
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
-                        Indicated_heading_deg = Math.Round(Double.Parse(ans), 3);
                     }
+                    else
+                    {
+                        ans = "ERR";
+                    }
+                    Indicated_heading_deg = ans;
+                    
+   
 
                     //2
                     sendCommand("get /instrumentation/gps/indicated-vertical-speed\n");
                     ans = readData();
+                    ans = ans.Substring(0, 6);
+
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
-                        Gps_indicated_vertical_speed = Math.Round(Double.Parse(ans), 3);
                     }
+                    else
+                    {
+                        ans = "ERR";
+                    }
+                        Gps_indicated_vertical_speed = ans;
+                    
 
                     //3
                     sendCommand("get /instrumentation/gps/indicated-ground-speed-kt\n");
                     ans = readData();
+                    ans = ans.Substring(0, 6);
+
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
-                        Gps_indicated_ground_speed_kt = Math.Round(Double.Parse(ans), 3);
                     }
+                    else
+                    {
+                        ans = "ERR";
+                    }
+                    Gps_indicated_ground_speed_kt = ans;
+                    
 
                     //4
                     sendCommand("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
                     ans = readData();
+                    ans = ans.Substring(0, 6);
+
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
-                        Airspeed_indicator_indicated_speed_kt = Math.Round(Double.Parse(ans), 3);
                     }
+                    else
+                    {
+                        ans = "ERR";
+                    }
+                    Airspeed_indicator_indicated_speed_kt = ans;
+                    
 
                     //5
                     sendCommand("get /instrumentation/gps/indicated-altitude-ft\n");
                     ans = readData();
+                    ans = ans.Substring(0, 6);
+
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
-                        Gps_indicated_altitude_ft = Math.Round(Double.Parse(ans), 3);
-                    } 
+                    }
+                    else
+                    {
+                        ans = "ERR";
+                    }
+                    Gps_indicated_altitude_ft = ans;
+                    
 
                     //6
                     sendCommand("get /instrumentation/attitude-indicator/internal-roll-deg\n");
                     ans = readData();
+                    ans = ans.Substring(0, 6);
+
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
-                        Attitude_indicator_internal_roll_deg = Math.Round(Double.Parse(ans), 3);
                     }
+                    else
+                    {
+                        ans = "ERR";
+                    }
+                    Attitude_indicator_internal_roll_deg = ans;
+                    
 
                     //7
                     sendCommand("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
                     ans = readData();
+                    ans = ans.Substring(0, 6);
+
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
-                        Attitude_indicator_internal_pitch_deg = Math.Round(Double.Parse(ans), 3);
                     }
+                    else
+                    {
+                        ans = "ERR";
+                    }
+                        Attitude_indicator_internal_pitch_deg = ans;
+                    
 
                     //8
                     sendCommand("get /instrumentation/gps/indicated-altitude-ft\n");
                     ans = readData();
+                    ans = ans.Substring(0, 6);
+
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
-                        Altimeter_indicated_altitude_ft = Math.Round(Double.Parse(ans), 3);
                     }
+                    else
+                    {
+                        ans = "ERR";
+                    }
+                    Altimeter_indicated_altitude_ft =ans;
+                    
 
                     // latitude
                     sendCommand("get /position/latitude-deg\n");
@@ -317,8 +374,13 @@ namespace FlightSimulator.Model
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
-                        latitude = Double.Parse(ans);
                     }
+                    else
+                    {
+                        ans = "ERR";
+                    }
+                    latitude = Double.Parse(ans);
+                    
          
                     // longitude
                     sendCommand("get /position/longitude-deg\n");
@@ -383,8 +445,8 @@ namespace FlightSimulator.Model
             NotifyPropertyChanged("Location");
         }
 
-        private double indicated_heading_deg =40;
-        public double Indicated_heading_deg
+        private string indicated_heading_deg ;
+        public string Indicated_heading_deg
         {
             get { return indicated_heading_deg; }
             set
@@ -394,8 +456,8 @@ namespace FlightSimulator.Model
             }
         }
 
-        private double gps_indicated_vertical_speed=50;
-        public double Gps_indicated_vertical_speed
+        private string gps_indicated_vertical_speed ;
+        public string Gps_indicated_vertical_speed
         {
             get { return gps_indicated_vertical_speed; }
             set
@@ -405,8 +467,8 @@ namespace FlightSimulator.Model
             }
         }
 
-        private double gps_indicated_ground_speed_kt;
-        public double Gps_indicated_ground_speed_kt
+        private string gps_indicated_ground_speed_kt;
+        public string Gps_indicated_ground_speed_kt
         {
             get { return gps_indicated_ground_speed_kt; }
             set
@@ -416,8 +478,8 @@ namespace FlightSimulator.Model
             }
         }
 
-        private double airspeed_indicator_indicated_speed_kt;
-        public double Airspeed_indicator_indicated_speed_kt
+        private string airspeed_indicator_indicated_speed_kt;
+        public string Airspeed_indicator_indicated_speed_kt
         {
             get { return airspeed_indicator_indicated_speed_kt; }
             set
@@ -427,8 +489,8 @@ namespace FlightSimulator.Model
             }
         }
 
-        private double gps_indicated_altitude_ft;
-        public double Gps_indicated_altitude_ft
+        private string gps_indicated_altitude_ft;
+        public string Gps_indicated_altitude_ft
         {
             get { return gps_indicated_altitude_ft; }
             set
@@ -438,8 +500,8 @@ namespace FlightSimulator.Model
             }
         }
 
-        private double attitude_indicator_internal_roll_deg;
-        public double Attitude_indicator_internal_roll_deg
+        private string attitude_indicator_internal_roll_deg;
+        public string Attitude_indicator_internal_roll_deg
         {
             get { return attitude_indicator_internal_roll_deg; }
             set
@@ -449,8 +511,8 @@ namespace FlightSimulator.Model
             }
         }
 
-        private double attitude_indicator_internal_pitch_deg;
-        public double Attitude_indicator_internal_pitch_deg
+        private string attitude_indicator_internal_pitch_deg;
+        public string Attitude_indicator_internal_pitch_deg
         {
             get { return attitude_indicator_internal_pitch_deg; }
             set
@@ -460,8 +522,8 @@ namespace FlightSimulator.Model
             }
         }
 
-        private double altimeter_indicated_altitude_ft;
-        public double Altimeter_indicated_altitude_ft
+        private string altimeter_indicated_altitude_ft;
+        public string Altimeter_indicated_altitude_ft
         {
             get { return altimeter_indicated_altitude_ft; }
             set
