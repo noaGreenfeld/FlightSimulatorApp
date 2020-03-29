@@ -68,13 +68,16 @@
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\Communication.cs" />
     <Compile Include="Model\IModelVariable.cs" />
     <Compile Include="Model\MyModelVariable.cs" />
     <Compile Include="SimulatorView.xaml.cs">
       <DependentUpon>SimulatorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\VariabaleViewModel.cs" />
+    <Compile Include="ViewModel\VM_control.cs" />
+    <Compile Include="ViewModel\VM_dataBoard.cs" />
+    <Compile Include="ViewModel\VM_map.cs" />
+    <Compile Include="ViewModel\VM_navigates.cs" />
     <Compile Include="Views\AllView.xaml.cs">
       <DependentUpon>AllView.xaml</DependentUpon>
     </Compile>

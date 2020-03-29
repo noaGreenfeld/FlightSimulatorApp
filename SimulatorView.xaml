@@ -10,6 +10,7 @@
       d:DesignHeight="500" d:DesignWidth="900"
       Title="SimulatorView">
     <Grid>
-        <Views:AllView x:Name="allView" HorizontalAlignment="Stretch" Height="Auto" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="Auto"/>
+        <Views:AllView x:Name="allView" HorizontalAlignment="Stretch" Height="Auto" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="Auto" Loaded="allView_Loaded"/>
+        <Button x:Name="connect" Content="Button" HorizontalAlignment="Left" Height="51" Margin="29,10,0,0" VerticalAlignment="Top" Width="156" Click="connect_Click"/>
     </Grid>
 </Page>

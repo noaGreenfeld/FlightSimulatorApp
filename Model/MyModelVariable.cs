@@ -116,6 +116,7 @@ namespace FlightSimulator.Model
                 stopwatch.Stop();
                 return System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
                 /*string ansStr = System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                Console.WriteLine(ansStr);
                 String[] ansArr = ansStr.Split('\n');
                 int size = ansArr.Length;
                 for (int i = 0; i < size; i++)
@@ -147,6 +148,7 @@ namespace FlightSimulator.Model
                     Error = ("Server isn't responding");
                 }
                 return "ERR";
+                //return null;
             }
             
         }
@@ -155,7 +157,7 @@ namespace FlightSimulator.Model
         {
             new Thread(delegate ()
             {
-                //string com;
+                string com;
                 String ans;
                 while (!stop)
                 {
@@ -166,11 +168,11 @@ namespace FlightSimulator.Model
                     "get /instrumentation/gps/indicated-altitude-ft\n" +
                     "get /instrumentation/attitude-indicator/internal-roll-deg\n" +
                     "get /instrumentation/attitude-indicator/internal-pitch-deg\n" +
-                    "get /instrumentation/gps/indicated-altitude-ft\n";
-                    //"get /position/latitude-deg\n" +
-                    //"get /position/longitude-deg\n";
+                    "get /instrumentation/gps/indicated-altitude-ft\n" +
+                    "get /position/latitude-deg\n" +
+                    "get /position/longitude-deg\n";
 
-                   /* if (changeRudder)
+                    if (changeRudder)
                     {
                         com += "set /controls/flight/rudder " + rudder + "\n";
                         changeRudder = false;
@@ -218,11 +220,11 @@ namespace FlightSimulator.Model
                         Attitude_indicator_internal_pitch_deg = Math.Round(Double.Parse(ansArr[6]), 3);
                     if (ansArr[7] != "")
                         Altimeter_indicated_altitude_ft = Math.Round(Double.Parse(ansArr[7]), 3);
-                    //if (ansArr[8] != "")
-                    //  latitude = Double.Parse(ansArr[8]);
-                    //if (ansArr[9] != "")
-                    //    Console.WriteLine(ansArr[9]);
-                    //    longitude = Double.Parse(ansArr[9]);
+                    if (ansArr[8] != "")
+                      latitude = Double.Parse(ansArr[8]);
+                    if (ansArr[9] != "")
+                        Console.WriteLine(ansArr[9]);
+                        longitude = Double.Parse(ansArr[9]);
                     latitude = 10;
                      longitude = 10;
                     setLocation(latitude, longitude);
@@ -321,7 +323,7 @@ namespace FlightSimulator.Model
                     
                     setLocation(latitude, longitude); 
                     //Console.WriteLine(altitude + "   " + lattiude);
-
+                    
                     if (changeRudder)
                     {
                         sendCommand("set /controls/flight/rudder " + rudder + "\n");

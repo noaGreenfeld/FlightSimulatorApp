@@ -24,31 +24,60 @@ namespace FlightSimulator
     /// </summary>
     public partial class SimulatorView : Page
     {
-        VariabaleViewModel vm;
+        string ip;
+        int port;
+        IModelVariable model;
+        VM_dataBoard vm_databoard;
+        VM_map vm_map;
+        VM_navigates vm_navigates;
+        VM_control vm_control;
+
+        // VariabaleViewModel vm;
         public SimulatorView(string ip, string port)
         {
             
             //string s = "127.0.0.1";
             int portI = Int32.Parse(port);
-            vm = new VariabaleViewModel(new MyModelVariable(ip, portI));
-            DataContext = vm;
+            this.ip = ip;
+            this.port = portI;
+            //vm = new VariabaleViewModel(new MyModelVariable(ip, portI));
+            model = new MyModelVariable(ip, portI);
+            vm_databoard = new VM_dataBoard(model);
+            vm_map = new VM_map(model);
+            vm_navigates = new VM_navigates(model);
+            vm_control = new VM_control(model);
+            //DataContext = vm_databoard;
             InitializeComponent();
             this.allView.navigates.joystickN.PropertyChanged +=
                 delegate (Object sender, PropertyChangedEventArgs e)
                 {
                     string who = e.PropertyName;
+                    Console.WriteLine(who + " simulator view");
                     switch (who)
                     {
                         case "Rudder":
-                            vm.notifyViewChange(this.allView.navigates.joystickN.Rudder, who);
+                            vm_navigates.notifyViewChange(this.allView.navigates.joystickN.Rudder, who);
                             break;
                         case "Elevator":
-                            vm.notifyViewChange(this.allView.navigates.joystickN.Elevator, who);
+                            vm_navigates.notifyViewChange(this.allView.navigates.joystickN.Elevator, who);
                             break;
                     }
                 };
+
+            this.allView.navigates.DataContext = vm_navigates;
+            this.allView.dataBoard.DataContext = vm_databoard;
+            this.allView.myMap.DataContext = vm_map;
+            this.allView.errorBox.DataContext = vm_control;
         }
 
+        private void allView_Loaded(object sender, RoutedEventArgs e)
+        {
 
+        }
+
+        private void connect_Click(object sender, RoutedEventArgs e)
+        {
+            vm_control.connect(ip, port);
+        }
     }
 }
