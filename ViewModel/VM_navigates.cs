@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FlightSimulator.Model;
 
 namespace FlightSimulator.ViewModel
 {
     class VM_navigates : VariabaleViewModel
     {
-        public VM_navigates(IModelVariable model) : base(model) { }
+        public VM_navigates(IModelVariable model) : base(model) {}
+
         public void notifyViewChange(double val, string who)
         {
             switch (who)
@@ -26,11 +23,9 @@ namespace FlightSimulator.ViewModel
                 case "Throttle":
                     model.setThrottle(val);
                     break;
-
             }
-
-
         }
+
         private double VM_aileron;
         public double VM_Aileron
         {
@@ -42,6 +37,7 @@ namespace FlightSimulator.ViewModel
                 model.setAileron(value);
             }
         }
+
         private double VM_throttle;
         public double VM_Throttle
         {
@@ -52,7 +48,5 @@ namespace FlightSimulator.ViewModel
                 model.setThrottle(value);
             }
         }
-
     }
-
 }

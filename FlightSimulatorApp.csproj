@@ -62,9 +62,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="closeWindow.xaml.cs">
-      <DependentUpon>closeWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -88,10 +85,6 @@
     <Compile Include="Views\Navigates.xaml.cs">
       <DependentUpon>Navigates.xaml</DependentUpon>
     </Compile>
-    <Page Include="closeWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -161,9 +154,7 @@
   <ItemGroup>
     <Resource Include="Views\planeIcon.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="other\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="disonnect.jpg" />
   </ItemGroup>

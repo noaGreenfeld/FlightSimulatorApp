@@ -31,8 +31,6 @@ namespace FlightSimulator.Model
         Location Location { get; }
         string Error { set; get; }
         bool Connected { set; get; }
-
     }
-
 }
 

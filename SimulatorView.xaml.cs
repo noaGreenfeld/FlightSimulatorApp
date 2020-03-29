@@ -32,24 +32,19 @@ namespace FlightSimulator
         VM_navigates vm_navigates;
         VM_control vm_control;
 
-        // VariabaleViewModel vm;
         public SimulatorView(string ip, string port)
         {
             InitializeComponent();
             int portI = Int32.Parse(port);
             this.ip = ip;
             this.port = portI;
-
-            //vm = new VariabaleViewModel(new MyModelVariable(ip, portI));
             model = new MyModelVariable(ip, portI);
-
             vm_databoard = new VM_dataBoard(model);
             vm_map = new VM_map(model);
             vm_navigates = new VM_navigates(model);
             vm_control = new VM_control(model);
-            //DataContext = vm_databoard;
             
-            this.allView.navigates.PropertyChanged +=
+            allView.navigates.PropertyChanged +=
                 delegate (Object sender, PropertyChangedEventArgs e)
                 {
                     string who = e.PropertyName;
@@ -64,17 +59,11 @@ namespace FlightSimulator
                             break;
                     }
                 };
-
-            this.allView.navigates.DataContext = vm_navigates;
-            this.allView.dataBoard.DataContext = vm_databoard;
-            this.allView.myMap.DataContext = vm_map;
-            this.allView.errorBox.DataContext = vm_control;
-            this.connect.DataContext = vm_control;
-        }
-
-        private void allView_Loaded(object sender, RoutedEventArgs e)
-        {
-
+            allView.navigates.DataContext = vm_navigates;
+            allView.dataBoard.DataContext = vm_databoard;
+            allView.myMap.DataContext = vm_map;
+            allView.errorBox.DataContext = vm_control;
+            connect.DataContext = vm_control;
         }
 
         private void connect_Click(object sender, RoutedEventArgs e)
@@ -83,8 +72,7 @@ namespace FlightSimulator
             {
                 vm_control.connect(ip, port);
                 disconnect.IsEnabled = true;
-            } catch
-            {}
+            } catch {}
         }
 
         private void disconnect_Click(object sender, RoutedEventArgs e)

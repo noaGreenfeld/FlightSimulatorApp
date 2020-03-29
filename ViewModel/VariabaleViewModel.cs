@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FlightSimulator.Model;
-using FlightSimulator.Views;
-using Microsoft.Maps.MapControl.WPF;
 using System.ComponentModel;
-
 
 namespace FlightSimulator.ViewModel
 {
@@ -30,7 +23,5 @@ namespace FlightSimulator.ViewModel
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
-
-        
     }
 }

@@ -15,19 +15,11 @@ using System.Windows.Shapes;
 
 namespace FlightSimulator.Views
 {
-    /// <summary>
-    /// Interaction logic for DataBoard1.xaml
-    /// </summary>
     public partial class DataBoard : UserControl
     {
         public DataBoard()
         {
             InitializeComponent();
-        }
-
-        private void dataContextChanged_d1(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            Console.WriteLine("dataContextChanged_d1");
         }
     }
 }

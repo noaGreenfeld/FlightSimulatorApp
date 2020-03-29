@@ -1,15 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.ComponentModel;
 
 namespace FlightSimulator.Views
@@ -34,14 +24,14 @@ namespace FlightSimulator.Views
                             break;
                     }
                 };
-                }
+        }
+
         private double rudder;
         public double Rudder
         {
             get { return rudder; }
             set
             {
-                //Console.WriteLine(value+"  set");
                 rudder = value;
                 NotifyPropertyChanged("Rudder");
             }
@@ -54,7 +44,6 @@ namespace FlightSimulator.Views
             set
             {
                 elevator = value;
-
                 NotifyPropertyChanged("Elevator");
             }
         }
@@ -66,6 +55,5 @@ namespace FlightSimulator.Views
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
-
     }
 }

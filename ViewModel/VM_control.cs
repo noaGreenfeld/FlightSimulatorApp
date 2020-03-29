@@ -15,7 +15,6 @@ namespace FlightSimulator.ViewModel
         {
             get
             {
-                //Console.WriteLine("get" + model.Error);
                 return model.Error;
             }
         }
@@ -39,6 +38,5 @@ namespace FlightSimulator.ViewModel
         {
             get { return !model.Connected; }
         }
-
     }
 }

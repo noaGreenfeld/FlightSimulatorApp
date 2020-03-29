@@ -37,7 +37,6 @@ namespace FlightSimulator.Model
         bool serverNotResponding = false;
         Stopwatch stopwatch;
         
-
         public void setRudder(double rud)
         {
             changeRudder = true;
@@ -58,7 +57,6 @@ namespace FlightSimulator.Model
             changeThrottle = true;
             throttle = thr;
         }
-
 
         public void connect(string ip, int port) 
         {
@@ -111,7 +109,6 @@ namespace FlightSimulator.Model
                     Error = ("Server isn't responding");
                 }
             }
-            
         }
 
         String readData()
@@ -158,7 +155,6 @@ namespace FlightSimulator.Model
                 return "ERR";
                 //return null;
             }
-            
         }
 
         public void start()
@@ -242,7 +238,6 @@ namespace FlightSimulator.Model
                     //1
                     sendCommand("get /instrumentation/heading-indicator/indicated-heading-deg\n");
                     ans = readData();
-
                     ans = ans.Substring(0, 6);
                     if (!ans.Contains("ERR"))
                     {
@@ -253,14 +248,11 @@ namespace FlightSimulator.Model
                         ans = "ERR";
                     }
                     Indicated_heading_deg = ans;
-                    
-   
 
                     //2
                     sendCommand("get /instrumentation/gps/indicated-vertical-speed\n");
                     ans = readData();
                     ans = ans.Substring(0, 6);
-
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
@@ -269,14 +261,12 @@ namespace FlightSimulator.Model
                     {
                         ans = "ERR";
                     }
-                        Gps_indicated_vertical_speed = ans;
-                    
+                    Gps_indicated_vertical_speed = ans;
 
                     //3
                     sendCommand("get /instrumentation/gps/indicated-ground-speed-kt\n");
                     ans = readData();
                     ans = ans.Substring(0, 6);
-
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
@@ -287,12 +277,10 @@ namespace FlightSimulator.Model
                     }
                     Gps_indicated_ground_speed_kt = ans;
                     
-
                     //4
                     sendCommand("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
                     ans = readData();
                     ans = ans.Substring(0, 6);
-
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
@@ -303,12 +291,10 @@ namespace FlightSimulator.Model
                     }
                     Airspeed_indicator_indicated_speed_kt = ans;
                     
-
                     //5
                     sendCommand("get /instrumentation/gps/indicated-altitude-ft\n");
                     ans = readData();
                     ans = ans.Substring(0, 6);
-
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
@@ -319,12 +305,10 @@ namespace FlightSimulator.Model
                     }
                     Gps_indicated_altitude_ft = ans;
                     
-
                     //6
                     sendCommand("get /instrumentation/attitude-indicator/internal-roll-deg\n");
                     ans = readData();
                     ans = ans.Substring(0, 6);
-
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
@@ -335,12 +319,10 @@ namespace FlightSimulator.Model
                     }
                     Attitude_indicator_internal_roll_deg = ans;
                     
-
                     //7
                     sendCommand("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
                     ans = readData();
                     ans = ans.Substring(0, 6);
-
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
@@ -351,7 +333,6 @@ namespace FlightSimulator.Model
                     }
                         Attitude_indicator_internal_pitch_deg = ans;
                     
-
                     //8
                     sendCommand("get /instrumentation/gps/indicated-altitude-ft\n");
                     ans = readData();
@@ -367,7 +348,6 @@ namespace FlightSimulator.Model
                     }
                     Altimeter_indicated_altitude_ft =ans;
                     
-
                     // latitude
                     sendCommand("get /position/latitude-deg\n");
                     ans = readData();
@@ -381,7 +361,6 @@ namespace FlightSimulator.Model
                     }
                     latitude = Double.Parse(ans);
                     
-         
                     // longitude
                     sendCommand("get /position/longitude-deg\n");
                     ans = readData();
@@ -392,7 +371,6 @@ namespace FlightSimulator.Model
                     }
                     
                     setLocation(latitude, longitude); 
-                    //Console.WriteLine(altitude + "   " + lattiude);
                     
                     if (changeRudder)
                     {
@@ -421,7 +399,6 @@ namespace FlightSimulator.Model
                     
                     Thread.Sleep(250);
                 }
-
             }).Start();
         }
 
@@ -442,13 +419,13 @@ namespace FlightSimulator.Model
         public void setLocation(double latitude, double longitude)
         {
             Console.WriteLine(latitude + "  " + longitude);
-            if (((latitude < 90) && (latitude > -90)) && ((longitude<180)&&(longitude>-180))){
+            if ((latitude < 90) && (latitude > -90) && (longitude < 180) && (longitude>-180)) {
                 location = new Location(latitude, longitude);
                 NotifyPropertyChanged("Location");
             }
             else
             {
-                Error = "the location is out of earth";
+                Error = "Location is out of earth";
             }
         }
 
@@ -539,6 +516,7 @@ namespace FlightSimulator.Model
                 NotifyPropertyChanged("Altimeter_indicated_altitude_ft");
             }
         }
+
         private bool connected;
         public bool Connected
         {
@@ -549,7 +527,6 @@ namespace FlightSimulator.Model
                 NotifyPropertyChanged("CanConnect");
             }
         }
-
 
         private string error = "";
         public string Error
@@ -568,21 +545,15 @@ namespace FlightSimulator.Model
 
         public void NotifyPropertyChanged(string propName)
         {
-            //Console.WriteLine(propName);
             if (this.PropertyChanged != null)
-                //Console.WriteLine(propName);
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
 
         public string CutTheText(string s)
         {
             string[] lines = Regex.Split(s, "\n");
-            //Console.WriteLine(lines[0]);
             return lines[0];
         }
     }
 }
-
-
-    
 

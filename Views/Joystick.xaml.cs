@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using FlightSimulator.Model;
 using System.ComponentModel;
 
 namespace FlightSimulator.Views
@@ -27,6 +18,7 @@ namespace FlightSimulator.Views
                 NotifyPropertyChanged("X");
             }
         }
+
         private double y;
         public double Y
         {
@@ -35,7 +27,6 @@ namespace FlightSimulator.Views
             {
                 y = value;
                 NotifyPropertyChanged("Y");
-
             }
         }
 
@@ -60,6 +51,7 @@ namespace FlightSimulator.Views
                 startPoint = e.GetPosition(this);
             }
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void NotifyPropertyChanged(string propName)
@@ -70,7 +62,6 @@ namespace FlightSimulator.Views
 
         private void Knob_MouseMove(object sender, MouseEventArgs e)
         {
-
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 X = e.GetPosition(this).X - startPoint.X;
@@ -79,16 +70,12 @@ namespace FlightSimulator.Views
                 {
                     knobPosition.X = x;
                     knobPosition.Y = y;
-                   // Rudder = x / (internalBase.Width / 2.0);
-                  //  Elevator = y / (internalBase.Width / 2.0);
                 }
             }
         }
 
         private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            // knobPosition.X = 0;
-            // knobPosition.Y = 0;
             Mouse.Capture(null);
         }
     }
