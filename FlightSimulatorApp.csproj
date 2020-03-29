@@ -85,7 +85,6 @@
       <DependentUpon>DataBoard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Joystick.xaml.cs" />
-    <Compile Include="Views\Navigates.cs" />
     <Compile Include="Views\Navigates.xaml.cs">
       <DependentUpon>Navigates.xaml</DependentUpon>
     </Compile>
@@ -148,7 +147,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="FlightSimulatorApp1.csproj" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -165,10 +163,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="other\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include=".gitattributes" />
-    <Content Include=".gitignore" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

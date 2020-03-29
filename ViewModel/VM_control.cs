@@ -25,9 +25,20 @@ namespace FlightSimulator.ViewModel
             model.connect(ip, port);
         }
 
+        public void disconnect()
+        {
+            model.disconnect();
+        }
+
         public bool isConnected()
         {
             return model.Connected;
         }
+
+        public bool VM_CanConnect
+        {
+            get { return !model.Connected; }
+        }
+
     }
 }

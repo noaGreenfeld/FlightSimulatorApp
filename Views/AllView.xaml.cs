@@ -38,5 +38,9 @@ namespace FlightSimulator.Views
             navigates.joystickN.knobPosition.Y = 0;
         }
 
+        private void dataBoard_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -67,17 +67,20 @@ namespace FlightSimulator.Model
             try
             {
                 client.Connect(ip, port);
-                connected = true;
+                Connected = true;
+                strm = client.GetStream();
+                client.ReceiveTimeout = 5000;
+                client.SendTimeout = 5000;
+                stop = false;
+                Error = "";
+                start();
             } catch
             {
-                connected = false;
+                stop = true;
+                Connected = false;
+                Error = "can't connect";
                 throw new Exception("Can't connect");
             }
-            strm = client.GetStream();
-            client.ReceiveTimeout = 5000;
-            client.SendTimeout = 5000;
-            stop = false;
-            start();
         }
 
         void sendCommand(string command)
@@ -92,8 +95,8 @@ namespace FlightSimulator.Model
             {
                 if (!client.Connected)
                 {
-                    Error = ("Not connected to server, go back to try connecting again");
-                    connected = false;
+                    Error = ("Not connected to server, please connect again");
+                    Connected = false;
                 } else if (serverNotResponding)
                 {
                     TimeSpan stopwatchElapsed = stopwatch.Elapsed;
@@ -135,8 +138,8 @@ namespace FlightSimulator.Model
             {
                 if (!client.Connected)
                 {
-                    connected = false;
-                    Error = ("Not connected to server, go back to try connecting again");
+                    Connected = false;
+                    Error = ("Not connected to server, please connect again");
                 }
                 else if (serverNotResponding)
                 {
@@ -162,7 +165,7 @@ namespace FlightSimulator.Model
         {
             new Thread(delegate ()
             {
-                string com;
+                //string com;
                 String ans;
                 while (!stop)
                 {
@@ -363,6 +366,8 @@ namespace FlightSimulator.Model
         public void disconnect() 
         {
             stop = true;
+            Connected = false;
+            Error = "You are disconnected";
             client.Close();
         }
 
@@ -375,8 +380,6 @@ namespace FlightSimulator.Model
         public void setLocation(double latitude, double longitude)
         {
             location = new Location(latitude, longitude);
-            //location.Latitude = d1;
-            //location.Altitude = d2;
             NotifyPropertyChanged("Location");
         }
 
@@ -471,6 +474,11 @@ namespace FlightSimulator.Model
         public bool Connected
         {
             get { return connected; }
+            set
+            {
+                connected = value;
+                NotifyPropertyChanged("CanConnect");
+            }
         }
 
 

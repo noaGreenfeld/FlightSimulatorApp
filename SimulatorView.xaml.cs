@@ -69,6 +69,7 @@ namespace FlightSimulator
             this.allView.dataBoard.DataContext = vm_databoard;
             this.allView.myMap.DataContext = vm_map;
             this.allView.errorBox.DataContext = vm_control;
+            this.connect.DataContext = vm_control;
         }
 
         private void allView_Loaded(object sender, RoutedEventArgs e)
@@ -78,18 +79,18 @@ namespace FlightSimulator
 
         private void connect_Click(object sender, RoutedEventArgs e)
         {
-            vm_control.connect(ip, port);
+            try
+            {
+                vm_control.connect(ip, port);
+                disconnect.IsEnabled = true;
+            } catch
+            {}
         }
 
-        private void connect_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void disconnect_Click(object sender, RoutedEventArgs e)
         {
-            if (vm_control.isConnected())
-            {
-                IsEnabled = false;
-            } else
-            {
-                IsEnabled = true;
-            }
+            vm_control.disconnect();
+            disconnect.IsEnabled = false;
         }
     }
 }
