@@ -413,7 +413,14 @@ namespace FlightSimulator.Model
         private Location location;
         public Location Location
         {
-            get { return new Location(location.Latitude, location.Longitude); }
+            get 
+            { 
+                if (location == null)
+                {
+                    return new Location(0, 0);
+                }
+                return new Location(location.Latitude, location.Longitude); 
+            }
         }
 
         public void setLocation(double latitude, double longitude)

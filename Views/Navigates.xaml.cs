@@ -18,9 +18,11 @@ namespace FlightSimulator.Views
                     {
                         case "X":
                             Rudder = joystickN.X / (joystickN.internalBase.Width / 2.0);
+                            rudderValue.Text = Math.Round(Rudder, 3).ToString();
                             break;
                         case "Y":
                             Elevator = joystickN.Y / (joystickN.internalBase.Width / 2.0);
+                            elevatorValue.Text = Math.Round(Elevator, 3).ToString();
                             break;
                     }
                 };

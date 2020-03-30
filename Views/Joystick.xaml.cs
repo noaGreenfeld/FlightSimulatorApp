@@ -62,20 +62,25 @@ namespace FlightSimulator.Views
 
         private void Knob_MouseMove(object sender, MouseEventArgs e)
         {
+            double x1, y1;
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                X = e.GetPosition(this).X - startPoint.X;
-                Y = e.GetPosition(this).Y - startPoint.Y;
-                if (Math.Sqrt(x * x + y * y) < (internalBase.Width / 2))
+                x1 = e.GetPosition(this).X - startPoint.X;
+                y1 = e.GetPosition(this).Y - startPoint.Y;
+                if (Math.Sqrt(x1 * x1 + y1 * y1) < (internalBase.Width / 2))
                 {
-                    knobPosition.X = x;
-                    knobPosition.Y = y;
+                    X = x1;
+                    Y = y1;
+                    knobPosition.X = x1;
+                    knobPosition.Y = y1;
                 }
             }
         }
 
         private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            X = 0;
+            Y = 0;
             Mouse.Capture(null);
         }
     }

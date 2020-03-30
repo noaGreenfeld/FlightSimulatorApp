@@ -12,16 +12,12 @@ namespace FlightSimulator.ViewModel
             switch (who)
             {
                 case "Rudder":
+                    VM_Rudder = val;
                     model.setRudder(val);
                     break;
                 case "Elevator":
+                    VM_Elevator = val;
                     model.setElevator(val);
-                    break;
-                case "Aileron":
-                    model.setAileron(val);
-                    break;
-                case "Throttle":
-                    model.setThrottle(val);
                     break;
             }
         }
@@ -32,7 +28,6 @@ namespace FlightSimulator.ViewModel
             get { return VM_aileron; }
             set
             {
-                Console.WriteLine("vn_navigates set aileron");
                 VM_aileron = value;
                 model.setAileron(value);
             }
@@ -46,6 +41,26 @@ namespace FlightSimulator.ViewModel
             {
                 VM_throttle = value;
                 model.setThrottle(value);
+            }
+        }
+
+        private double VM_rudder;
+        public double VM_Rudder
+        {
+            get { return VM_rudder; }
+            set
+            {
+                VM_rudder = value;
+            }
+        }
+
+        private double VM_elevator;
+        public double VM_Elevator
+        {
+            get { return VM_elevator; }
+            set
+            {
+                VM_elevator = value;
             }
         }
     }
