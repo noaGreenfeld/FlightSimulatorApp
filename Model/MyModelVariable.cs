@@ -238,7 +238,8 @@ namespace FlightSimulator.Model
                     //1
                     sendCommand("get /instrumentation/heading-indicator/indicated-heading-deg\n");
                     ans = readData();
-                    ans = ans.Substring(0, 6);
+                    ans=Math.Round(Convert.ToDouble(ans), 5).ToString();
+                    //ans = ans.Substring(0, 6);
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
@@ -252,7 +253,7 @@ namespace FlightSimulator.Model
                     //2
                     sendCommand("get /instrumentation/gps/indicated-vertical-speed\n");
                     ans = readData();
-                    ans = ans.Substring(0, 6);
+                    ans = Math.Round(Convert.ToDouble(ans), 5).ToString();
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
@@ -266,7 +267,7 @@ namespace FlightSimulator.Model
                     //3
                     sendCommand("get /instrumentation/gps/indicated-ground-speed-kt\n");
                     ans = readData();
-                    ans = ans.Substring(0, 6);
+                    ans = Math.Round(Convert.ToDouble(ans), 5).ToString();
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
@@ -280,7 +281,7 @@ namespace FlightSimulator.Model
                     //4
                     sendCommand("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
                     ans = readData();
-                    ans = ans.Substring(0, 6);
+                    ans = Math.Round(Convert.ToDouble(ans), 5).ToString();
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
@@ -294,7 +295,7 @@ namespace FlightSimulator.Model
                     //5
                     sendCommand("get /instrumentation/gps/indicated-altitude-ft\n");
                     ans = readData();
-                    ans = ans.Substring(0, 6);
+                    ans = Math.Round(Convert.ToDouble(ans), 5).ToString();
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
@@ -308,7 +309,7 @@ namespace FlightSimulator.Model
                     //6
                     sendCommand("get /instrumentation/attitude-indicator/internal-roll-deg\n");
                     ans = readData();
-                    ans = ans.Substring(0, 6);
+                    ans = Math.Round(Convert.ToDouble(ans), 5).ToString();
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
@@ -322,7 +323,7 @@ namespace FlightSimulator.Model
                     //7
                     sendCommand("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
                     ans = readData();
-                    ans = ans.Substring(0, 6);
+                    ans = Math.Round(Convert.ToDouble(ans), 5).ToString();
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
@@ -336,8 +337,7 @@ namespace FlightSimulator.Model
                     //8
                     sendCommand("get /instrumentation/gps/indicated-altitude-ft\n");
                     ans = readData();
-                    ans = ans.Substring(0, 6);
-
+                    ans = Math.Round(Convert.ToDouble(ans), 5).ToString();
                     if (!ans.Contains("ERR"))
                     {
                         ans = CutTheText(ans);
