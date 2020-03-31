@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using FlightSimulator.ViewModel;
 using FlightSimulator.Views;
 using FlightSimulator.Model;
@@ -44,7 +33,7 @@ namespace FlightSimulator
             vm_navigates = new VM_navigates(model);
             vm_control = new VM_control(model);
             
-            allView.navigates.PropertyChanged +=
+            navigates.PropertyChanged +=
                 delegate (Object sender, PropertyChangedEventArgs e)
                 {
                     string who = e.PropertyName;
@@ -52,18 +41,18 @@ namespace FlightSimulator
                     switch (who)
                     {
                         case "Rudder":
-                            vm_navigates.notifyViewChange(this.allView.navigates.Rudder, who);
+                            vm_navigates.notifyViewChange(this.navigates.Rudder, who);
                             break;
                         case "Elevator":
-                            vm_navigates.notifyViewChange(this.allView.navigates.Elevator, who);
+                            vm_navigates.notifyViewChange(this.navigates.Elevator, who);
                             break;
                     }
                 };
-            allView.navigates.DataContext = vm_navigates;
-            allView.dataBoard.DataContext = vm_databoard;
-            allView.myMap.DataContext = vm_map;
-            allView.errorBox.DataContext = vm_control;
-            connect.DataContext = vm_control;
+            navigates.DataContext = vm_navigates;
+            dataBoard.DataContext = vm_databoard;
+            myMap.DataContext = vm_map;
+            errorBox.DataContext = vm_control;
+            DataContext = vm_control;
         }
 
         private void connect_Click(object sender, RoutedEventArgs e)
@@ -79,6 +68,18 @@ namespace FlightSimulator
         {
             vm_control.disconnect();
             disconnect.IsEnabled = false;
+        }
+
+        private void navigates_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            navigates.joystickN.knobPosition.X = 0;
+            navigates.joystickN.knobPosition.Y = 0;
+        }
+
+        private void navigates_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            navigates.joystickN.knobPosition.X = 0;
+            navigates.joystickN.knobPosition.Y = 0;
         }
     }
 }

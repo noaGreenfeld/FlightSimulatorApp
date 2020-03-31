@@ -75,9 +75,6 @@
     <Compile Include="ViewModel\VM_dataBoard.cs" />
     <Compile Include="ViewModel\VM_map.cs" />
     <Compile Include="ViewModel\VM_navigates.cs" />
-    <Compile Include="Views\AllView.xaml.cs">
-      <DependentUpon>AllView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\DataBoard.xaml.cs">
       <DependentUpon>DataBoard.xaml</DependentUpon>
     </Compile>
@@ -102,10 +99,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SimulatorView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\AllView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -155,11 +148,5 @@
     <Resource Include="Views\planeIcon.jpg" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Resource Include="disonnect.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="connect.jpg" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
