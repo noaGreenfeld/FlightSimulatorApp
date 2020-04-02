@@ -463,7 +463,6 @@ namespace FlightSimulator.Model
             get { return error; }
             set
             {
-                Console.WriteLine("set" + value);
                 if (!error.Equals(value))
                 {
                     error = value;

@@ -15,6 +15,7 @@ namespace FlightSimulator.ViewModel
         {
             get
             {
+                Console.WriteLine(model.Error);
                 return model.Error;
             }
         }

@@ -13,10 +13,6 @@ namespace FlightSimulator
     /// </summary>
     public partial class SimulatorView : Window
     {
-        string ip;
-        int port;
-
-
         public SimulatorView(string ip, string port)
         {
             InitializeComponent();
@@ -31,8 +27,6 @@ namespace FlightSimulator
             control.getIpPort(ip, portI);
         }
 
-
-        
         private void navigates_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             navigates.joystickN.knobPosition.X = 0;
