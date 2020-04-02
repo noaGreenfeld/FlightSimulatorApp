@@ -8,7 +8,7 @@ using Microsoft.Maps.MapControl.WPF;
 namespace FlightSimulator.Model
 
 {
-    interface IModelVariable : INotifyPropertyChanged
+    public interface IModelVariable : INotifyPropertyChanged
     {
         void connect(string ip, int port);
         void disconnect();

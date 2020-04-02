@@ -3,10 +3,10 @@ using FlightSimulator.Model;
 
 namespace FlightSimulator.ViewModel
 {
-    class VM_navigates : VariabaleViewModel
+    public class VM_navigates : VariabaleViewModel
     {
         public VM_navigates(IModelVariable model) : base(model) {}
-
+        /*
         public void notifyViewChange(double val, string who)
         {
             switch (who)
@@ -21,7 +21,7 @@ namespace FlightSimulator.ViewModel
                     break;
             }
         }
-
+        */
         private double VM_aileron;
         public double VM_Aileron
         {
@@ -51,6 +51,7 @@ namespace FlightSimulator.ViewModel
             set
             {
                 VM_rudder = value;
+                model.setRudder(value); ///////////
             }
         }
 
@@ -61,6 +62,7 @@ namespace FlightSimulator.ViewModel
             set
             {
                 VM_elevator = value;
+                model.setElevator(value); //////////
             }
         }
     }

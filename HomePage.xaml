@@ -29,7 +29,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Image Grid.Column="1" Grid.Row="0" Grid.RowSpan="5" Source ="simbol.png" VerticalAlignment="Center" Height="212" Margin="48,24,48,14"/>
+        <Image Grid.Column="1" Grid.Row="0" Grid.RowSpan="5" VerticalAlignment="Center" Height="212" Margin="48,24,48,14"/>
 
         <StackPanel Grid.Column="1" Grid.Row="4" Grid.RowSpan="5" Orientation="Vertical" Margin="0,2.333,0,34">
             <TextBlock x:Name="text" TextWrapping="Wrap" Text="Welcome - please enter ip and port" HorizontalAlignment="Center" FontSize="15"  Foreground="White"/>

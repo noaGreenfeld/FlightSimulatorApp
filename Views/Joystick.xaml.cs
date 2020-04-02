@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 namespace FlightSimulator.Views
 {
-    public partial class Joystick : UserControl, INotifyPropertyChanged
+    public partial class Joystick : UserControl//, INotifyPropertyChanged
     {
         private double x;
         public double X
@@ -15,7 +15,7 @@ namespace FlightSimulator.Views
             set
             {
                 x = value;
-                NotifyPropertyChanged("X");
+              //  NotifyPropertyChanged("X");
             }
         }
 
@@ -26,7 +26,7 @@ namespace FlightSimulator.Views
             set
             {
                 y = value;
-                NotifyPropertyChanged("Y");
+               // NotifyPropertyChanged("Y");
             }
         }
 
@@ -52,13 +52,13 @@ namespace FlightSimulator.Views
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        /*public event PropertyChangedEventHandler PropertyChanged;
 
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
-        }
+        }*/
 
         private void Knob_MouseMove(object sender, MouseEventArgs e)
         {
@@ -79,8 +79,10 @@ namespace FlightSimulator.Views
 
         private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            X = 0;
-            Y = 0;
+         //   X = 0;
+           // Y = 0;
+            knobPosition.X = 0;
+            knobPosition.Y = 0;
             Mouse.Capture(null);
         }
     }

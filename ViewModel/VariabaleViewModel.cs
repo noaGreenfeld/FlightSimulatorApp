@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace FlightSimulator.ViewModel
 {
-    abstract class VariabaleViewModel : INotifyPropertyChanged
+    public abstract class VariabaleViewModel : INotifyPropertyChanged
     {
       protected IModelVariable model;
         public VariabaleViewModel(IModelVariable model)

@@ -75,6 +75,9 @@
     <Compile Include="ViewModel\VM_dataBoard.cs" />
     <Compile Include="ViewModel\VM_map.cs" />
     <Compile Include="ViewModel\VM_navigates.cs" />
+    <Compile Include="Views\Controls.xaml.cs">
+      <DependentUpon>Controls.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DataBoard.xaml.cs">
       <DependentUpon>DataBoard.xaml</DependentUpon>
     </Compile>
@@ -99,6 +102,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SimulatorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

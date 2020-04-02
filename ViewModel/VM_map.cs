@@ -3,7 +3,7 @@ using Microsoft.Maps.MapControl.WPF;
 
 namespace FlightSimulator.ViewModel
 {
-    class VM_map : VariabaleViewModel
+    public class VM_map : VariabaleViewModel
     {
         public VM_map(IModelVariable model): base(model) {}
 

@@ -7,7 +7,7 @@ using FlightSimulator.Model;
 
 namespace FlightSimulator.ViewModel
 {
-    class VM_control : VariabaleViewModel
+    public class VM_control : VariabaleViewModel
     {
         public VM_control(IModelVariable model) : base(model) { }
 

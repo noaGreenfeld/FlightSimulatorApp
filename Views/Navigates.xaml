@@ -9,7 +9,11 @@
              d:DesignHeight="260" d:DesignWidth="275">
     <Grid x:Name="navigateControl">
         <Viewbox HorizontalAlignment="Left" Height="170" Margin="65,30,0,0" VerticalAlignment="Top" Width="170">
-            <local:Joystick x:Name="joystickN" Height="330" Width="330"/>
+            <local:Joystick x:Name="joystickN" Height="330" Width="330" MouseMove="joystickN_MouseMove">
+                <local:Joystick.DataContext>
+                    <local:Joystick/>
+                </local:Joystick.DataContext>
+            </local:Joystick>
         </Viewbox>
         <Slider x:Name="s1" HorizontalAlignment="Left" Margin="-45,99,0,0" VerticalAlignment="Top" Width="177" Height="27" RenderTransformOrigin="0.5,0.5" Cursor="Hand" Maximum="1" Minimum="-1" Value="{Binding VM_Aileron}" AutoToolTipPlacement="TopLeft" TickPlacement="TopLeft" LargeChange="0.1" TickFrequency="0.1" AutoToolTipPrecision="2">
             <Slider.RenderTransform>

@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using FlightSimulator.Model;
 
 namespace FlightSimulator
 {
@@ -13,9 +14,12 @@ namespace FlightSimulator
     /// </summary>
     public partial class HomePage : Page
     {
-        public HomePage()
+        IModelVariable m;
+
+        public HomePage(IModelVariable model)
         {
             InitializeComponent();
+            m = model;
         }
 
         private void Button_Click_Fly(object sender, RoutedEventArgs e)

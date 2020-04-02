@@ -1,7 +1,8 @@
 ﻿using FlightSimulator.Model;
+
 namespace FlightSimulator.ViewModel
 {
-    class VM_dataBoard : VariabaleViewModel
+    public class VM_dataBoard : VariabaleViewModel
     {
         public VM_dataBoard(IModelVariable model) : base(model) {}
 
