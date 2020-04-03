@@ -40,7 +40,7 @@ namespace FlightSimulatorApp
             }
             catch (Exception)
             {
-                text.Text = "ip and port wrong - try again";
+                text.Text = "Try again";
             }
         }
 
@@ -48,7 +48,7 @@ namespace FlightSimulatorApp
         {
             if (ServerIP.Text == "")
             {
-                ServerIP.Text = "127.0.0.2";
+                ServerIP.Text = "127.0.0.1";
             }
             if (ServerPort.Text == "")
             {

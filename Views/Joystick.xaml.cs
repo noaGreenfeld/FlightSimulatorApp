@@ -2,40 +2,17 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.ComponentModel;
 
 namespace FlightSimulator.Views
 {
-    public partial class Joystick : UserControl//, INotifyPropertyChanged
+    public partial class Joystick : UserControl
     {
-        private double x;
-        public double X
-        {
-            get { return x; }
-            set
-            {
-                x = value;
-              //  NotifyPropertyChanged("X");
-            }
-        }
-
-        private double y;
-        public double Y
-        {
-            get { return y; }
-            set
-            {
-                y = value;
-               // NotifyPropertyChanged("Y");
-            }
-        }
-
-        private Point startPoint = new Point();
-
         public Joystick()
         {
             InitializeComponent();
         }
+
+        private Point startPoint = new Point();
 
         private void centerKnob_Completed(object sender, EventArgs e)
         {
@@ -52,35 +29,23 @@ namespace FlightSimulator.Views
             }
         }
 
-        /*public event PropertyChangedEventHandler PropertyChanged;
-
-        public void NotifyPropertyChanged(string propName)
-        {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
-        }*/
-
         private void Knob_MouseMove(object sender, MouseEventArgs e)
         {
-            double x1, y1;
+            double x, y;
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                x1 = e.GetPosition(this).X - startPoint.X;
-                y1 = e.GetPosition(this).Y - startPoint.Y;
-                if (Math.Sqrt(x1 * x1 + y1 * y1) < (internalBase.Width / 2))
+                x = e.GetPosition(this).X - startPoint.X;
+                y = e.GetPosition(this).Y - startPoint.Y;
+                if (Math.Sqrt(x * x + y * y) < (internalBase.Width / 2))
                 {
-                    X = x1;
-                    Y = y1;
-                    knobPosition.X = x1;
-                    knobPosition.Y = y1;
+                    knobPosition.X = x;
+                    knobPosition.Y = y;
                 }
             }
         }
 
         private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
         {
-         //   X = 0;
-           // Y = 0;
             knobPosition.X = 0;
             knobPosition.Y = 0;
             Mouse.Capture(null);

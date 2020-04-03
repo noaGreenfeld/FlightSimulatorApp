@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using FlightSimulator.ViewModel;
 using FlightSimulator.Model;
@@ -24,6 +19,7 @@ namespace FlightSimulator
 
         void App_Startup(object sender, StartupEventArgs e)
         {
+            // initialize model and view models
             model = new MyModelVariable();
             vm_navigates = new VM_navigates(model);
             vm_dataBoard = new VM_dataBoard(model);

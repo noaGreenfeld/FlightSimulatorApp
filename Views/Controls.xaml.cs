@@ -26,8 +26,6 @@ namespace FlightSimulator.Views
         public Controls()
         {
             InitializeComponent();
-            //errorBox.DataContext = (Application.Current as App).vm_control;
-            //DataContext = (Application.Current as App).vm_control;
         }
         
         public void getIpPort(string ip, int port)

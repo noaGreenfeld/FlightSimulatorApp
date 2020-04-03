@@ -1,30 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Threading;
-using System.Windows;
 using System.Text.RegularExpressions;
 using Microsoft.Maps.MapControl.WPF;
 using System.ComponentModel;
-using System.Diagnostics;
 
 namespace FlightSimulator.Model
 {
     public partial class MyModelVariable : IModelVariable
     {
-        public MyModelVariable() 
-        {
-            stopwatch = new Stopwatch();
-        }
-
-        public MyModelVariable(string s, int i)
-        {
-            connect(s, i);
-            stopwatch = new Stopwatch();
-        }
+        public MyModelVariable() {}
 
         public event PropertyChangedEventHandler PropertyChanged;
         volatile Boolean stop;
@@ -40,8 +26,6 @@ namespace FlightSimulator.Model
         bool changeThrottle = false;
         double longitude;
         double latitude;
-        bool serverNotResponding = false;
-        Stopwatch stopwatch;
         
         public void setRudder(double rud)
         {
@@ -67,14 +51,12 @@ namespace FlightSimulator.Model
         public void connect(string ip, int port) 
         {
             client = new TcpClient();
-            Console.WriteLine("Connecting to server...");
             try
             {
                 client.Connect(ip, port);
                 Connected = true;
                 strm = client.GetStream();
-                client.ReceiveTimeout = 5000;
-                client.SendTimeout = 5000;
+                strm.ReadTimeout = 5000;
                 stop = false;
                 Error = "";
                 start();
@@ -82,7 +64,7 @@ namespace FlightSimulator.Model
             {
                 stop = true;
                 Connected = false;
-                Error = "can't connect";
+                Error = "Can't connect";
                 throw new Exception("Can't connect");
             }
         }
@@ -94,25 +76,15 @@ namespace FlightSimulator.Model
                 ASCIIEncoding asen = new ASCIIEncoding();
                 byte[] msgB = asen.GetBytes(command);
                 strm.Write(msgB, 0, msgB.Length);
-                stopwatch.Stop();
             } catch
             {
                 if (!client.Connected)
                 {
-                    Error = ("Not connected to server, please connect again");
+                    Error = "Not connected to server, please connect again";
                     Connected = false;
-                } else if (serverNotResponding)
-                {
-                    TimeSpan stopwatchElapsed = stopwatch.Elapsed;
-                    if ((Convert.ToInt32(stopwatchElapsed.TotalSeconds)) >= 10)
-                    {
-                        Error = ("Server hasn't responded for 10 seconds");
-                    }
                 } else
                 {
-                    stopwatch.Start();
-                    serverNotResponding = true;
-                    Error = ("Server isn't responding");
+                    Error = "Server hasn't responded for 10 seconds";
                 }
             }
         }
@@ -123,7 +95,6 @@ namespace FlightSimulator.Model
             {
                 byte[] dataB = new byte[512];
                 strm.Read(dataB, 0, 100);
-                stopwatch.Stop();
                 return System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
             } catch
             {
@@ -131,20 +102,9 @@ namespace FlightSimulator.Model
                 {
                     Connected = false;
                     Error = ("Not connected to server, please connect again");
-                }
-                else if (serverNotResponding)
+                } else
                 {
-                    TimeSpan stopwatchElapsed = stopwatch.Elapsed;
-                    if ((Convert.ToInt32(stopwatchElapsed.TotalSeconds)) >= 10)
-                    {
-                        Error = ("Server hasn't responded for 10 seconds");
-                    }
-                }
-                else
-                {
-                    stopwatch.Start();
-                    serverNotResponding = true;
-                    Error = ("Server isn't responding");
+                    Error = "Server hasn't responded for 10 seconds";
                 }
                 return "ERR";
             }

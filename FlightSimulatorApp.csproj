@@ -62,9 +62,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="HomePage.xaml.cs">
-      <DependentUpon>HomePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Model\IModelVariable.cs" />
     <Compile Include="Model\MyModelVariable.cs" />
     <Compile Include="SimulatorView.xaml.cs">
@@ -85,10 +82,6 @@
     <Compile Include="Views\Navigates.xaml.cs">
       <DependentUpon>Navigates.xaml</DependentUpon>
     </Compile>
-    <Page Include="HomePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -150,9 +143,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="flight.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Views\planeIcon.jpg" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Controls;
-using System.ComponentModel;
 using System.Windows.Input;
 using System.Windows;
 
@@ -13,7 +12,7 @@ namespace FlightSimulator.Views
             InitializeComponent();
         }
 
-        private void joystickN_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        private void joystickN_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {

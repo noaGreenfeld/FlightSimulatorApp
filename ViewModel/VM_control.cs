@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FlightSimulator.Model;
 
 namespace FlightSimulator.ViewModel
 {
+    // view model for connect,disconnect buttons and error line
     public class VM_control : VariabaleViewModel
     {
         public VM_control(IModelVariable model) : base(model) { }
@@ -15,7 +12,6 @@ namespace FlightSimulator.ViewModel
         {
             get
             {
-                Console.WriteLine(model.Error);
                 return model.Error;
             }
         }
