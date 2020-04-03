@@ -12,12 +12,13 @@ namespace FlightSimulator
         {
             InitializeComponent();
             int portI = Int32.Parse(port);
-            (Application.Current as App).model.connect(ip, portI);
+            control.DataContext = (Application.Current as App).vm_control;
+            control.getIpPort(ip, portI);
+            (Application.Current as App).vm_control.connect(ip, portI);
             navigates.DataContext = (Application.Current as App).vm_navigates;
             dataBoard.DataContext = (Application.Current as App).vm_dataBoard;
             myMap.DataContext = (Application.Current as App).vm_map;
-            control.DataContext = (Application.Current as App).vm_control;
-            control.getIpPort(ip, portI);
+            
         }
 
         private void navigates_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
