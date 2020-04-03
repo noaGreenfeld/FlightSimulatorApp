@@ -8,8 +8,8 @@
       mc:Ignorable="d"
       Background="AliceBlue"
       xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
-      d:DesignHeight="520" d:DesignWidth="920"
-      Title="SimulatorView">
+      d:DesignHeight="560" d:DesignWidth="930"
+      Title="SimulatorView" Height="560" Width="930">
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" ClipToBounds="True" >
         <Grid ClipToBounds="True">
             <Grid.RowDefinitions>

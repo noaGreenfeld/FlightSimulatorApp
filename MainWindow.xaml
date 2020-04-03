@@ -7,7 +7,7 @@
         x:Name="Window"
         x:Class="FlightSimulatorApp.MainWindow"
         mc:Ignorable="d"
-     Title="FlightSimulatorApp" Height="600" Width="930" Background="AliceBlue">
+        Title="FlightSimulatorApp" Height="600" Width="930" Background="AliceBlue">
 
     <Grid TextBlock.FontSize="14">
         <Grid.Background>
