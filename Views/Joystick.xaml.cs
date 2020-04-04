@@ -13,7 +13,7 @@ namespace FlightSimulator.Views
         }
 
         private Point startPoint = new Point();
-
+        
         private void centerKnob_Completed(object sender, EventArgs e)
         {
             knobPosition.X = 0;

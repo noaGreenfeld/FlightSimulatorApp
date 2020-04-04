@@ -41,6 +41,8 @@ namespace FlightSimulatorApp
             catch (Exception)
             {
                 text.Text = "Try again";
+                ServerIP.Text = "127.0.0.1";
+                ServerPort.Text = "5402";
             }
         }
 

@@ -9,7 +9,7 @@
              d:DesignHeight="260" d:DesignWidth="275">
     <Grid x:Name="navigateControl">
         <Viewbox HorizontalAlignment="Left" Height="170" Margin="65,30,0,0" VerticalAlignment="Top" Width="170">
-            <local:Joystick x:Name="joystickN" Height="330" Width="330" MouseMove="joystickN_MouseMove">
+            <local:Joystick x:Name="joystickN" Height="330" Width="330" MouseMove="joystickN_MouseMove" MouseUp="joystickN_MouseUp">
                 <local:Joystick.DataContext>
                     <local:Joystick/>
                 </local:Joystick.DataContext>

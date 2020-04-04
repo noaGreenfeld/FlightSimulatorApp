@@ -23,15 +23,6 @@ namespace FlightSimulator.Views
                 (Application.Current as App).vm_navigates.VM_Rudder = joystick_X;
                 (Application.Current as App).vm_navigates.VM_Elevator = joystick_Y;
             }
-            else
-            {
-                joystick_X = 0;
-                joystick_Y = 0;
-                rudderValue.Text = joystick_X.ToString();
-                elevatorValue.Text = joystick_Y.ToString();
-                (Application.Current as App).vm_navigates.VM_Rudder = joystick_X;
-                (Application.Current as App).vm_navigates.VM_Elevator = joystick_Y;
-            }
         }
 
         private double joystick_x;
@@ -58,6 +49,16 @@ namespace FlightSimulator.Views
                     joystick_y = value;
                 }
             }
+        }
+
+        private void joystickN_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            joystick_X = 0;
+            joystick_Y = 0;
+            rudderValue.Text = joystick_X.ToString();
+            elevatorValue.Text = joystick_Y.ToString();
+            (Application.Current as App).vm_navigates.VM_Rudder = joystick_X;
+            (Application.Current as App).vm_navigates.VM_Elevator = joystick_Y;
         }
     }
 }
