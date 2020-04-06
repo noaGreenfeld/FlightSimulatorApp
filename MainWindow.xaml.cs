@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,17 +21,22 @@ namespace FlightSimulatorApp
         public MainWindow() 
         {
             InitializeComponent();
+            ServerIP.Text = deafultIp;
+            ServerPort.Text = deafultPort;
         }
+
+        string deafultPort = ConfigurationManager.AppSettings["port"];
+        string deafultIp = ConfigurationManager.AppSettings["ip"];
 
         private void Button_Click_Fly(object sender, RoutedEventArgs e)
         {
             if (ServerIP.Text == "")
             {
-                ServerIP.Text = "127.0.0.1";
+                ServerIP.Text = deafultIp;
             }
             if (ServerPort.Text == "")
             {
-                ServerPort.Text = "5402";
+                ServerPort.Text = deafultPort;
             }
             try
             { 
@@ -41,8 +47,8 @@ namespace FlightSimulatorApp
             catch (Exception)
             {
                 text.Text = "Try again";
-                ServerIP.Text = "127.0.0.1";
-                ServerPort.Text = "5402";
+                ServerIP.Text = deafultIp;
+                ServerPort.Text = deafultPort;
             }
         }
 
@@ -50,11 +56,11 @@ namespace FlightSimulatorApp
         {
             if (ServerIP.Text == "")
             {
-                ServerIP.Text = "127.0.0.1";
+                ServerIP.Text = deafultIp;
             }
             if (ServerPort.Text == "")
             {
-                ServerPort.Text = "5402";
+                ServerPort.Text = deafultPort;
             }
         }
     }

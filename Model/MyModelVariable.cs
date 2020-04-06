@@ -56,7 +56,7 @@ namespace FlightSimulator.Model
                 client.Connect(ip, port);
                 Connected = true;
                 strm = client.GetStream();
-                strm.ReadTimeout = 5000;
+                strm.ReadTimeout = 10000;
                 stop = false;
                 Error = "";
                 start();
