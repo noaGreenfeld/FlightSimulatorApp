@@ -64,6 +64,11 @@ namespace FlightSimulatorApp
                 ServerPort.Text = deafultPort;
             }
         }
+
+        private void Button_Click_Exit(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }
 

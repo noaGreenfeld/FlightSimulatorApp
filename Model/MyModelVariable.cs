@@ -95,7 +95,7 @@ namespace FlightSimulator.Model
             {
                 byte[] dataB = new byte[512];
                 strm.Read(dataB, 0, 100);
-                return System.Text.Encoding.ASCII.GetString(dataB, 0, dataB.Length);
+                return Encoding.ASCII.GetString(dataB, 0, dataB.Length);
             } catch
             {
                 if (!client.Connected)
