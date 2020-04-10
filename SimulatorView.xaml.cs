@@ -19,6 +19,7 @@ namespace FlightSimulator
             dataBoard.DataContext = (Application.Current as App).vm_dataBoard;
             myMap.DataContext = (Application.Current as App).vm_map;
             
+            
         }
 
         private void navigates_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)

@@ -18,13 +18,14 @@ namespace FlightSimulatorApp
     /// </summary>
     partial class MainWindow : Window
     {
+        //public SimulatorView simulatorView;
         public MainWindow() 
         {
             InitializeComponent();
             ServerIP.Text = deafultIp;
             ServerPort.Text = deafultPort;
         }
-
+       // public SimulatorView simulatorView;
         string deafultPort = ConfigurationManager.AppSettings["port"];
         string deafultIp = ConfigurationManager.AppSettings["ip"];
 
@@ -39,10 +40,10 @@ namespace FlightSimulatorApp
                 ServerPort.Text = deafultPort;
             }
             try
-            { 
-                SimulatorView simulatorView = new SimulatorView(ServerIP.Text, ServerPort.Text);
+            {
+                (Application.Current as App).simulatorView = new SimulatorView(ServerIP.Text, ServerPort.Text);
                 this.Hide();
-                simulatorView.ShowDialog();
+                (Application.Current as App).simulatorView.ShowDialog();
             }
             catch (Exception)
             {

@@ -16,6 +16,7 @@ namespace FlightSimulator
         public VM_navigates vm_navigates { get; internal set; }
         public VM_control vm_control { get; internal set; }
         public IModelVariable model;
+        public SimulatorView simulatorView;
 
         void App_Startup(object sender, StartupEventArgs e)
         {

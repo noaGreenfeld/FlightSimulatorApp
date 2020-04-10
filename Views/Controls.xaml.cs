@@ -22,6 +22,7 @@ namespace FlightSimulator.Views
     {
         string ip;
         int port;
+       // bool disconect = false;
 
         public Controls()
         {
@@ -40,15 +41,19 @@ namespace FlightSimulator.Views
             {
                 (Application.Current as App).vm_control.connect(ip, port);
                 disconnect.IsEnabled = true;
+                (Application.Current as App).simulatorView.Show();
+                (Application.Current as App).MainWindow.Hide();
             }
             catch { }
         }
 
         private void disconnect_Click(object sender, RoutedEventArgs e)
         {
+            (Application.Current as App).MainWindow.Show();
             (Application.Current as App).vm_control.disconnect();
             disconnect.IsEnabled = false;
+            (Application.Current as App).simulatorView.Close();
         }
-        
+
     }
 }
