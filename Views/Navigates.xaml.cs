@@ -53,12 +53,10 @@ namespace FlightSimulator.Views
 
         private void joystickN_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            joystick_X = 0;
-            joystick_Y = 0;
-            rudderValue.Text = joystick_X.ToString();
-            elevatorValue.Text = joystick_Y.ToString();
-            (Application.Current as App).vm_navigates.VM_Rudder = joystick_X;
-            (Application.Current as App).vm_navigates.VM_Elevator = joystick_Y;
+            rudderValue.Text = "0";
+            elevatorValue.Text = "0";
+            (Application.Current as App).vm_navigates.VM_Rudder = 0;
+            (Application.Current as App).vm_navigates.VM_Elevator = 0;
         }
 
         private void s2_Loaded(object sender, RoutedEventArgs e)

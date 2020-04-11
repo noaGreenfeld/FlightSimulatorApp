@@ -2,31 +2,35 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 
 namespace FlightSimulator.Views
 {
     public partial class Joystick : UserControl
     {
+        public Storyboard stb;
+
         public Joystick()
         {
             InitializeComponent();
+            stb = Knob.FindResource("CenterKnob") as Storyboard;
+            stb.Begin();
+            stb.Stop();
         }
 
         private Point startPoint = new Point();
         
         private void centerKnob_Completed(object sender, EventArgs e)
         {
+            stb.Stop();
             knobPosition.X = 0;
             knobPosition.Y = 0;
         }
 
         private void Knob_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                Mouse.Capture(this.KnobBase);
-                startPoint = e.GetPosition(this);
-            }
+            Mouse.Capture(this.KnobBase);
+            startPoint = e.GetPosition(this);
         }
 
         private void Knob_MouseMove(object sender, MouseEventArgs e)
@@ -46,8 +50,7 @@ namespace FlightSimulator.Views
 
         private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            knobPosition.X = 0;
-            knobPosition.Y = 0;
+            stb.Begin();
             Mouse.Capture(null);
         }
     }

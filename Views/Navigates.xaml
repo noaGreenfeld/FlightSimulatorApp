@@ -49,7 +49,7 @@
             </TextBlock.RenderTransform>
         </TextBlock>
         <TextBlock x:Name="elevatorValue" HorizontalAlignment="Center" Height="19" Margin="140,8,0,0" TextWrapping="Wrap" Text="{Binding VM_Elevator}" VerticalAlignment="Top" Width="60"/>
-        <TextBlock x:Name="rudderValue" HorizontalAlignment="Left" Height="19" Margin="225,159,-9.333,0" Text="{Binding VM_Rudder}" VerticalAlignment="Top" Width="60" RenderTransformOrigin="0.5,0.5" TextWrapping="Wrap">
+        <TextBlock x:Name="rudderValue" HorizontalAlignment="Left" Height="19" Margin="223,159,-9.333,0" Text="{Binding VM_Rudder}" VerticalAlignment="Top" Width="60" RenderTransformOrigin="0.5,0.5" TextWrapping="Wrap">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
