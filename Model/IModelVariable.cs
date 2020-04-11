@@ -30,7 +30,8 @@ namespace FlightSimulator.Model
         string Altimeter_indicated_altitude_ft { set; get; }
         Location Location { get; }
         string Error { set; get; }
-        bool Connected { set; get; }
+        bool IsConnected { set; get; }
+        /////string Test { set; get; }
     }
 }
 

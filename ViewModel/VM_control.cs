@@ -11,9 +11,12 @@ namespace FlightSimulator.ViewModel
         public string VM_Error
         {
             get
-            {
-                return model.Error;
-            }
+            { return model.Error; }
+        }
+
+        public bool VM_IsConnected
+        {
+            get { return model.IsConnected; }
         }
 
         public void connect(string ip, int port)
@@ -24,16 +27,6 @@ namespace FlightSimulator.ViewModel
         public void disconnect()
         {
             model.disconnect();
-        }
-
-        public bool isConnected()
-        {
-            return model.Connected;
-        }
-
-        public bool VM_CanConnect
-        {
-            get { return !model.Connected; }
         }
     }
 }

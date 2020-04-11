@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="40" d:DesignWidth="920">
     <Grid>
-        <Button x:Name="connect" Content="Connect" HorizontalAlignment="Left" Height="23" Margin="10,4,0,0" VerticalAlignment="Top" Width="61" Click="connect_Click" IsEnabled="{Binding VM_CanConnect}" BorderBrush="#FF9FF781" Background="#FF41FF00"/>
-        <Button x:Name="disconnect" Content="Disonnect" HorizontalAlignment="Left" Height="23" Margin="80,4,0,0" VerticalAlignment="Top" Width="61" Click="disconnect_Click" BorderBrush="#FFFF4306" Background="#FFE90505"/>
+        <Button x:Name="connect" Content="Connect" HorizontalAlignment="Left" Height="23" Margin="10,4,0,0" VerticalAlignment="Top" Width="61" Click="connect_Click" BorderBrush="#FF9FF781" Background="#FF41FF00"/>
+        <Button x:Name="disconnect" Content="Disonnect" HorizontalAlignment="Left" Height="23" Margin="80,4,0,0" VerticalAlignment="Top" Width="61" Click="disconnect_Click" BorderBrush="#FFFF4306" Background="#FFE90505" IsEnabled="{Binding VM_IsConnected}" IsEnabledChanged="disconnect_IsEnabledChanged"/>
         <TextBlock x:Name="errorBox" HorizontalAlignment="Right" TextWrapping="Wrap" Text="{Binding VM_Error}" VerticalAlignment="Top" Height="25" Width="726" Grid.ColumnSpan="2" FontSize ="14" Margin="0,4,9.667,0"/>
     </Grid>
 </UserControl>

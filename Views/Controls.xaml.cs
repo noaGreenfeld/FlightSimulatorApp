@@ -27,6 +27,7 @@ namespace FlightSimulator.Views
         public Controls()
         {
             InitializeComponent();
+            connect.IsEnabled = false;
         }
         
         public void getIpPort(string ip, int port)
@@ -37,21 +38,21 @@ namespace FlightSimulator.Views
 
         private void connect_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                (Application.Current as App).vm_control.connect(ip, port);
-                disconnect.IsEnabled = true;
-            }
-            catch { }
+            disconnect.IsEnabled = true;
+            (Application.Current as App).simulatorView.Close();
+            (Application.Current as App).MainWindow.Show();
         }
 
         private void disconnect_Click(object sender, RoutedEventArgs e)
         {
             (Application.Current as App).vm_control.disconnect();
-            (Application.Current as App).simulatorView.Close();
-            (Application.Current as App).MainWindow.Show();
             disconnect.IsEnabled = false;
+            connect.IsEnabled = true;
         }
 
+        private void disconnect_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            connect.IsEnabled = !connect.IsEnabled;
+        }
     }
 }

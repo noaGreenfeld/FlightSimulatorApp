@@ -54,16 +54,16 @@ namespace FlightSimulator.Model
             try
             {
                 client.Connect(ip, port);
-                Connected = true;
+                IsConnected = true;
                 strm = client.GetStream();
                 strm.ReadTimeout = 10000;
                 stop = false;
                 Error = "";
                 start();
-            } catch
+            } catch (Exception)
             {
                 stop = true;
-                Connected = false;
+                IsConnected = false;
                 Error = "Can't connect";
                 throw new Exception("Can't connect");
             }
@@ -76,12 +76,13 @@ namespace FlightSimulator.Model
                 ASCIIEncoding asen = new ASCIIEncoding();
                 byte[] msgB = asen.GetBytes(command);
                 strm.Write(msgB, 0, msgB.Length);
-            } catch
+            } catch (Exception)
             {
                 if (!client.Connected)
                 {
                     Error = "Not connected to server, please connect again";
-                    Connected = false;
+                    IsConnected = false;
+                    stop = true;
                 } else
                 {
                     Error = "Server hasn't responded for 10 seconds";
@@ -96,11 +97,12 @@ namespace FlightSimulator.Model
                 byte[] dataB = new byte[512];
                 strm.Read(dataB, 0, 100);
                 return Encoding.ASCII.GetString(dataB, 0, dataB.Length);
-            } catch
+            } catch (Exception)
             {
                 if (!client.Connected)
                 {
-                    Connected = false;
+                    IsConnected = false;
+                    stop = true;
                     Error = ("Not connected to server, please connect again");
                 } else
                 {
@@ -121,12 +123,11 @@ namespace FlightSimulator.Model
                     //1
                     sendCommand("get /instrumentation/heading-indicator/indicated-heading-deg\n");
                     ans = readData();
-                    if (!ans.Contains("ERR"))
+                    try
                     {
                         ans = CutTheText(ans);
                         ans = Math.Round(Convert.ToDouble(ans), 5).ToString();
-                    }
-                    else
+                    } catch (FormatException)
                     {
                         ans = "ERR";
                     }
@@ -135,12 +136,11 @@ namespace FlightSimulator.Model
                     //2
                     sendCommand("get /instrumentation/gps/indicated-vertical-speed\n");
                     ans = readData();
-                    if (!ans.Contains("ERR"))
+                    try 
                     {
                         ans = CutTheText(ans);
                         ans = Math.Round(Convert.ToDouble(ans), 5).ToString();
-                    }
-                    else
+                    } catch (FormatException)
                     {
                         ans = "ERR";
                     }
@@ -149,96 +149,89 @@ namespace FlightSimulator.Model
                     //3
                     sendCommand("get /instrumentation/gps/indicated-ground-speed-kt\n");
                     ans = readData();
-                    if (!ans.Contains("ERR"))
+                    try
                     {
                         ans = CutTheText(ans);
                         ans = Math.Round(Convert.ToDouble(ans), 5).ToString();
-                    }
-                    else
+                    } catch (FormatException)
                     {
                         ans = "ERR";
                     }
                     Gps_indicated_ground_speed_kt = ans;
-                    
+
                     //4
                     sendCommand("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
                     ans = readData();
-                    if (!ans.Contains("ERR"))
+                    try
                     {
                         ans = CutTheText(ans);
                         ans = Math.Round(Convert.ToDouble(ans), 5).ToString();
-                    }
-                    else
+                    } catch (FormatException)
                     {
                         ans = "ERR";
                     }
                     Airspeed_indicator_indicated_speed_kt = ans;
-                    
+
                     //5
                     sendCommand("get /instrumentation/gps/indicated-altitude-ft\n");
                     ans = readData();
-                    if (!ans.Contains("ERR"))
+                    try 
                     {
                         ans = CutTheText(ans);
                         ans = Math.Round(Convert.ToDouble(ans), 5).ToString();
-                    }
-                    else
+                    } catch (FormatException)
                     {
                         ans = "ERR";
                     }
                     Gps_indicated_altitude_ft = ans;
-                    
+
                     //6
                     sendCommand("get /instrumentation/attitude-indicator/internal-roll-deg\n");
                     ans = readData();
-                    if (!ans.Contains("ERR"))
+                    try
                     {
                         ans = CutTheText(ans);
                         ans = Math.Round(Convert.ToDouble(ans), 5).ToString();
-                    }
-                    else
+                    } catch (FormatException)
                     {
                         ans = "ERR";
                     }
                     Attitude_indicator_internal_roll_deg = ans;
-                    
+
                     //7
                     sendCommand("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
                     ans = readData();
-                    if (!ans.Contains("ERR"))
+                    try
                     {
                         ans = CutTheText(ans);
                         ans = Math.Round(Convert.ToDouble(ans), 5).ToString();
-                    }
-                    else
+                    } catch (FormatException)
                     {
                         ans = "ERR";
                     }
-                        Attitude_indicator_internal_pitch_deg = ans;
-                    
+                    Attitude_indicator_internal_pitch_deg = ans;
+
                     //8
                     sendCommand("get /instrumentation/gps/indicated-altitude-ft\n");
                     ans = readData();
-                    if (!ans.Contains("ERR"))
+                    try
                     {
                         ans = CutTheText(ans);
                         ans = Math.Round(Convert.ToDouble(ans), 5).ToString();
-                    }
-                    else
+                    } catch (FormatException)
                     {
                         ans = "ERR";
                     }
                     Altimeter_indicated_altitude_ft = ans;
-                    
+
                     // latitude
                     sendCommand("get /position/latitude-deg\n");
                     ans = readData();
-                    if (!ans.Contains("ERR"))
+                    try
                     {
                         ans = CutTheText(ans);
                         latitude = Double.Parse(ans);
-                    }
-                    else
+                    } catch (FormatException)
                     {
                         ans = "ERR";
                     }
@@ -246,14 +239,17 @@ namespace FlightSimulator.Model
                     // longitude
                     sendCommand("get /position/longitude-deg\n");
                     ans = readData();
-                    if (!ans.Contains("ERR"))
+                    try 
                     {
                         ans = CutTheText(ans);
                         longitude = Double.Parse(ans);
+                    } catch (FormatException)
+                    {
+                        ans = "ERR";
                     }
-                    
-                    setLocation(latitude, longitude); 
-                    
+
+                    setLocation(latitude, longitude);
+
                     if (changeRudder)
                     {
                         sendCommand("set /controls/flight/rudder " + rudder + "\n");
@@ -287,7 +283,7 @@ namespace FlightSimulator.Model
         public void disconnect() 
         {
             stop = true;
-            Connected = false;
+            IsConnected = false;
             Error = "You are disconnected";
             client.Close();
         }
@@ -405,14 +401,17 @@ namespace FlightSimulator.Model
             }
         }
 
-        private bool connected;
-        public bool Connected
+        private bool isConnected;
+        public bool IsConnected
         {
-            get { return connected; }
+            get { return isConnected; }
             set
             {
-                connected = value;
-                NotifyPropertyChanged("CanConnect");
+                if (isConnected != value)
+                {
+                    isConnected = value;
+                    NotifyPropertyChanged("IsConnected");
+                }
             }
         }
 

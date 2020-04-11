@@ -18,8 +18,8 @@ namespace FlightSimulator.Views
             {
                 joystick_X = (joystickN.knobPosition.X / (joystickN.internalBase.Width / 2));
                 joystick_Y = (joystickN.knobPosition.Y / (joystickN.internalBase.Width / 2));
-                rudderValue.Text = joystick_X.ToString();
-                elevatorValue.Text = joystick_Y.ToString();
+                rudderValue.Text = Math.Round(joystick_X, 6).ToString();
+                elevatorValue.Text = Math.Round(joystick_Y, 6).ToString();
                 (Application.Current as App).vm_navigates.VM_Rudder = joystick_X;
                 (Application.Current as App).vm_navigates.VM_Elevator = joystick_Y;
             }
@@ -59,6 +59,16 @@ namespace FlightSimulator.Views
             elevatorValue.Text = joystick_Y.ToString();
             (Application.Current as App).vm_navigates.VM_Rudder = joystick_X;
             (Application.Current as App).vm_navigates.VM_Elevator = joystick_Y;
+        }
+
+        private void s2_Loaded(object sender, RoutedEventArgs e)
+        {
+            s2.Value = 0;
+        }
+
+        private void s1_Loaded(object sender, RoutedEventArgs e)
+        {
+            s1.Value = 0;
         }
     }
 }
