@@ -26,22 +26,25 @@ namespace FlightSimulator.Model
         bool changeThrottle = false;
         double longitude;
         double latitude;
-        
+        //we apply this mothod to chenge the value of the var and knew the var had changed
         public void setRudder(double rud)
         {
             changeRudder = true;
             rudder = rud;
         }
+        //we apply this mothod to chenge the value of the var and knew the var had changed
         public void setElevator(double ele)
         {
             changeElevator = true;
             elevator = ele;
         }
+        //we apply this mothod to chenge the value of the var and knew the var had changed
         public void setAileron(double ail)
         {
             changeAileron = true;
             aileron = ail;
         }
+        //we apply this mothod to chenge the value of the var and knew the var had changed
         public void setThrottle(double thr)
         {
             changeThrottle = true;
@@ -58,17 +61,19 @@ namespace FlightSimulator.Model
                 strm = client.GetStream();
                 strm.ReadTimeout = 10000;
                 stop = false;
+                //if we connect - there is no error massage
                 Error = "";
                 start();
             } catch (Exception)
             {
                 stop = true;
                 IsConnected = false;
+                //let the view knew there is error massage and throw an exeption
                 Error = "Can't connect";
                 throw new Exception("Can't connect");
             }
         }
-
+        //in this method we get the string to send and try to send it
         void sendCommand(string command)
         {
             try
@@ -78,18 +83,20 @@ namespace FlightSimulator.Model
                 strm.Write(msgB, 0, msgB.Length);
             } catch (Exception)
             {
+                //if the server is disconnect write a massage to the view
                 if (!client.Connected)
                 {
                     Error = "Not connected to server, please connect again";
                     IsConnected = false;
                     stop = true;
                 } else
+                //if the server is connect - but cant send the massage.
                 {
                     Error = "Server hasn't responded for 10 seconds";
                 }
             }
         }
-
+        //try to read the data from the server
         String readData()
         {
             try
@@ -98,6 +105,7 @@ namespace FlightSimulator.Model
                 strm.Read(dataB, 0, 100);
                 return Encoding.ASCII.GetString(dataB, 0, dataB.Length);
             } catch (Exception)
+            //if something went wrong - write the view an error massage 
             {
                 if (!client.Connected)
                 {
@@ -247,27 +255,30 @@ namespace FlightSimulator.Model
                     {
                         ans = "ERR";
                     }
-
+                    //take the lattiude and longitude and connect them into 1 location var.
                     setLocation(latitude, longitude);
-
+                    //send the right massage is some var changed
                     if (changeRudder)
                     {
                         sendCommand("set /controls/flight/rudder " + rudder + "\n");
                         ans = readData();
                         changeRudder = false;
                     }
+                    //send the right massage is some var changed
                     if (changeElevator)
                     {
                         sendCommand("set /controls/flight/elevator " + elevator + "\n");
                         ans = readData();
                         changeElevator = false;
                     }
+                    //send the right massage is some var changed
                     if (changeAileron)
                     {
                         sendCommand("set /controls/flight/aileron " + aileron + "\n");
                         ans = readData();
                         changeAileron = false;
                     }
+                    //send the right massage is some var changed
                     if (changeThrottle)
                     {
                         sendCommand("set /controls/engines/current-engine/throttle " + throttle + "\n");
@@ -288,6 +299,7 @@ namespace FlightSimulator.Model
             client.Close();
         }
 
+        //all properties :
         private Location location;
         public Location Location
         {
@@ -300,15 +312,18 @@ namespace FlightSimulator.Model
                 return new Location(location.Latitude, location.Longitude); 
             }
         }
-
+  
         public void setLocation(double latitude, double longitude)
         {
+            //check if the new location is in earth - 
             if ((latitude < 90) && (latitude > -90) && (longitude < 180) && (longitude>-180)) {
+              //change the new location and let the view knew
                 location = new Location(latitude, longitude);
                 NotifyPropertyChanged("Location");
             }
             else
             {
+                //dont chenge the location and give the view error massage.
                 Error = "Location is out of earth";
             }
         }
@@ -434,7 +449,7 @@ namespace FlightSimulator.Model
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
-
+        //cur the string untul the end of line
         public string CutTheText(string s)
         {
             string[] lines = Regex.Split(s, "\n");

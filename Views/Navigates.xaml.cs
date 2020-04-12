@@ -16,8 +16,10 @@ namespace FlightSimulator.Views
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
+                //calculate the move (betwin -1 to 1)
                 joystick_X = (joystickN.knobPosition.X / (joystickN.internalBase.Width / 2));
                 joystick_Y = (joystickN.knobPosition.Y / (joystickN.internalBase.Width / 2));
+                //write the move on the screen
                 rudderValue.Text = Math.Round(joystick_X, 6).ToString();
                 elevatorValue.Text = Math.Round(joystick_Y, 6).ToString();
                 (Application.Current as App).vm_navigates.VM_Rudder = joystick_X;
@@ -53,6 +55,7 @@ namespace FlightSimulator.Views
 
         private void joystickN_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            //return into the center point
             rudderValue.Text = "0";
             elevatorValue.Text = "0";
             (Application.Current as App).vm_navigates.VM_Rudder = 0;

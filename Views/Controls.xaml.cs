@@ -22,7 +22,6 @@ namespace FlightSimulator.Views
     {
         string ip;
         int port;
-       // bool disconect = false;
 
         public Controls()
         {
@@ -35,9 +34,11 @@ namespace FlightSimulator.Views
             this.ip = ip;
             this.port = port;
         }
-
+       
         private void connect_Click(object sender, RoutedEventArgs e)
         {
+            //when the connect bottom is click - our page is closed and the
+            //home page is open - to let us connect again
             disconnect.IsEnabled = true;
             (Application.Current as App).simulatorView.Close();
             (Application.Current as App).MainWindow.Show();

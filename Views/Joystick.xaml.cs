@@ -36,6 +36,7 @@ namespace FlightSimulator.Views
         private void Knob_MouseMove(object sender, MouseEventArgs e)
         {
             double x, y;
+            //if the left botton is pushed 
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 x = e.GetPosition(this).X - startPoint.X;

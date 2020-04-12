@@ -12,6 +12,7 @@ namespace FlightSimulator
         {
             InitializeComponent();
             int portI = Int32.Parse(port);
+            //conect the all view data context into the correct view model.
             control.DataContext = (Application.Current as App).vm_control;
             control.getIpPort(ip, portI);
             (Application.Current as App).vm_control.connect(ip, portI);

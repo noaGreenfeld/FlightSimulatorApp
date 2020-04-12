@@ -8,8 +8,10 @@ using Microsoft.Maps.MapControl.WPF;
 namespace FlightSimulator.Model
 
 {
+    //this interface use for the all model type we have.
     public interface IModelVariable : INotifyPropertyChanged
     {
+        //method
         void connect(string ip, int port);
         void disconnect();
         void start();
@@ -31,7 +33,6 @@ namespace FlightSimulator.Model
         Location Location { get; }
         string Error { set; get; }
         bool IsConnected { set; get; }
-        /////string Test { set; get; }
     }
 }
 

@@ -18,19 +18,18 @@ namespace FlightSimulatorApp
     /// </summary>
     partial class MainWindow : Window
     {
-        //public SimulatorView simulatorView;
         public MainWindow() 
         {
             InitializeComponent();
             ServerIP.Text = deafultIp;
             ServerPort.Text = deafultPort;
         }
-       // public SimulatorView simulatorView;
         string deafultPort = ConfigurationManager.AppSettings["port"];
         string deafultIp = ConfigurationManager.AppSettings["ip"];
 
         private void Button_Click_Fly(object sender, RoutedEventArgs e)
         {
+            //if the user dont enter ip and port - put difolt
             if (ServerIP.Text == "")
             {
                 ServerIP.Text = deafultIp;
@@ -39,9 +38,11 @@ namespace FlightSimulatorApp
             {
                 ServerPort.Text = deafultPort;
             }
+            //try to connect
             try
             {
                 (Application.Current as App).simulatorView = new SimulatorView(ServerIP.Text, ServerPort.Text);
+                //hide this screen and open the similator screen.
                 this.Hide();
                 (Application.Current as App).simulatorView.ShowDialog();
             }
@@ -55,6 +56,7 @@ namespace FlightSimulatorApp
 
         private void Button_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            //if the user dont enter ip and port - put difolt
             if (ServerIP.Text == "")
             {
                 ServerIP.Text = deafultIp;
