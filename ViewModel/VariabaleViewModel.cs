@@ -4,16 +4,17 @@ using System.ComponentModel;
 
 namespace FlightSimulator.ViewModel
 {
-    //abstract class for the all view model class
+    // Abstract class for the all view model classes
     public abstract class VariabaleViewModel : INotifyPropertyChanged
     {
-        //only one model that all the diffrent VM will have.
-      protected IModelVariable model;
+        // The model that all the diffrent VM's will have:
+        protected IModelVariable model;
+
         public VariabaleViewModel(IModelVariable model)
         {
-            //intilije the model
+            // Intialize the model
             this.model = model;
-            //notify the checged.
+            // Notify the changes that occurred in the model
             model.PropertyChanged +=
             delegate (Object sender, PropertyChangedEventArgs e)
             {

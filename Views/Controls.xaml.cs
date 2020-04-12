@@ -17,6 +17,8 @@ namespace FlightSimulator.Views
 {
     /// <summary>
     /// Interaction logic for Controls.xaml
+    /// This view gives the user a control over the program- connecting/disconnecting
+    /// and seeing error messages sent from the model
     /// </summary>
     public partial class Controls : UserControl
     {
@@ -37,8 +39,7 @@ namespace FlightSimulator.Views
        
         private void connect_Click(object sender, RoutedEventArgs e)
         {
-            //when the connect bottom is click - our page is closed and the
-            //home page is open - to let us connect again
+            // Close the window and display the home page (main window) to let the user connect
             disconnect.IsEnabled = true;
             (Application.Current as App).simulatorView.Close();
             (Application.Current as App).MainWindow.Show();
@@ -46,6 +47,7 @@ namespace FlightSimulator.Views
 
         private void disconnect_Click(object sender, RoutedEventArgs e)
         {
+            // Disconnect from the server
             (Application.Current as App).vm_control.disconnect();
             disconnect.IsEnabled = false;
             connect.IsEnabled = true;
@@ -53,6 +55,7 @@ namespace FlightSimulator.Views
 
         private void disconnect_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
+            // Change availability of the connect button once the user has disconnected
             connect.IsEnabled = !connect.IsEnabled;
         }
     }

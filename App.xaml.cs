@@ -20,7 +20,7 @@ namespace FlightSimulator
 
         void App_Startup(object sender, StartupEventArgs e)
         {
-            // initialize model and view models
+            // Initialize model and view models and start the program by showing the main window
             model = new MyModelVariable();
             vm_navigates = new VM_navigates(model);
             vm_dataBoard = new VM_dataBoard(model);

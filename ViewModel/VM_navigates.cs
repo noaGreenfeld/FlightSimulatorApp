@@ -3,7 +3,7 @@ using FlightSimulator.Model;
 
 namespace FlightSimulator.ViewModel
 {
-    // view model for navigates- joystick and sliders
+    // View model for navigates- joystick and sliders
     public class VM_navigates : VariabaleViewModel
     {
         public VM_navigates(IModelVariable model) : base(model) {}

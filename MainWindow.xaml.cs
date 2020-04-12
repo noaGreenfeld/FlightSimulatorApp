@@ -24,12 +24,13 @@ namespace FlightSimulatorApp
             ServerIP.Text = deafultIp;
             ServerPort.Text = deafultPort;
         }
+
         string deafultPort = ConfigurationManager.AppSettings["port"];
         string deafultIp = ConfigurationManager.AppSettings["ip"];
 
         private void Button_Click_Fly(object sender, RoutedEventArgs e)
         {
-            //if the user dont enter ip and port - put difolt
+            // If the user didn't enter an ip and port- use deafult values
             if (ServerIP.Text == "")
             {
                 ServerIP.Text = deafultIp;
@@ -38,11 +39,11 @@ namespace FlightSimulatorApp
             {
                 ServerPort.Text = deafultPort;
             }
-            //try to connect
+            // Try to connect
             try
             {
                 (Application.Current as App).simulatorView = new SimulatorView(ServerIP.Text, ServerPort.Text);
-                //hide this screen and open the similator screen.
+                // Hide this screen and open the simulator screen
                 this.Hide();
                 (Application.Current as App).simulatorView.ShowDialog();
             }
@@ -56,7 +57,7 @@ namespace FlightSimulatorApp
 
         private void Button_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //if the user dont enter ip and port - put difolt
+            // If the user didn'tt enter an ip and port - use deafult values
             if (ServerIP.Text == "")
             {
                 ServerIP.Text = deafultIp;
@@ -69,6 +70,7 @@ namespace FlightSimulatorApp
 
         private void Button_Click_Exit(object sender, RoutedEventArgs e)
         {
+            // Exit the program:
             Application.Current.Shutdown();
         }
     }

@@ -15,6 +15,10 @@ using System.Windows.Shapes;
 
 namespace FlightSimulator.Views
 {
+    /// <summary>
+    /// Interaction logic for DataBoard.xaml
+    /// This view displays all the values given by the server
+    /// </summary>
     public partial class DataBoard : UserControl
     {
         public DataBoard()

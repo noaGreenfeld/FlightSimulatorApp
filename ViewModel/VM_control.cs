@@ -3,7 +3,7 @@ using FlightSimulator.Model;
 
 namespace FlightSimulator.ViewModel
 {
-    // view model for connect,disconnect buttons and error line
+    // View model for connect,disconnect buttons and error line
     public class VM_control : VariabaleViewModel
     {
         public VM_control(IModelVariable model) : base(model) { }

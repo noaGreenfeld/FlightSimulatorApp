@@ -8,11 +8,12 @@ namespace FlightSimulator.Views
 {
     public partial class Joystick : UserControl
     {
-        public Storyboard stb;
+        Storyboard stb;
 
         public Joystick()
         {
             InitializeComponent();
+            // Initialize knob animation
             stb = Knob.FindResource("CenterKnob") as Storyboard;
             stb.Begin();
             stb.Stop();
@@ -22,6 +23,7 @@ namespace FlightSimulator.Views
         
         private void centerKnob_Completed(object sender, EventArgs e)
         {
+            // End the knob animation
             stb.Stop();
             knobPosition.X = 0;
             knobPosition.Y = 0;
@@ -36,7 +38,7 @@ namespace FlightSimulator.Views
         private void Knob_MouseMove(object sender, MouseEventArgs e)
         {
             double x, y;
-            //if the left botton is pushed 
+            // Check if left botton is pressed and update knob position
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 x = e.GetPosition(this).X - startPoint.X;
@@ -51,6 +53,7 @@ namespace FlightSimulator.Views
 
         private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            // Start knob animation
             stb.Begin();
             Mouse.Capture(null);
         }

@@ -3,7 +3,7 @@ using FlightSimulator.Model;
 
 namespace FlightSimulator.ViewModel
 {
-    // view model for displaying values from simulator on data board
+    // View model for displaying values from simulator on data board
     public class VM_dataBoard : VariabaleViewModel
     {
         public VM_dataBoard(IModelVariable model) : base(model) {}

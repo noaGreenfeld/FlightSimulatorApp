@@ -11,14 +11,15 @@ namespace FlightSimulator
         public SimulatorView(string ip, string port)
         {
             InitializeComponent();
-            int portI = Int32.Parse(port);
-            //conect the all view data context into the correct view model.
+            
+            // Set all views data context to the appropriate view models and connect to server
             control.DataContext = (Application.Current as App).vm_control;
-            control.getIpPort(ip, portI);
-            (Application.Current as App).vm_control.connect(ip, portI);
             navigates.DataContext = (Application.Current as App).vm_navigates;
             dataBoard.DataContext = (Application.Current as App).vm_dataBoard;
             myMap.DataContext = (Application.Current as App).vm_map;
+            int portI = Int32.Parse(port);
+            control.getIpPort(ip, portI);
+            (Application.Current as App).vm_control.connect(ip, portI);
         }
 
         private void navigates_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)

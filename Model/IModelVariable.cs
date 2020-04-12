@@ -8,10 +8,10 @@ using Microsoft.Maps.MapControl.WPF;
 namespace FlightSimulator.Model
 
 {
-    //this interface use for the all model type we have.
+    // Interface for all model types
     public interface IModelVariable : INotifyPropertyChanged
     {
-        //method
+        // Methods
         void connect(string ip, int port);
         void disconnect();
         void start();
@@ -21,7 +21,7 @@ namespace FlightSimulator.Model
         void setAileron(double ail);
         void setThrottle(double thr);
 
-        // variables properties
+        // Variables properties
         string Indicated_heading_deg { set; get; }
         string Gps_indicated_vertical_speed { set; get; }
         string Gps_indicated_ground_speed_kt { set; get; }
