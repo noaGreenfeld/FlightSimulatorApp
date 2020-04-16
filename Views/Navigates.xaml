@@ -15,7 +15,7 @@
                 </local:Joystick.DataContext>
             </local:Joystick>
         </Viewbox>
-        <Slider x:Name="S1" HorizontalAlignment="Left" Margin="-45,99,0,0" VerticalAlignment="Top" Width="177" Height="27" RenderTransformOrigin="0.5,0.5" Cursor="Hand" Maximum="1" Minimum="-1" Value="{Binding VM_Aileron}" AutoToolTipPlacement="TopLeft" TickPlacement="TopLeft" LargeChange="0.1" TickFrequency="0.1" AutoToolTipPrecision="2" Loaded="S1_Loaded">
+        <Slider x:Name="S1" HorizontalAlignment="Left" Margin="-45,99,0,0" VerticalAlignment="Top" Width="177" Height="27" RenderTransformOrigin="0.5,0.5" Cursor="Hand" Maximum="1" Minimum="-1" Value="{Binding VM_Aileron}" AutoToolTipPlacement="TopLeft" TickPlacement="TopLeft" LargeChange="0.1" TickFrequency="0.1" AutoToolTipPrecision="2" Loaded="S1_Loaded" ValueChanged="S1_ValueChanged">
             <Slider.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -25,7 +25,7 @@
                 </TransformGroup>
             </Slider.RenderTransform>
         </Slider>
-        <Slider x:Name="S2" HorizontalAlignment="Right" Margin="0,211,32.667,0" VerticalAlignment="Top" Height="27" Width="177" Cursor="Hand" Maximum="1" Value="{Binding VM_Throttle}" TickPlacement="BottomRight" TickFrequency="0.1" AutoToolTipPrecision="2" AutoToolTipPlacement="TopLeft" LargeChange="0.1" Loaded="S2_Loaded"/>
+        <Slider x:Name="S2" HorizontalAlignment="Right" Margin="0,211,32.667,0" VerticalAlignment="Top" Height="27" Width="177" Cursor="Hand" Maximum="1" Value="{Binding VM_Throttle}" TickPlacement="BottomRight" TickFrequency="0.1" AutoToolTipPrecision="2" AutoToolTipPlacement="TopLeft" LargeChange="0.1" Loaded="S2_Loaded" ValueChanged="S2_ValueChanged"/>
         <TextBlock HorizontalAlignment="Center" Height="19" Margin="30,8,0,0" TextWrapping="Wrap" Text="elevator" VerticalAlignment="Top" Width="49"/>
         <TextBlock HorizontalAlignment="Center" Height="19" Margin="229,108,-3.333,0" TextWrapping="Wrap" Text="rudder" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.474,0.267">
             <TextBlock.RenderTransform>
@@ -38,12 +38,23 @@
             </TextBlock.RenderTransform>
         </TextBlock>
         <TextBlock HorizontalAlignment="Center" Height="19" Margin="118,238,83,0" TextWrapping="Wrap" Text="throttle" VerticalAlignment="Top" Width="49"/>
+        <TextBlock x:Name="throttleValue" HorizontalAlignment="Center" Height="19" Margin="140,238,0,0" TextWrapping="Wrap" Text="{Binding VM_Throttle}" VerticalAlignment="Top" Width="60"/>
         <TextBlock HorizontalAlignment="Center" Height="21" Margin="-9,98,234.667,0" TextWrapping="Wrap" Text="aileron" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.5,0.5">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform Angle="-89.494"/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock x:Name="aileronValue" HorizontalAlignment="Left" Height="19" Margin="-15,50,-9.333,0" Text="{Binding VM_Aileron}" VerticalAlignment="Top" Width="60" RenderTransformOrigin="0.5,0.5" TextWrapping="Wrap">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
                     <TranslateTransform/>
                 </TransformGroup>
             </TextBlock.RenderTransform>

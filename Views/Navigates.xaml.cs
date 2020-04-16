@@ -17,13 +17,15 @@ namespace FlightSimulator.Views
             InitializeComponent();
         }
 
+        readonly double normJoystick = 84.1176470588234;
+
         private void JoystickN_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 // Normalize the joystick movement (between -1 and 1)
-                Joystick_X = (joystickN.knobPosition.X / (joystickN.internalBase.Width / 2));
-                Joystick_Y = (joystickN.knobPosition.Y / (joystickN.internalBase.Width / 2));
+                Joystick_X = (joystickN.knobPosition.X / normJoystick);
+                Joystick_Y = (joystickN.knobPosition.Y / normJoystick);
                 // Display movement values
                 rudderValue.Text = Math.Round(Joystick_X, 6).ToString();
                 elevatorValue.Text = Math.Round(Joystick_Y, 6).ToString();
@@ -76,6 +78,16 @@ namespace FlightSimulator.Views
         private void S1_Loaded(object sender, RoutedEventArgs e)
         {
             S1.Value = 0;
+        }
+
+        private void S1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            aileronValue.Text = Math.Round(S1.Value, 6).ToString();
+        }
+
+        private void S2_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            throttleValue.Text = Math.Round(S2.Value, 6).ToString();
         }
     }
 }
