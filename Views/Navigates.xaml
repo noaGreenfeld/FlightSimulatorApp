@@ -9,13 +9,13 @@
              d:DesignHeight="260" d:DesignWidth="275">
     <Grid x:Name="navigateControl">
         <Viewbox HorizontalAlignment="Left" Height="170" Margin="65,30,0,0" VerticalAlignment="Top" Width="170">
-            <local:Joystick x:Name="joystickN" Height="330" Width="330" MouseMove="joystickN_MouseMove" MouseUp="joystickN_MouseUp">
+            <local:Joystick x:Name="joystickN" Height="330" Width="330" MouseMove="JoystickN_MouseMove" MouseUp="JoystickN_MouseUp">
                 <local:Joystick.DataContext>
                     <local:Joystick/>
                 </local:Joystick.DataContext>
             </local:Joystick>
         </Viewbox>
-        <Slider x:Name="s1" HorizontalAlignment="Left" Margin="-45,99,0,0" VerticalAlignment="Top" Width="177" Height="27" RenderTransformOrigin="0.5,0.5" Cursor="Hand" Maximum="1" Minimum="-1" Value="{Binding VM_Aileron}" AutoToolTipPlacement="TopLeft" TickPlacement="TopLeft" LargeChange="0.1" TickFrequency="0.1" AutoToolTipPrecision="2" Loaded="s1_Loaded">
+        <Slider x:Name="S1" HorizontalAlignment="Left" Margin="-45,99,0,0" VerticalAlignment="Top" Width="177" Height="27" RenderTransformOrigin="0.5,0.5" Cursor="Hand" Maximum="1" Minimum="-1" Value="{Binding VM_Aileron}" AutoToolTipPlacement="TopLeft" TickPlacement="TopLeft" LargeChange="0.1" TickFrequency="0.1" AutoToolTipPrecision="2" Loaded="S1_Loaded">
             <Slider.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -25,7 +25,7 @@
                 </TransformGroup>
             </Slider.RenderTransform>
         </Slider>
-        <Slider x:Name="s2" HorizontalAlignment="Right" Margin="0,211,32.667,0" VerticalAlignment="Top" Height="27" Width="177" Cursor="Hand" Maximum="1" Value="{Binding VM_Throttle}" TickPlacement="BottomRight" TickFrequency="0.1" AutoToolTipPrecision="2" AutoToolTipPlacement="TopLeft" LargeChange="0.1" Loaded="s2_Loaded"/>
+        <Slider x:Name="S2" HorizontalAlignment="Right" Margin="0,211,32.667,0" VerticalAlignment="Top" Height="27" Width="177" Cursor="Hand" Maximum="1" Value="{Binding VM_Throttle}" TickPlacement="BottomRight" TickFrequency="0.1" AutoToolTipPrecision="2" AutoToolTipPlacement="TopLeft" LargeChange="0.1" Loaded="S2_Loaded"/>
         <TextBlock HorizontalAlignment="Center" Height="19" Margin="30,8,0,0" TextWrapping="Wrap" Text="elevator" VerticalAlignment="Top" Width="49"/>
         <TextBlock HorizontalAlignment="Center" Height="19" Margin="229,108,-3.333,0" TextWrapping="Wrap" Text="rudder" VerticalAlignment="Top" Width="49" RenderTransformOrigin="0.474,0.267">
             <TextBlock.RenderTransform>

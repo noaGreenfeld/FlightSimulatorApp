@@ -25,8 +25,8 @@ namespace FlightSimulatorApp
             ServerPort.Text = deafultPort;
         }
 
-        string deafultPort = ConfigurationManager.AppSettings["port"];
-        string deafultIp = ConfigurationManager.AppSettings["ip"];
+        readonly string deafultPort = ConfigurationManager.AppSettings["port"];
+        readonly string deafultIp = ConfigurationManager.AppSettings["ip"];
 
         private void Button_Click_Fly(object sender, RoutedEventArgs e)
         {

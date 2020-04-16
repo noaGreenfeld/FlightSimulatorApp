@@ -22,22 +22,13 @@ namespace FlightSimulator.Views
     /// </summary>
     public partial class Controls : UserControl
     {
-        string ip;
-        int port;
-
         public Controls()
         {
             InitializeComponent();
             connect.IsEnabled = false;
         }
-        
-        public void getIpPort(string ip, int port)
-        {
-            this.ip = ip;
-            this.port = port;
-        }
-       
-        private void connect_Click(object sender, RoutedEventArgs e)
+
+        private void Connect_Click(object sender, RoutedEventArgs e)
         {
             // Close the window and display the home page (main window) to let the user connect
             disconnect.IsEnabled = true;
@@ -45,15 +36,15 @@ namespace FlightSimulator.Views
             (Application.Current as App).MainWindow.Show();
         }
 
-        private void disconnect_Click(object sender, RoutedEventArgs e)
+        private void Disconnect_Click(object sender, RoutedEventArgs e)
         {
             // Disconnect from the server
-            (Application.Current as App).vm_control.disconnect();
+            (Application.Current as App).Vm_control.Disconnect();
             disconnect.IsEnabled = false;
             connect.IsEnabled = true;
         }
 
-        private void disconnect_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void Disconnect_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             // Change availability of the connect button once the user has disconnected
             connect.IsEnabled = !connect.IsEnabled;

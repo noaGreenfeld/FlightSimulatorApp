@@ -8,7 +8,7 @@ namespace FlightSimulator.Views
 {
     public partial class Joystick : UserControl
     {
-        Storyboard stb;
+        readonly Storyboard stb;
 
         public Joystick()
         {
@@ -21,7 +21,7 @@ namespace FlightSimulator.Views
 
         private Point startPoint = new Point();
         
-        private void centerKnob_Completed(object sender, EventArgs e)
+        private void CenterKnob_Completed(object sender, EventArgs e)
         {
             // End the knob animation
             stb.Stop();

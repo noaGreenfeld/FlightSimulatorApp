@@ -13,22 +13,21 @@ namespace FlightSimulator
             InitializeComponent();
             
             // Set all views data context to the appropriate view models and connect to server
-            control.DataContext = (Application.Current as App).vm_control;
-            navigates.DataContext = (Application.Current as App).vm_navigates;
-            dataBoard.DataContext = (Application.Current as App).vm_dataBoard;
-            myMap.DataContext = (Application.Current as App).vm_map;
+            control.DataContext = (Application.Current as App).Vm_control;
+            navigates.DataContext = (Application.Current as App).Vm_navigates;
+            dataBoard.DataContext = (Application.Current as App).Vm_dataBoard;
+            myMap.DataContext = (Application.Current as App).Vm_map;
             int portI = Int32.Parse(port);
-            control.getIpPort(ip, portI);
-            (Application.Current as App).vm_control.connect(ip, portI);
+            (Application.Current as App).Vm_control.Connect(ip, portI);
         }
 
-        private void navigates_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Navigates_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             navigates.joystickN.knobPosition.X = 0;
             navigates.joystickN.knobPosition.Y = 0;
         }
 
-        private void navigates_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        private void Navigates_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             navigates.joystickN.knobPosition.X = 0;
             navigates.joystickN.knobPosition.Y = 0;

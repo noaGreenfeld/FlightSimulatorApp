@@ -12,14 +12,14 @@ namespace FlightSimulator.Model
     public interface IModelVariable : INotifyPropertyChanged
     {
         // Methods
-        void connect(string ip, int port);
-        void disconnect();
-        void start();
+        void Connect(string ip, int port);
+        void Disconnect();
+        void Start();
         
-        void setRudder(double rud);
-        void setElevator(double ele);
-        void setAileron(double ail);
-        void setThrottle(double thr);
+        void SetRudder(double rud);
+        void SetElevator(double ele);
+        void SetAileron(double ail);
+        void SetThrottle(double thr);
 
         // Variables properties
         string Indicated_heading_deg { set; get; }

@@ -15,7 +15,7 @@ namespace FlightSimulator.ViewModel
             set
             {
                 VM_aileron = value;
-                model.setAileron(value);
+                model.SetAileron(value);
             }
         }
 
@@ -26,7 +26,7 @@ namespace FlightSimulator.ViewModel
             set
             {
                 VM_throttle = value;
-                model.setThrottle(value);
+                model.SetThrottle(value);
             }
         }
 
@@ -37,7 +37,7 @@ namespace FlightSimulator.ViewModel
             set
             {
                 VM_rudder = value;
-                model.setRudder(value);
+                model.SetRudder(value);
             }
         }
 
@@ -48,7 +48,7 @@ namespace FlightSimulator.ViewModel
             set
             {
                 VM_elevator = value;
-                model.setElevator(value);
+                model.SetElevator(value);
             }
         }
     }

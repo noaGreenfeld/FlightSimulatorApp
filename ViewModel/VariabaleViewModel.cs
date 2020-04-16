@@ -25,8 +25,7 @@ namespace FlightSimulator.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
         {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
     }
 }

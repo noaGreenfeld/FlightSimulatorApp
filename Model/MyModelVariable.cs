@@ -28,31 +28,31 @@ namespace FlightSimulator.Model
         double latitude;
 
         // Change value of rudder and acknowledge the value has changed
-        public void setRudder(double rud)
+        public void SetRudder(double rud)
         {
             changeRudder = true;
             rudder = rud;
         }
         // Change value of elevator and acknowledge the value has changed
-        public void setElevator(double ele)
+        public void SetElevator(double ele)
         {
             changeElevator = true;
             elevator = ele;
         }
         // Change value of aileron and acknowledge the value has changed
-        public void setAileron(double ail)
+        public void SetAileron(double ail)
         {
             changeAileron = true;
             aileron = ail;
         }
         // Change value of throttle and acknowledge the value has changed
-        public void setThrottle(double thr)
+        public void SetThrottle(double thr)
         {
             changeThrottle = true;
             throttle = thr;
         }
 
-        public void connect(string ip, int port) 
+        public void Connect(string ip, int port) 
         {
             client = new TcpClient();
             try
@@ -64,7 +64,7 @@ namespace FlightSimulator.Model
                 stop = false;
                 // If connected - don't display an error message
                 Error = "";
-                start();
+                Start();
             } catch (Exception)
             {
                 stop = true;
@@ -75,7 +75,7 @@ namespace FlightSimulator.Model
             }
         }
         // Send the given string to the server
-        void sendCommand(string command)
+        void SendCommand(string command)
         {
             try
             {
@@ -98,7 +98,7 @@ namespace FlightSimulator.Model
         }
 
         // Read data from the server
-        String readData()
+        String ReadData()
         {
             try
             {
@@ -122,7 +122,7 @@ namespace FlightSimulator.Model
         }
 
         // Method for managing cummunication with the server
-        public void start()
+        public void Start()
         {
             new Thread(delegate ()
             {
@@ -131,8 +131,8 @@ namespace FlightSimulator.Model
                 {
                     // Get eight values for data board:
                     //1
-                    sendCommand("get /instrumentation/heading-indicator/indicated-heading-deg\n");
-                    ans = readData();
+                    SendCommand("get /instrumentation/heading-indicator/indicated-heading-deg\n");
+                    ans = ReadData();
                     try
                     {
                         ans = CutTheText(ans);
@@ -144,8 +144,8 @@ namespace FlightSimulator.Model
                     Indicated_heading_deg = ans;
 
                     //2
-                    sendCommand("get /instrumentation/gps/indicated-vertical-speed\n");
-                    ans = readData();
+                    SendCommand("get /instrumentation/gps/indicated-vertical-speed\n");
+                    ans = ReadData();
                     try 
                     {
                         ans = CutTheText(ans);
@@ -157,8 +157,8 @@ namespace FlightSimulator.Model
                     Gps_indicated_vertical_speed = ans;
 
                     //3
-                    sendCommand("get /instrumentation/gps/indicated-ground-speed-kt\n");
-                    ans = readData();
+                    SendCommand("get /instrumentation/gps/indicated-ground-speed-kt\n");
+                    ans = ReadData();
                     try
                     {
                         ans = CutTheText(ans);
@@ -170,8 +170,8 @@ namespace FlightSimulator.Model
                     Gps_indicated_ground_speed_kt = ans;
 
                     //4
-                    sendCommand("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
-                    ans = readData();
+                    SendCommand("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
+                    ans = ReadData();
                     try
                     {
                         ans = CutTheText(ans);
@@ -183,8 +183,8 @@ namespace FlightSimulator.Model
                     Airspeed_indicator_indicated_speed_kt = ans;
 
                     //5
-                    sendCommand("get /instrumentation/gps/indicated-altitude-ft\n");
-                    ans = readData();
+                    SendCommand("get /instrumentation/gps/indicated-altitude-ft\n");
+                    ans = ReadData();
                     try 
                     {
                         ans = CutTheText(ans);
@@ -196,8 +196,8 @@ namespace FlightSimulator.Model
                     Gps_indicated_altitude_ft = ans;
 
                     //6
-                    sendCommand("get /instrumentation/attitude-indicator/internal-roll-deg\n");
-                    ans = readData();
+                    SendCommand("get /instrumentation/attitude-indicator/internal-roll-deg\n");
+                    ans = ReadData();
                     try
                     {
                         ans = CutTheText(ans);
@@ -209,8 +209,8 @@ namespace FlightSimulator.Model
                     Attitude_indicator_internal_roll_deg = ans;
 
                     //7
-                    sendCommand("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
-                    ans = readData();
+                    SendCommand("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
+                    ans = ReadData();
                     try
                     {
                         ans = CutTheText(ans);
@@ -222,8 +222,8 @@ namespace FlightSimulator.Model
                     Attitude_indicator_internal_pitch_deg = ans;
 
                     //8
-                    sendCommand("get /instrumentation/gps/indicated-altitude-ft\n");
-                    ans = readData();
+                    SendCommand("get /instrumentation/gps/indicated-altitude-ft\n");
+                    ans = ReadData();
                     try
                     {
                         ans = CutTheText(ans);
@@ -235,8 +235,8 @@ namespace FlightSimulator.Model
                     Altimeter_indicated_altitude_ft = ans;
 
                     // latitude
-                    sendCommand("get /position/latitude-deg\n");
-                    ans = readData();
+                    SendCommand("get /position/latitude-deg\n");
+                    ans = ReadData();
                     try
                     {
                         ans = CutTheText(ans);
@@ -247,8 +247,8 @@ namespace FlightSimulator.Model
                     }
                     
                     // longitude
-                    sendCommand("get /position/longitude-deg\n");
-                    ans = readData();
+                    SendCommand("get /position/longitude-deg\n");
+                    ans = ReadData();
                     try 
                     {
                         ans = CutTheText(ans);
@@ -258,31 +258,31 @@ namespace FlightSimulator.Model
                         ans = "ERR";
                     }
                     // Set the location based on the lattiude and longitude
-                    setLocation(latitude, longitude);
+                    SetLocation(latitude, longitude);
 
                     // Send messages according to whether the variables changed or not
                     if (changeRudder)
                     {
-                        sendCommand("set /controls/flight/rudder " + rudder + "\n");
-                        ans = readData();
+                        SendCommand("set /controls/flight/rudder " + rudder + "\n");
+                        ans = ReadData();
                         changeRudder = false;
                     }
                     if (changeElevator)
                     {
-                        sendCommand("set /controls/flight/elevator " + elevator + "\n");
-                        ans = readData();
+                        SendCommand("set /controls/flight/elevator " + elevator + "\n");
+                        ans = ReadData();
                         changeElevator = false;
                     }
                     if (changeAileron)
                     {
-                        sendCommand("set /controls/flight/aileron " + aileron + "\n");
-                        ans = readData();
+                        SendCommand("set /controls/flight/aileron " + aileron + "\n");
+                        ans = ReadData();
                         changeAileron = false;
                     }
                     if (changeThrottle)
                     {
-                        sendCommand("set /controls/engines/current-engine/throttle " + throttle + "\n");
-                        ans = readData();
+                        SendCommand("set /controls/engines/current-engine/throttle " + throttle + "\n");
+                        ans = ReadData();
                         changeThrottle = false;
                     }
                     
@@ -291,7 +291,7 @@ namespace FlightSimulator.Model
             }).Start();
         }
 
-        public void disconnect() 
+        public void Disconnect() 
         {
             stop = true;
             IsConnected = false;
@@ -313,7 +313,7 @@ namespace FlightSimulator.Model
             }
         }
   
-        public void setLocation(double latitude, double longitude)
+        public void SetLocation(double latitude, double longitude)
         {
             // Check if the new location is in earth (valid location) 
             if ((latitude < 90) && (latitude > -90) && (longitude < 180) && (longitude>-180)) {
@@ -446,8 +446,7 @@ namespace FlightSimulator.Model
 
         public void NotifyPropertyChanged(string propName)
         {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 
         // Cut the given string to the end of line

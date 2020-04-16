@@ -29,7 +29,7 @@
             </m:Map>
             
             <Views:DataBoard x:Name="dataBoard" Grid.Column="1" Margin="0.333,28,0.667,313" Width="413" Grid.RowSpan="2"/>
-            <Views:Navigates x:Name="navigates" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="30" Height="253" Width="284" MouseUp="navigates_MouseUp" MouseLeave="navigates_MouseLeave"/>
+            <Views:Navigates x:Name="navigates" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="30" Height="253" Width="284" MouseUp="Navigates_MouseUp" MouseLeave="Navigates_MouseLeave"/>
             <Views:Controls x:Name="control" Grid.ColumnSpan="2" Width="890"/>
 
         </Grid>

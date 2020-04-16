@@ -19,14 +19,14 @@ namespace FlightSimulator.ViewModel
             get { return model.IsConnected; }
         }
 
-        public void connect(string ip, int port)
+        public void Connect(string ip, int port)
         {
-            model.connect(ip, port);
+            model.Connect(ip, port);
         }
 
-        public void disconnect()
+        public void Disconnect()
         {
-            model.disconnect();
+            model.Disconnect();
         }
     }
 }
